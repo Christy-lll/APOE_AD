@@ -108,7 +108,7 @@ p_pca_all <- ggplot(pca_all_df, aes(x = PC1, y = PC2, color = apoe4)) +
 expr_mat <- as.matrix(dat[, protein_vars]) # no missing values anyNA(expr_mat)
 rownames(expr_mat) <- dat$projid_visit
 expr_mat <- t(expr_mat)
-design_mat <- model.matrix(~ apoe4 + Diagnosis + age_at_visit + msex + educ, data = dat) # adjust educ?
+design_mat <- model.matrix(~ apoe4 + Diagnosis + age_at_visit + msex, data = dat) # adjust educ?
 
 library(limma)
 fit <- lmFit(expr_mat, design_mat)
@@ -398,161 +398,490 @@ all_metrics <- bind_rows(mci_metrics, ad_metrics, male_metrics, ADNI_metrics)
 # write.csv(all_metrics, file.path(table_output_dir, "plasma_ML_metrics.csv"), row.names = FALSE)
 
 
-# Mediation analysis ----
-# Exposure: APOE4 status (binary); Mediator: Proteins (continuous); Outcome: AD Diagnosis (binary)
+# AD/APOE4 effect decomposition ----
+## Build interaction limma model ----
+library(limma) 
 
-## Feature screening with limma (APOE4 --> proteins) ----
-expr_mat <- as.matrix(dat[, protein_vars]) 
-rownames(expr_mat) <- dat$projid_visit
-expr_mat <- t(expr_mat)
-design_mat_med <- model.matrix(~ apoe4 + age_at_visit + msex + educ, data = dat) # no adjustment for diagnosis
-
-library(limma)
-fit_med <- lmFit(expr_mat, design_mat_med)
-fit_med <- eBayes(fit_med)
-
-res_limma_med <- topTable(fit_med, coef = "apoe4APOE4+", number = Inf) %>%
-  rownames_to_column(var = "UniprotID") %>%
-  mutate(negLog10FDR = -log10(adj.P.Val)) %>%
-  filter(adj.P.Val < 0.05) %>%
-  left_join(protein_meta_clean, by = c("UniprotID" = "UniProt")) %>%
-  dplyr::select(UniprotID, EntrezGeneSymbol, TargetFullName, everything()) # 53 significant proteins
-
-## DEPs & diag_apoe heatmap ----
-heatmap_mat <- dat %>%
-  dplyr::select(diag_apoe, all_of(med_proteins)) %>%
-  group_by(diag_apoe) %>%
-  summarise(across(everything(), mean, na.rm = TRUE)) %>%
-  column_to_rownames("diag_apoe") %>%
-  t()
-
-rownames(heatmap_mat) <- protein_meta_clean$EntrezGeneSymbol[
-  match(rownames(heatmap_mat), protein_meta_clean$UniProt)
-]
-
-p_heatmap <- pheatmap::pheatmap(heatmap_mat,
-                                scale = "row",         
-                                cluster_cols = FALSE,   
-                                cluster_rows = TRUE,
-                                show_colnames = TRUE,
-                                fontsize_row = 9,
-                                main = "Z-scored mean expression of DEPs across diagnosis and APOE4 subgroups")
-
-# ggsave(file.path(pic_output_dir, "plasma_limma_heatmap.png"), plot = p_heatmap, width = 8, height = 8)
-
-
-## Mediation model: Does the protein mediate APOE4's effect on AD ----
-med_dat <- dat %>% 
+med_dat <- dat %>%
   filter(Diagnosis %in% c("NCI", "AD")) %>%
-  mutate(diagnosis_bin = as.integer(Diagnosis == "AD")) # 0 = NCI, 1 = AD
+  mutate(Diagnosis = droplevels(Diagnosis),
+         diagnosis_bin = as.integer(Diagnosis == "AD")) # 0 = NCI, 1 = AD
 
-med_proteins <- res_limma_med$UniprotID
+expr_mat <- med_dat %>%
+  dplyr::select(all_of(protein_vars)) %>%
+  as.matrix() %>% t()
+rownames(expr_mat) <- protein_vars
+colnames(expr_mat) <- med_dat$projid_visit
 
-library(mediation)
-run_mediation <- function(protein) {
-  df <- med_dat %>% dplyr::select(diagnosis_bin, apoe4, age_at_visit, msex, educ, mediator = all_of(protein))
+design_mat <- model.matrix(~ 0 + Diagnosis + apoe4 + Diagnosis:apoe4 + age_at_visit + msex,
+                           data = med_dat)
+
+colnames(design_mat) <- gsub("Diagnosis|apoe4", "", colnames(design_mat)) %>%
+  gsub(":", "_x_", .) %>%
+  gsub("\\+", "pos", .)
+
+contrasts_full <- makeContrasts(
+  AD_vs_NCI_APOE4neg = AD - NCI, # AD effect in APOE4-
+  AD_vs_NCI_APOE4pos = AD + AD_x_APOE4pos - NCI, # AD effect in APOE4+
+  APOE4_effect_in_NCI = APOE4pos, # APOE4 effect in NCI
+  APOE4_effect_in_AD = APOE4pos + AD_x_APOE4pos, # APOE4 effect in AD
+  Interaction = AD_x_APOE4pos, # Differential APOE4 effect: AD vs NCI
+  levels = design_mat
+)
+
+fit <- lmFit(expr_mat, design_mat) %>%
+  contrasts.fit(contrasts_full) %>%
+  eBayes()
+
+## Extract results ----
+p_val_threshold <- 0.05
+
+get_res <- function(fit, coef) {
+  topTable(fit, coef = coef, number = Inf) %>%
+    rownames_to_column(var = "UniprotID") %>%
+    mutate(negLog10FDR = -log10(adj.P.Val),
+           Status = case_when(
+             adj.P.Val < p_val_threshold & logFC >  0 ~ "Upregulated",
+             adj.P.Val < p_val_threshold & logFC <  0 ~ "Downregulated",
+             TRUE ~ "Not significant")) %>%
+    left_join(protein_meta_clean, by = c("UniprotID" = "UniProt"))
+}
+
+res_AD_vs_NCI_APOE4neg <- get_res(fit, "AD_vs_NCI_APOE4neg")
+res_AD_vs_NCI_APOE4pos <- get_res(fit, "AD_vs_NCI_APOE4pos")
+res_APOE4_effect_in_NCI <- get_res(fit, "APOE4_effect_in_NCI")
+res_APOE4_effect_in_AD <- get_res(fit, "APOE4_effect_in_AD")
+res_interaction <- get_res(fit, "Interaction")
+
+## Volcano plots ----
+library(patchwork)
+
+plot_volcano <- function(res, title) {
+  sig <- res %>% filter(adj.P.Val < p_val_threshold)
+  n_up <- sum(sig$logFC > 0)
+  n_down <- sum(sig$logFC < 0)
   
-  med.fit <- lm(mediator ~ apoe4 + age_at_visit + msex + educ, data = df)
-  out.fit <- glm(diagnosis_bin ~ mediator + apoe4 + age_at_visit + msex + educ, data = df, family = binomial(link = "logit"))
+  ggplot(res, aes(x = logFC, y = negLog10FDR)) +
+    geom_point(aes(color = Status), alpha = 0.6, size = 1.2) +
+    ggrepel::geom_text_repel(data = sig, aes(label = EntrezGeneSymbol),
+                             size = 3, color = "black") +
+    scale_color_manual(values = c("Upregulated" = "red", 
+                                  "Downregulated" = "blue",
+                                  "Not significant" = "grey")) +
+    geom_hline(yintercept = -log10(p_val_threshold), linetype = "dashed", color = "grey") +
+    labs(title = title,
+         subtitle = sprintf("adj_p < 0.05  |  Up: %d   Down: %d", n_up, n_down),
+         x = "log2 fold change", y = "-log10 adjusted P", color = "") +
+    theme_classic() +
+    theme(legend.position = "right")
+}
+
+p_AD_APOE4neg <- plot_volcano(res_AD_vs_NCI_APOE4neg, "AD vs NCI | APOE4-")
+p_AD_APOE4pos <- plot_volcano(res_AD_vs_NCI_APOE4pos, "AD vs NCI | APOE4+")
+p_APOE4_in_NCI <- plot_volcano(res_APOE4_effect_in_NCI, "APOE4+ vs APOE4- | NCI")
+p_APOE4_in_AD <- plot_volcano(res_APOE4_effect_in_AD, "APOE4+ vs APOE4- | AD")
+p_interaction <- plot_volcano(res_interaction, "Interaction: AD × APOE4")
+
+p_volcano_grid <- (p_AD_APOE4neg  | p_AD_APOE4pos) / (p_APOE4_in_NCI | p_APOE4_in_AD) +
+  plot_annotation(title = "AD and APOE4 Effect Decomposition")
+
+# ggsave(file.path(pic_output_dir, "plasma_decomposition_volcano.png"), plot = p_volcano_grid, width = 15, height = 12)
+
+## PCA on APOE4 effect DEPs, across strata ----
+APOE4_DEPs <- res_APOE4_effect_in_AD %>%
+  filter(adj.P.Val < p_val_threshold) %>%
+  pull(UniprotID)
+
+plot_pca_stratum <- function(dat, proteins, stratum, title) {
+  dat_s <- dat %>% filter(Diagnosis == stratum)
+  pca <- prcomp(dat_s[, proteins], center = TRUE, scale. = TRUE)
+  var_exp <- summary(pca)$importance[2, 1:2] * 100
+  
+  as.data.frame(pca$x[, 1:2]) %>%
+    mutate(apoe4 = dat_s$apoe4) %>%
+    ggplot(aes(x = PC1, y = PC2, color = apoe4)) +
+    geom_point(alpha = 0.7, size = 1.5) +
+    labs(title = title,
+         subtitle = sprintf("%d APOE4- vs APOE4+ (AD) DEPs", length(proteins)),
+         x = sprintf("PC1 (%.1f%%)", var_exp[1]),
+         y = sprintf("PC2 (%.1f%%)", var_exp[2]),
+         color = "") +
+    theme_classic() +
+    theme(legend.position = "bottom")
+}
+
+p_pca_AD  <- plot_pca_stratum(med_dat, APOE4_DEPs, "AD",  "PCA in AD cohort")
+p_pca_NCI <- plot_pca_stratum(med_dat, APOE4_DEPs, "NCI", "PCA in NCI cohort")
+
+p_pca_grid <- p_pca_NCI | p_pca_AD
+
+# ggsave(file.path(pic_output_dir, "plasma_pca_APOE.png"), plot = p_pca_grid, width = 15, height = 8)
+
+## PCA on AD effect DEPs, across strata ----
+AD_DEPs <- res_AD_vs_NCI_APOE4neg %>%
+  filter(adj.P.Val < p_val_threshold,
+         abs(logFC) > 0.1) %>%
+  pull(UniprotID)
+
+plot_pca_apoe4_stratum <- function(dat, proteins, apoe4_stratum, title) {
+  dat_s <- dat %>% filter(apoe4 == apoe4_stratum)
+  pca <- prcomp(dat_s[, proteins], center = TRUE, scale. = TRUE)
+  var_exp <- summary(pca)$importance[2, 1:2] * 100
+  
+  as.data.frame(pca$x[, 1:2]) %>%
+    mutate(Diagnosis = dat_s$Diagnosis) %>%
+    ggplot(aes(x = PC1, y = PC2, color = Diagnosis)) +
+    geom_point(alpha = 0.7, size = 1.5) +
+    labs(title = title,
+         subtitle = sprintf("%d AD vs NCI (APOE4-) DEPs with |log FC| > 0.1", length(proteins)),
+         x = sprintf("PC1 (%.1f%%)", var_exp[1]),
+         y = sprintf("PC2 (%.1f%%)", var_exp[2]),
+         color = "") +
+    theme_classic() +
+    theme(legend.position = "bottom")
+}
+
+p_pca_apoe4neg <- plot_pca_apoe4_stratum(med_dat, AD_DEPs, "APOE4-", "PCA in APOE4− cohort")
+p_pca_apoe4pos <- plot_pca_apoe4_stratum(med_dat, AD_DEPs, "APOE4+", "PCA in APOE4+ cohort")
+
+p_pca_AD_grid <- p_pca_apoe4neg | p_pca_apoe4pos
+
+# ggsave(file.path(pic_output_dir, "plasma_pca_AD.png"), plot = p_pca_AD_grid, width = 15, height = 8)
+
+
+# Mediation analysis 1: Different candidate proteins ----
+library(mediation)
+library(furrr)
+
+## Pathway 1 (Upstream): APOE4 --> Proteins --> AD ----
+# Filter candidate protein (with pre-AD APOE4 effect)
+candidates_P1 <- res_APOE4_effect_in_NCI %>%
+  filter(adj.P.Val < 0.05) %>%
+  pull(UniprotID)
+
+# Mediation model 
+run_mediation_APOE <- function(protein) {
+  df <- med_dat %>%
+    dplyr::select(diagnosis_bin, apoe4, mediator = all_of(protein), age_at_visit, msex)
+  
+  med.fit <- lm(mediator ~ apoe4 + age_at_visit + msex, data = df)
+  out.fit <- glm(diagnosis_bin ~ mediator + apoe4 + age_at_visit + msex, 
+                 data = df, family = binomial(link = "logit"))
   
   med.out <- mediate(med.fit, out.fit, treat = "apoe4", mediator = "mediator",
-                     control.value = "APOE4-", treat.value = "APOE4+", 
-                     boot = TRUE, sims = 1500)
+                     control.value = "APOE4-", treat.value = "APOE4+",
+                     boot = TRUE, sims = 1000)
   
   tibble(UniprotID = protein,
-         ACME_est = med.out$d.avg, # Average casual mediation effect: APOE4's effect on AD through this protein
+         ACME_est = med.out$d.avg,
          ACME_ci_low = med.out$d.avg.ci[1],
          ACME_ci_up = med.out$d.avg.ci[2],
          ACME_p = med.out$d.avg.p,
-         ADE_est = med.out$z.avg, # Average direct effect: The effect of APOE4 on AD not explained by this protein
+         ADE_est = med.out$z.avg,
          ADE_p = med.out$z.avg.p,
-         prop_med = med.out$n.avg, # Proportion of total effect mediated by this protein
+         prop_med = med.out$n.avg,
          prop_ci_low = med.out$n.avg.ci[1],
          prop_ci_up = med.out$n.avg.ci[2],
-         total_effect = med.out$tau.coef, # ACME + ADE
+         total_effect = med.out$tau.coef,
          total_effect_p = med.out$tau.p)
 }
 
-library(furrr)
 plan(multisession, workers = parallel::detectCores() - 1)
-
-set.seed(16)
-res_mediation <- map_dfr(med_proteins, run_mediation) %>%
+res_mediation_APOE <- future_map_dfr(candidates_P1, run_mediation_APOE,
+                                     .options = furrr_options(seed = 16)) %>%
   mutate(ACME_fdr = p.adjust(ACME_p, method = "BH")) %>%
   left_join(protein_meta_clean, by = c("UniprotID" = "UniProt")) %>%
-  dplyr::select(UniprotID, EntrezGeneSymbol, TargetFullName, 
-                ACME_est, ACME_ci_low, ACME_ci_up, ACME_p, ACME_fdr, ADE_est, ADE_p, 
+  dplyr::select(UniprotID, EntrezGeneSymbol, TargetFullName,
+                ACME_est, ACME_ci_low, ACME_ci_up, ACME_p, ACME_fdr, ADE_est, ADE_p,
                 prop_med, prop_ci_low, prop_ci_up, total_effect, total_effect_p) %>%
   arrange(ACME_fdr)
+plan(sequential)
+
+sig_res_mediation_APOE <- res_mediation_APOE %>%
+  filter(ACME_fdr < 0.05)
+# write.csv(sig_res_mediation_APOE, file.path(table_output_dir, "plasma_mediation_APOE_prot_AD.csv"), row.names = FALSE)
+
+# Forest plot
+p_ACME_APOE <- ggplot(sig_res_mediation_APOE, aes(x = ACME_est, y = forcats::fct_reorder(EntrezGeneSymbol, ACME_est))) +
+  geom_point(size = 2) +
+  geom_errorbarh(aes(xmin = ACME_ci_low, xmax = ACME_ci_up), height = 0.2) +
+  geom_vline(xintercept = 0, linetype = "dashed", color = "grey") +
+  labs(x = "Average causal mediation effect (ACME)", y = NULL, 
+       title = "Mediation Analysis: APOE4 → Protein → AD Diagnosis",
+       subtitle = paste0(nrow(sig_res_mediation_APOE), " proteins with ACME FDR < 0.05 | 95% bootstrap CI")) +
+  theme_classic()
+
+# ggsave(file.path(pic_output_dir, "plasma_mediation_APOE_prot_AD.png"), p_ACME_APOE, width = 6, height = 6)
+
+
+## Pathway 2 (Downstream): APOE4 --> AD --> Proteins ---- 
+# Filter candidate protein (APOE4 mediated in AD)
+candidates_P2 <- res_APOE4_effect_in_AD %>%
+  filter(adj.P.Val < 0.05) %>%
+  pull(UniprotID) # how much of APOE4 effect is mediated through AD diagnosis
+
+# Mediation model 
+run_mediation_AD <- function(protein) {
+  df <- med_dat %>%
+    dplyr::select(diagnosis_bin, apoe4, outcome_prot = all_of(protein), age_at_visit, msex)
+  
+  med.fit <- glm(diagnosis_bin ~ apoe4 + age_at_visit + msex, data = df, family = binomial(link = "logit"))
+  out.fit <- lm(outcome_prot ~ diagnosis_bin + apoe4 + age_at_visit + msex, data = df)
+  
+  med.out <- mediate(med.fit, out.fit, treat = "apoe4", mediator = "diagnosis_bin",
+                     control.value = "APOE4-", treat.value = "APOE4+",
+                     boot = TRUE, sims = 1000)
+  
+  tibble(UniprotID = protein,
+         ACME_est = med.out$d.avg,
+         ACME_ci_low = med.out$d.avg.ci[1],
+         ACME_ci_up = med.out$d.avg.ci[2],
+         ACME_p = med.out$d.avg.p,
+         ADE_est = med.out$z.avg,
+         ADE_p = med.out$z.avg.p,
+         prop_med = med.out$n.avg,
+         prop_ci_low = med.out$n.avg.ci[1],
+         prop_ci_up = med.out$n.avg.ci[2],
+         total_effect = med.out$tau.coef,
+         total_effect_p = med.out$tau.p)
+}
+
+plan(multisession, workers = parallel::detectCores() - 1)
+res_mediation_AD <- future_map_dfr(candidates_P2, run_mediation_AD,
+                                   .options = furrr_options(seed = 16)) %>%
+  mutate(ACME_fdr = p.adjust(ACME_p, method = "BH")) %>%
+  left_join(protein_meta_clean, by = c("UniprotID" = "UniProt")) %>%
+  dplyr::select(UniprotID, EntrezGeneSymbol, TargetFullName,
+                ACME_est, ACME_ci_low, ACME_ci_up, ACME_p, ACME_fdr, ADE_est, ADE_p,
+                prop_med, prop_ci_low, prop_ci_up, total_effect, total_effect_p) %>%
+  arrange(ACME_fdr)
+plan(sequential)
+
+sig_res_mediation_AD <- res_mediation_AD %>%
+  filter(ACME_fdr < 0.05)
+# write.csv(sig_res_mediation_AD, file.path(table_output_dir, "plasma_mediation_APOE_AD_prot.csv"), row.names = FALSE)
+
+# Forest plot
+p_ACME_AD <- ggplot(sig_res_mediation_AD, aes(x = ACME_est, y = forcats::fct_reorder(EntrezGeneSymbol, ACME_est))) +
+  geom_point(size = 2) +
+  geom_errorbarh(aes(xmin = ACME_ci_low, xmax = ACME_ci_up), height = 0.2) +
+  geom_vline(xintercept = 0, linetype = "dashed", color = "grey") +
+  labs(x = "Average causal mediation effect (ACME)", y = NULL,
+       title = "Mediation Analysis: APOE4 → AD Diagnosis → Protein",
+       subtitle = paste0(nrow(sig_res_mediation_AD), " proteins with ACME FDR < 0.05 | 95% bootstrap CI")) +
+  theme_classic()
+
+# ggsave(file.path(pic_output_dir, "plasma_mediation_APOE_AD_prot.png"), p_ACME_AD, width = 6, height = 6)
+
+## Pathways Overlap ----
+mediation_classification <- bind_rows(
+  res_mediation_APOE %>% mutate(pathway = "P1_upstream"),
+  res_mediation_AD %>% mutate(pathway = "P2_downstream")
+) %>%
+  dplyr::select(UniprotID, EntrezGeneSymbol, pathway,
+                ACME_est, ACME_ci_low, ACME_ci_up, ACME_fdr, prop_med) %>%
+  pivot_wider(names_from = pathway,
+              values_from = c(ACME_est, ACME_ci_low, ACME_ci_up, ACME_fdr, prop_med)) %>%
+  mutate(tested_P1 = UniprotID %in% candidates_P1,
+         tested_P2 = UniprotID %in% candidates_P2,
+         sig_P1 = replace_na(ACME_fdr_P1_upstream < 0.05, FALSE),
+         sig_P2 = replace_na(ACME_fdr_P2_downstream < 0.05, FALSE),
+         classification = case_when(
+           sig_P1 & sig_P2  ~ "Both pathways",
+           sig_P1 & !sig_P2 &  tested_P2 ~ "Upstream only (tested, ns in P2)",
+           sig_P1 & !sig_P2 & !tested_P2 ~ "Upstream only (P2 not tested)",
+           !sig_P1 & sig_P2 &  tested_P1 ~ "Downstream only (tested, ns in P1)",
+           !sig_P1 & sig_P2 & !tested_P1 ~ "Downstream only (P1 not tested)",
+           TRUE ~ "Neither"
+         ))
+
+# Upstream only
+dat_P1 <- mediation_classification %>%
+  filter(classification == "Upstream only (P2 not tested)") %>%
+  left_join(sig_res_mediation_APOE %>% dplyr::select(UniprotID),
+            by = "UniprotID") %>%
+  mutate(label = EntrezGeneSymbol,
+         y = forcats::fct_reorder(label, ACME_est_P1_upstream))
+
+p_A <- ggplot(dat_P1, aes(x = ACME_est_P1_upstream, y = y)) +
+  geom_point(size = 2) +
+  geom_errorbarh(aes(xmin = ACME_ci_low_P1_upstream, xmax = ACME_ci_up_P1_upstream),
+                 height = 0.2) +
+  geom_vline(xintercept = 0, linetype = "dashed", color = "grey") +
+  labs(x = "ACME", y = NULL,
+       title = "Upstream only: APOE4 → Protein → AD",
+       subtitle = "proteins are not tested in other pathway") +
+  theme_classic()
+
+# Downstream only
+dat_P2 <- mediation_classification %>%
+  filter(classification == "Downstream only (tested, ns in P1)") %>%
+  left_join(sig_res_mediation_AD %>% dplyr::select(UniprotID),
+            by = "UniprotID") %>%
+  mutate(label = EntrezGeneSymbol,
+         y = forcats::fct_reorder(label, ACME_est_P2_downstream))
+
+p_B <- ggplot(dat_P2, aes(x = ACME_est_P2_downstream, y = y)) +
+  geom_point(size = 2) +
+  geom_errorbarh(aes(xmin = ACME_ci_low_P2_downstream, xmax = ACME_ci_up_P2_downstream),
+                 height = 0.2) +
+  geom_vline(xintercept = 0, linetype = "dashed", color = "grey") +
+  labs(x = "ACME", y = NULL,
+       title = "Downstream only: APOE4 → AD → Protein",
+       subtitle = "proteins are tested but ns in other pathway") +
+  theme_classic()
+
+# Both
+dat_both_wide <- mediation_classification %>%
+  filter(classification == "Both pathways")
+
+p_C <- ggplot(dat_both_wide, aes(x = ACME_est_P1_upstream, y = ACME_est_P2_downstream)) +
+  geom_point(size = 2.5) +
+  ggrepel::geom_text_repel(aes(label = EntrezGeneSymbol), size = 3) +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "grey") +
+  geom_vline(xintercept = 0, linetype = "dashed", color = "grey") +
+  labs(x = "ACME - Upstream (APOE4 → Protein → AD)",
+       y = "ACME - Downstream (APOE4 → AD → Protein)",
+       title = "Proteins appear in both pathways",
+       subtitle = "") +
+  theme_classic()
+
+# Save result
+p_mediation_final <- p_A + p_B + p_C +
+  plot_annotation(title = "Mediation Analysis")
+
+# ggsave(file.path(pic_output_dir, "plasma_mediation_final.png"), p_mediation_final, width = 15, height = 6)
+
+
+# Mediation analysis 2: All APOE4-associated proteins in both pathways ----
+library(mediation)
+library(furrr)
+
+candidates_all <- res_limma %>%
+  filter(adj.P.Val < 0.05) %>%
+  pull(UniprotID)
+
+## Pathway 1: APOE4 --> Protein --> AD ----
+run_mediation_P1 <- function(protein) {
+  df <- med_dat %>%
+    dplyr::select(diagnosis_bin, apoe4, mediator = all_of(protein), age_at_visit, msex)
+  
+  med.fit <- lm(mediator ~ apoe4 + age_at_visit + msex, data = df)
+  out.fit <- glm(diagnosis_bin ~ mediator + apoe4 + age_at_visit + msex,
+                 data = df, family = binomial(link = "logit"))
+  
+  med.out <- mediate(med.fit, out.fit, treat = "apoe4", mediator = "mediator",
+                     control.value = "APOE4-", treat.value = "APOE4+",
+                     boot = TRUE, sims = 1000)
+  
+  tibble(UniprotID = protein,
+         ACME_est = med.out$d.avg,
+         ACME_ci_low = med.out$d.avg.ci[1],
+         ACME_ci_up = med.out$d.avg.ci[2],
+         ACME_p = med.out$d.avg.p,
+         ADE_est = med.out$z.avg,
+         ADE_p = med.out$z.avg.p,
+         prop_med = med.out$n.avg,
+         prop_ci_low = med.out$n.avg.ci[1],
+         prop_ci_up = med.out$n.avg.ci[2],
+         total_effect = med.out$tau.coef,
+         total_effect_p = med.out$tau.p)
+}
+
+## Pathway 2: APOE4 --> AD --> Protein ----
+run_mediation_P2 <- function(protein) {
+  df <- med_dat %>%
+    dplyr::select(diagnosis_bin, apoe4, outcome_prot = all_of(protein), age_at_visit, msex)
+  
+  med.fit <- glm(diagnosis_bin ~ apoe4 + age_at_visit + msex, data = df, family = binomial(link = "logit"))
+  out.fit <- lm(outcome_prot ~ diagnosis_bin + apoe4 + age_at_visit + msex, data = df)
+  
+  med.out <- mediate(med.fit, out.fit, treat = "apoe4", mediator = "diagnosis_bin",
+                     control.value = "APOE4-", treat.value = "APOE4+",
+                     boot = TRUE, sims = 1000)
+  
+  tibble(UniprotID = protein,
+         ACME_est = med.out$d.avg,
+         ACME_ci_low = med.out$d.avg.ci[1],
+         ACME_ci_up = med.out$d.avg.ci[2],
+         ACME_p = med.out$d.avg.p,
+         ADE_est = med.out$z.avg,
+         ADE_p = med.out$z.avg.p,
+         prop_med = med.out$n.avg,
+         prop_ci_low = med.out$n.avg.ci[1],
+         prop_ci_up = med.out$n.avg.ci[2],
+         total_effect = med.out$tau.coef,
+         total_effect_p = med.out$tau.p)
+}
+
+plan(multisession, workers = parallel::detectCores() - 1)
+
+res_P1_all <- future_map_dfr(candidates_all, run_mediation_P1,
+                             .options = furrr_options(seed = 16)) %>%
+  mutate(ACME_fdr = p.adjust(ACME_p, method = "BH")) %>%
+  left_join(protein_meta_clean, by = c("UniprotID" = "UniProt"))
+
+res_P2_all <- future_map_dfr(candidates_all, run_mediation_P2,
+                             .options = furrr_options(seed = 16)) %>%
+  mutate(ACME_fdr = p.adjust(ACME_p, method = "BH")) %>%
+  left_join(protein_meta_clean, by = c("UniprotID" = "UniProt"))
 
 plan(sequential)
 
-## Result ----
-sig_res_mediation <- res_mediation %>%
-  filter(ACME_fdr < 0.05) # 12 proteins with significant ACME FDR
+# write.csv(res_P1_all, file.path(table_output_dir, "plasma_mediation_all_P1.csv"), row.names = FALSE)
+# write.csv(res_P2_all, file.path(table_output_dir, "plasma_mediation_all_P2.csv"), row.names = FALSE)
 
-# write.csv(sig_res_mediation, file.path(table_output_dir, "plasma_mediation_APOE_prot_AD.csv"), row.names = FALSE)
+## Heatmap ----
+star_label <- function(p) case_when(p < 0.001 ~ "***", p < 0.01 ~ "**", p < 0.05 ~ "*", TRUE ~ "")
 
-# Forest plot
-library(patchwork)
-p_ACME <- ggplot(sig_res_mediation, aes(x = ACME_est, y = forcats::fct_reorder(EntrezGeneSymbol, ACME_est))) +
-  geom_point(size = 2) + 
-  geom_errorbarh(aes(xmin = ACME_ci_low, xmax = ACME_ci_up), height = 0.2) +
-  geom_vline(xintercept = 0, linetype = "dashed", color = "grey") +
-  labs(x = "Average causal mediation effect (ACME)", y = NULL) +
-  theme_classic()
+path_labels <- c("Path1" = "APOE4 -> Protein -> AD", 
+                 "Path2" = "APOE4 -> AD -> Protein")
 
-p_PROP <- ggplot(sig_res_mediation, aes(x = prop_med * 100, y = forcats::fct_reorder(EntrezGeneSymbol, ACME_est))) +
-  geom_point(size = 2) + 
-  geom_errorbarh(aes(xmin = prop_ci_low * 100, xmax = prop_ci_up * 100), height = 0.2) +
-  labs(x = "Proportion mediated (%)", y = NULL) +
-  theme_classic() 
+sig_either <- union(res_P1_all %>% filter(ACME_fdr < 0.05) %>% pull(UniprotID),
+                    res_P2_all %>% filter(ACME_fdr < 0.05) %>% pull(UniprotID))
 
-p_forest <- p_ACME + p_PROP +
-  plot_annotation(title = "Mediation Analysis: APOE4 → Protein → AD Diagnosis",
-                  subtitle = "12 proteins with ACME FDR < 0.05 | 95% bootstrap CI")
+heatmap_dat <- bind_rows(
+  res_P1_all %>% filter(UniprotID %in% sig_either) %>% mutate(pathway = "Path1"),
+  res_P2_all %>% filter(UniprotID %in% sig_either) %>% mutate(pathway = "Path2")
+) %>%
+  mutate(pct_med = prop_med * 100,
+         sig_star = star_label(ACME_fdr))
 
-# ggsave(file.path(pic_output_dir, "plasma_mediation_APOE_prot_AD.png"), p_forest, width = 9, height = 6)
+protein_wide <- heatmap_dat %>%
+  select(UniprotID, EntrezGeneSymbol, pathway, pct_med, ACME_fdr) %>%
+  pivot_wider(names_from = pathway, values_from = c(pct_med, ACME_fdr)) %>%
+  mutate(EntrezGeneSymbol = as.character(EntrezGeneSymbol),
+         sig_P1 = replace_na(ACME_fdr_Path1 < 0.05, FALSE),
+         sig_P2 = replace_na(ACME_fdr_Path2 < 0.05, FALSE),
+         sort_group = case_when(sig_P1 & sig_P2 ~ 1, sig_P1 ~ 2, TRUE ~ 3),
+         sort_val = replace_na(pct_med_Path1, 0),
+         axis_color = case_when(sig_P1 & sig_P2 ~ "black", sig_P1 ~ "red", TRUE ~ "blue")) %>%
+  arrange(sort_group, desc(sort_val))
 
-# Volcano plot 
-res_limma_med_volcano <- topTable(fit_med, coef = "apoe4APOE4+", number = Inf) %>%
-  rownames_to_column(var = "UniprotID") %>%
-  mutate(negLog10FDR = -log10(adj.P.Val),
-         `Direction of change` = case_when(adj.P.Val < 0.05 & logFC > 0 ~ "Upregulated",
-                                           adj.P.Val < 0.05 & logFC < 0 ~ "Downregulated",
-                                           TRUE ~ "Not significant"), 
-         mediation_sig = UniprotID %in% sig_res_mediation$UniprotID) %>%
-  left_join(protein_meta_clean, by = c("UniprotID" = "UniProt"))
+protein_order <- protein_wide$EntrezGeneSymbol
+axis_colors <- protein_wide$axis_color
 
-p_limma_med <- ggplot(res_limma_med_volcano, aes(x = logFC, y = negLog10FDR)) +
-  geom_point(aes(color = `Direction of change`), alpha = 0.6, size = 1.2) +
-  ggrepel::geom_text_repel(data = filter(res_limma_med_volcano, mediation_sig),
-                           aes(label = EntrezGeneSymbol),
-                           size = 3, color = "black") +
-  scale_color_manual(values = c("Upregulated" = "red",
-                                "Downregulated" = "blue",
-                                "Not significant" = "grey")) +
-  geom_hline(yintercept = -log10(0.05), linetype = "dashed", color = "grey") +
-  geom_vline(xintercept = 0, linetype = "dashed", color = "grey") +
-  labs(title = "APOE4-associated plasma proteins (unadjusted for diagnosis)",
-       subtitle = "Labelled: proteins with significant mediation effect (ACME FDR < 0.05)",
-       x = "log2 fold change",
-       y = "-log10 adjusted P",
-       color = " ") +
+heatmap_dat <- heatmap_dat %>%
+  mutate(EntrezGeneSymbol = factor(EntrezGeneSymbol, levels = protein_order))
+
+p_heatmap <- ggplot(heatmap_dat, aes(x = EntrezGeneSymbol, y = pathway, fill = pct_med)) +
+  geom_tile(color = "white", linewidth = 0.3) +
+  geom_text(aes(label = sig_star), color = "black", size = 3, vjust = 0.75) +
+  scale_fill_gradient2(
+    low = "#9e9ac8", mid = "white", high = "#fb6a4a",
+    midpoint = 0, name = "Percentage\nmediated(%)"
+  ) +
+  scale_x_discrete(position = "bottom") +
+  scale_y_discrete(limits = c("Path2", "Path1"), labels = path_labels) +
+  labs(title = "APOE4-associated proteins that are involved in mediation paths",
+       x = NULL, y = NULL) +
   theme_classic() +
-  theme(legend.position = "bottom")
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1, size = 8, color = axis_colors),
+    axis.text.y = element_text(size = 10),
+    axis.line = element_blank(),
+    axis.ticks  = element_blank(),
+    legend.position = "right"
+  )
 
-# ggsave(file.path(pic_output_dir, "plasma_mediation_volcano.png"), p_limma_med, width = 8, height = 7)
-
-## Sensitivity check ----
-# df_check <- med_dat %>% dplyr::select(diagnosis_bin, apoe4, age_at_visit, msex, educ, [UNIPROT])
-# med.fit <- lm([UNIPROT] ~ apoe4 + age_at_visit + msex + educ, data = df_check)
-# out.fit <- glm(diagnosis_bin ~ [UNIPROT] + apoe4 + age_at_visit + msex + educ,
-#                data = df_check, family = binomial(link = "probit"))
-# med.out <- mediate(med.fit, out.fit, treat = "apoe4", mediator = "[UNIPROT]",
-#                    control.value = "APOE4-", treat.value = "APOE4+",
-#                    boot = TRUE, sims = 1000)
-# sens.out <- medsens(med.out, rho.by = 0.05, effect.type = "indirect")
-# summary(sens.out)
-
-
+# ggsave(file.path(pic_output_dir, "plasma_mediation_heatmap.png"), p_heatmap, width = 8, height = 6)
