@@ -399,7 +399,6 @@ all_metrics <- bind_rows(mci_metrics, ad_metrics, male_metrics, ADNI_metrics)
 
 
 # APOE4 / AD Effect Decomposition ----
-## Limma model with interaction ----
 NoMCI_dat <- dat %>%
   filter(Diagnosis %in% c("NCI", "AD")) %>%
   mutate(Diagnosis = droplevels(Diagnosis),
@@ -412,6 +411,7 @@ noMCI_expr_mat <- NoMCI_dat %>%
 rownames(noMCI_expr_mat) <- protein_vars
 colnames(noMCI_expr_mat) <- NoMCI_dat$projid_visit
 
+## Analysis 1: Limma on full cohorts with interaction ----
 # fit model
 design_mat_decomp <- model.matrix(~ 0 + Diagnosis + apoe4 + Diagnosis:apoe4 + age_at_visit + msex, # adjust for age and sex
                            data = NoMCI_dat)
@@ -454,7 +454,7 @@ res_APOE4_effect_in_NCI <- get_res(fit, "APOE4_effect_in_NCI")
 res_APOE4_effect_in_AD <- get_res(fit, "APOE4_effect_in_AD")
 res_interaction <- get_res(fit, "Interaction")
 
-## Volcano plot ----
+# volcano plot
 plot_volcano <- function(res, title) {
   sig <- res %>% filter(adj.P.Val < p_val_threshold)
   n_up <- sum(sig$logFC > 0)
@@ -485,8 +485,7 @@ p_volcano_grid <- (p_APOE4_in_NCI | p_APOE4_in_AD) / (p_AD_APOE4neg | p_AD_APOE4
 
 # ggsave(file.path(pic_output_dir, "plasma_decomposition_volcano.png"), plot = p_volcano_grid, width = 15, height = 12)
 
-## PCA ----
-# APOE4 effect DEPs
+# PCA on APOE4 effect DEPs
 APOE4_DEPs <- res_APOE4_effect_in_AD %>%
   filter(adj.P.Val < p_val_threshold) %>%
   pull(UniprotID)
@@ -512,7 +511,7 @@ p_pca_grid <- p_pca_NCI | p_pca_AD
 
 # ggsave(file.path(pic_output_dir, "plasma_pca_APOE+-.png"), plot = p_pca_grid, width = 15, height = 8)
 
-# AD effect DEPs 
+# PCA on AD effect DEPs
 AD_DEPs <- res_AD_vs_NCI_APOE4neg %>%
   filter(adj.P.Val < p_val_threshold) %>%
   pull(UniprotID)
@@ -537,6 +536,91 @@ p_pca_apoe4pos <- plot_pca_apoe4_stratum(NoMCI_dat, AD_DEPs, "APOE4+", "PCA in A
 p_pca_AD_grid <- p_pca_apoe4neg | p_pca_apoe4pos
 
 # ggsave(file.path(pic_output_dir, "plasma_pca_ADNCI.png"), plot = p_pca_AD_grid, width = 15, height = 8)
+
+# Analysis 2: Stratified Limma ----
+# fit model
+run_stratified_limma <- function(dat, protein_vars, stratum_var, stratum_val, contrast_coef) {
+  dat_s <- dat %>%
+    filter(.data[[stratum_var]] == stratum_val) %>%
+    mutate(across(where(is.factor), droplevels))
+  
+  expr <- dat_s %>% select(all_of(protein_vars)) %>% as.matrix() %>% t()
+  
+  design_formula <- if (stratum_var == "apoe4") {
+    ~ Diagnosis + age_at_visit + msex
+  } else {
+    ~ apoe4 + age_at_visit + msex
+  }
+  
+  lmFit(expr, model.matrix(design_formula, data = dat_s)) %>%
+    eBayes() %>%
+    topTable(coef = contrast_coef, number = Inf) %>%
+    rownames_to_column("UniprotID") %>%
+    left_join(protein_meta_clean, by = c("UniprotID" = "UniProt")) %>%
+    mutate(stratum = paste0(stratum_var, ": ", stratum_val),
+           negLog10FDR = -log10(adj.P.Val),
+           direction = case_when(adj.P.Val < p_val_threshold & logFC > 0 ~ "Upregulated",
+                                 adj.P.Val < p_val_threshold & logFC < 0 ~ "Downregulated",
+                                 TRUE ~ "Not significant"))
+}
+
+ad_by_apoe4 <- map(c("APOE4-", "APOE4+"),
+                   ~ run_stratified_limma(NoMCI_dat, protein_vars, "apoe4", .x, "DiagnosisAD")) %>%
+  setNames(c("APOE4neg", "APOE4pos"))
+
+apoe4_by_dx <- map(c("NCI", "AD"),
+                   ~ run_stratified_limma(NoMCI_dat, protein_vars, "Diagnosis", .x, "apoe4APOE4+")) %>%
+  setNames(c("NCI", "AD"))
+
+# extract results
+list(ad_by_apoe4 = ad_by_apoe4, apoe4_by_dx = apoe4_by_dx) %>%
+  map(~ map(.x, ~ count(.x, direction)))
+
+dep_ad_noncarrier <- filter(ad_by_apoe4$APOE4neg, direction != "Not significant") %>% 
+  pull(UniprotID)
+
+dep_apoe4_nci <- filter(apoe4_by_dx$NCI, direction != "Not significant") %>% 
+  pull(UniprotID)
+
+# logFC correlation in DEPs
+make_strat_scatter <- function(res_a, res_b, label_a, label_b, title) {
+  joined <- inner_join(
+    res_a %>% select(UniprotID, logFC_a = logFC),
+    res_b %>% select(UniprotID, logFC_b = logFC, p_b = adj.P.Val),
+    by = "UniprotID"
+  ) %>% mutate(sig = p_b < 0.05)
+  
+  cor_test <- cor.test(joined$logFC_a, joined$logFC_b, method = "spearman")
+  stats_label <- paste0("Spearman r = ", round(cor_test$estimate, 2),
+                        ", p = ", formatC(cor_test$p.value, digits = 1))
+  
+  ggplot(joined, aes(x = logFC_a, y = logFC_b)) +
+    geom_abline(slope = 1, intercept = 0, linetype = "dashed", color = "grey") +
+    geom_point(aes(color = sig), size = 1.2) +
+    geom_smooth(method = "lm", color = "black", linewidth = 0.6, se = TRUE) +
+    scale_color_manual(values = c("TRUE" = "indianred", "FALSE" = "steelblue"),
+                       labels = c("TRUE" = paste0("Sig in ", label_b), "FALSE" = "Not significant"),
+                       guide = guide_legend(override.aes = list(size = 2))) +
+    annotate("text", x = -Inf, y = Inf, hjust = -0.1, vjust = 1.5,
+             label = stats_label, size = 3, fontface = "italic") +
+    labs(title = title, x = paste0("logFC: ", label_a), y = paste0("logFC: ", label_b), color = NULL) +
+    theme_classic() +
+    theme(legend.position = "bottom")
+}
+
+p_ad_strat <- make_strat_scatter(
+  ad_by_apoe4$APOE4neg %>% filter(UniprotID %in% dep_ad_noncarrier),
+  ad_by_apoe4$APOE4pos %>% filter(UniprotID %in% dep_ad_noncarrier),
+  "APOE4-", "APOE4+", "AD vs NCI logFC (among APOE4- DEPs)"
+)
+
+p_apoe4_strat <- make_strat_scatter(
+  apoe4_by_dx$NCI %>% filter(UniprotID %in% dep_apoe4_nci),
+  apoe4_by_dx$AD %>% filter(UniprotID %in% dep_apoe4_nci),
+  "NCI", "AD", "APOE4+ vs APOE4- logFC (among NCI DEPs)"
+)
+
+# ggsave(file.path(pic_output_dir, "plasma_stratified_logFC_scatter.png"), p_ad_strat | p_apoe4_strat, width = 14, height = 6)
 
 
 # Mediation Analysis ----
