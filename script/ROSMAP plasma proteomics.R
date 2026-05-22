@@ -537,7 +537,7 @@ p_pca_AD_grid <- p_pca_apoe4neg | p_pca_apoe4pos
 
 # ggsave(file.path(pic_output_dir, "plasma_pca_ADNCI.png"), plot = p_pca_AD_grid, width = 15, height = 8)
 
-# Analysis 2: Stratified Limma ----
+## Analysis 2: Stratified Limma ----
 # fit model
 run_stratified_limma <- function(dat, protein_vars, stratum_var, stratum_val, contrast_coef) {
   dat_s <- dat %>%
@@ -768,3 +768,50 @@ p_heatmap <- ggplot(heatmap_dat, aes(x = EntrezGeneSymbol, y = pathway, fill = p
   )
 
 # ggsave(file.path(pic_output_dir, "plasma_mediation_heatmap.png"), p_heatmap, width = 8, height = 6)
+
+# Enrichment Analysis ----
+## Pull UniprotID for NetworkAnalyst analysis ----
+# writeLines(rownames(noMCI_expr_mat), file.path(table_output_dir, "plasma_networkanalyst_background.txt"))
+# writeLines(candidate_prot, file.path(table_output_dir, "plasma_networkanalyst_dep.txt"))
+
+## KEGG results ----
+kegg_res <- read.csv(file.path(table_output_dir, "plasma_KEGG.csv")) %>%
+  filter(FDR < 0.05) %>%
+  mutate(negLog10FDR = -log10(FDR),
+         Pathway = forcats::fct_reorder(Pathway, negLog10FDR))
+
+kegg_plot <- ggplot(kegg_res, aes(x = negLog10FDR, y = Pathway)) +
+  geom_col(fill = "steelblue") +
+  labs(title = "KEGG Pathway Enrichment",
+       x = "-log10 FDR", y = NULL) +
+  theme_classic()
+
+# ggsave(file.path(pic_output_dir, "plasma_KEGG_barplot.png"), kegg_plot, width = 13, height = 12)
+
+## PANTHER results ----
+panther_res <- read.csv(file.path(table_output_dir, "plasma_PANTHER.csv")) %>%
+  filter(FDR < 0.05) %>%
+  mutate(negLog10FDR = -log10(FDR),
+         Pathway = forcats::fct_reorder(Pathway, negLog10FDR))
+
+panther_plot <- ggplot(panther_res, aes(x = negLog10FDR, y = Pathway)) +
+  geom_col(fill = "indianred") +
+  labs(title = "PANTHER Biological Processess Enrichment",
+       x = "-log10 FDR", y = NULL) +
+  theme_classic()
+
+# ggsave(file.path(pic_output_dir, "plasma_PANTHER_barplot.png"), panther_plot, width = 8, height = 6)
+
+## Reactome results ----
+reactome_res <- read.csv(file.path(table_output_dir, "plasma_Reactome.csv")) %>%
+  filter(FDR < 0.05) %>%
+  mutate(negLog10FDR = -log10(FDR),
+         Pathway = forcats::fct_reorder(Pathway, negLog10FDR))
+
+reactome_plot <- ggplot(reactome_res, aes(x = negLog10FDR, y = Pathway)) +
+  geom_col(fill = "#ABDDA4") +
+  labs(title = "Reactome Enrichment",
+       x = "-log10 FDR", y = NULL) +
+  theme_classic()
+
+# ggsave(file.path(pic_output_dir, "plasma_Reactome_barplot.png"), reactome_plot, width = 15, height = 13)

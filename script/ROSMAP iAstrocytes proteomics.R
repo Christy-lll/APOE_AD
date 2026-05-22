@@ -130,3 +130,59 @@ p_pca_MI <- ggplot(pca_MI_df, aes(x = PC1, y = PC2, color = apoe4)) +
   theme_classic()
 
 # ggsave(file.path(pic_output_dir, "iAstrocytes_MI_pca.png"), p_pca_MI, width = 7, height = 6)
+
+
+# Enrichment Analysis ----
+## Pull UniprotID for NetworkAnalyst analysis ----
+background_universe <- mi_scores_all %>%
+  distinct(UniprotID) %>%
+  pull(UniprotID)
+
+dep_gene_list <- mi_scores %>%
+  distinct(UniprotID) %>%
+  pull(UniprotID)
+
+# writeLines(background_universe, file.path(table_output_dir, "iAstrocytes_networkanalyst_background.txt"))
+# writeLines(dep_gene_list, file.path(table_output_dir, "iAstrocytes_networkanalyst_dep.txt"))
+
+## KEGG results ----
+kegg_res <- read.csv(file.path(table_output_dir, "iAstrocytes_KEGG.csv")) %>%
+  filter(FDR < 0.05) %>%
+  mutate(negLog10FDR = -log10(FDR),
+         Pathway = forcats::fct_reorder(Pathway, negLog10FDR))
+
+kegg_plot <- ggplot(kegg_res, aes(x = negLog10FDR, y = Pathway)) +
+  geom_col(fill = "steelblue") +
+  labs(title = "KEGG Pathway Enrichment",
+       x = "-log10 FDR", y = NULL) +
+  theme_classic()
+
+# ggsave(file.path(pic_output_dir, "iAstrocytes_KEGG_barplot.png"), kegg_plot, width = 13, height = 13)
+
+## PANTHER results ----
+panther_res <- read.csv(file.path(table_output_dir, "iAstrocytes_PANTHER.csv")) %>%
+  filter(FDR < 0.05) %>%
+  mutate(negLog10FDR = -log10(FDR),
+         Pathway = forcats::fct_reorder(Pathway, negLog10FDR))
+
+panther_plot <- ggplot(panther_res, aes(x = negLog10FDR, y = Pathway)) +
+  geom_col(fill = "indianred") +
+  labs(title = "PANTHER Biological Processess Enrichment",
+       x = "-log10 FDR", y = NULL) +
+  theme_classic()
+
+# ggsave(file.path(pic_output_dir, "iAstrocytes_PANTHER_barplot.png"), panther_plot, width = 8, height = 6)
+
+## Reactome results ----
+reactome_res <- read.csv(file.path(table_output_dir, "iAstrocytes_Reactome.csv")) %>%
+  filter(FDR < 0.05) %>%
+  mutate(negLog10FDR = -log10(FDR),
+         Pathway = forcats::fct_reorder(Pathway, negLog10FDR))
+
+reactome_plot <- ggplot(reactome_res, aes(x = negLog10FDR, y = Pathway)) +
+  geom_col(fill = "#ABDDA4") +
+  labs(title = "Reactome Enrichment",
+       x = "-log10 FDR", y = NULL) +
+  theme_classic()
+
+# ggsave(file.path(pic_output_dir, "iAstrocytes_Reactome_barplot.png"), reactome_plot, width = 15, height = 13)

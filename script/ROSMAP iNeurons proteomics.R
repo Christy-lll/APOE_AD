@@ -148,3 +148,30 @@ p_pca_MI <- ggplot(pca_MI_df, aes(x = PC1, y = PC2, color = apoe4)) +
   theme_classic()
 
 # ggsave(file.path(pic_output_dir, "iNeurons_MI_pca.png"), p_pca_MI, width = 7, height = 6)
+
+
+# Enrichment Analysis ----
+## Pull UniprotID for NetworkAnalyst analysis ----
+background_universe <- mi_scores_all %>%
+  distinct(attributes) %>%
+  pull(attributes)
+
+dep_gene_list <- mi_scores %>%
+  distinct(attributes) %>%
+  pull(attributes)
+
+# writeLines(background_universe, file.path(table_output_dir, "iNeurons_networkanalyst_background.txt"))
+# writeLines(dep_gene_list, file.path(table_output_dir, "iNeurons_networkanalyst_dep.txt"))
+
+## PANTHER results ----
+panther_res <- read.csv(file.path(table_output_dir, "iNeurons_PANTHER.csv")) %>%
+  mutate(Pathway = forcats::fct_reorder(Pathway, P.Value))
+
+panther_plot <- ggplot(panther_res, aes(x = FDR, y = Pathway)) +
+  geom_col(fill = "indianred") +
+  geom_vline(xintercept = 0.05) + 
+  labs(title = "PANTHER Biological Processess Enrichment",
+       x = "FDR", y = NULL) +
+  theme_classic()
+
+# ggsave(file.path(pic_output_dir, "iNeurons_PANTHER_barplot.png"), panther_plot, width = 8, height = 6)
