@@ -63,7 +63,7 @@ rm(protein_meta, sample_meta, proteomic_dat, protein_col_mask)
 
 # Demographic ----
 demographic <- dat %>%
-  dplyr::select(Diagnosis, age_at_visit, msex, educ, apoe_genotype) %>%
+  dplyr::select(Diagnosis, age_at_visit, msex, apoe_genotype) %>%
   tbl_summary(
     by = Diagnosis,
     statistic = list(all_continuous() ~ "{mean} ± {sd}",
@@ -71,7 +71,6 @@ demographic <- dat %>%
     digits = all_continuous() ~ 1,
     label = list(age_at_visit ~ "Age at Visit",
                  msex ~ "Sex",
-                 educ ~ "Education (years)",
                  apoe_genotype ~ "APOE genotype"),
     missing = "no"
   ) %>%

@@ -113,7 +113,7 @@ rm(rna_count, rna_files, rna_merged, meta_base, individual_meta, specimen_meta, 
 # Demographic ----
 demographic <- imap(meta_by_region, function(meta, region_name) {
   meta %>%
-    dplyr::select(ADoutcome, age_death_num, sex, apoeGenotype, PMI, race) %>%
+    dplyr::select(ADoutcome, age_death_num, sex, apoeGenotype, race, PMI) %>%
     tbl_summary(
       by = ADoutcome,
       statistic = list(
@@ -122,10 +122,10 @@ demographic <- imap(meta_by_region, function(meta, region_name) {
       ),
       digits = all_continuous() ~ 1,
       label = list(
-        age_death_num ~ "Age at Death (top-coded 90)",
-        apoeGenotype ~ "APOE Genotype",
+        age_death_num ~ "Age at death (top-coded 90)",
+        apoeGenotype ~ "APOE genotype",
         sex ~ "Sex",
-        PMI ~ "Post Mortem Interval (hours)",
+        PMI ~ "Post mortem interval (hours)",
         race ~ "Race"
       ),
       missing = "no"

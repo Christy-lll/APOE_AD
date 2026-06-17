@@ -71,7 +71,7 @@ rm(individual_meta, assay_meta, specimen_meta, meta_base, non_control, dlpfc_spe
 
 # Demographic ----
 demographic <- meta_dat %>%
-  select(ADoutcome, age_death_num, sex, apoeGenotype, PMI, race) %>%
+  select(ADoutcome, age_death_num, sex, apoeGenotype, race, PMI) %>%
   tbl_summary(
     by = ADoutcome,
     statistic = list(
@@ -80,7 +80,7 @@ demographic <- meta_dat %>%
     ),
     digits = all_continuous() ~ 1,
     label = list(
-      age_death_num ~ "Age at Death (top-coded 90)",
+      age_death_num ~ "Age at death (top-coded 90)",
       sex ~ "Sex",
       apoeGenotype ~ "APOE genotype",
       PMI ~ "Post mortem interval (hours)",
@@ -91,7 +91,7 @@ demographic <- meta_dat %>%
   add_overall(last = TRUE) %>%
   bold_labels()
 
-# demographic %>% as_gt() %>% gt::gtsave(filename = file.path(table_output_dir, "dlpfc proteomics demographic table.png"))
+# demographic %>% as_gt() %>% gt::gtsave(filename = file.path(table_output_dir, "brain proteomics demographic table.png"))
 
 
 # Variance Partition Analysis ----

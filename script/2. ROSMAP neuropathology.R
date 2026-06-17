@@ -50,7 +50,7 @@ clinical_dat <- clinical_dat %>%
 
 # Demographic ----
 demographic <- clinical_dat %>%
-  dplyr::select(msex, cogdx, age_death_num, apoe_genotype, educ, pmi, race) %>%
+  dplyr::select(cogdx, age_death_num, msex, apoe_genotype, race,pmi) %>%
   tbl_summary(
     by = cogdx,
     statistic = list(
@@ -62,7 +62,6 @@ demographic <- clinical_dat %>%
       msex ~ "Sex",
       age_death_num ~ "Age at Death (top-coded 90)",
       apoe_genotype ~ "APOE genotype",
-      educ ~ "Education",
       pmi ~ "Post Mortem Interval (hours)",
       race ~ "Race"
     ),

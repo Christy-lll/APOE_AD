@@ -32,7 +32,7 @@ clinical_dat <- clinical_dat %>%
 
 # Demographic ----
 demographic <- clinical_dat %>%
-  dplyr::select(sex, ADoutcome, ageDeath_num, apoeGenotype, PMI, race) %>%
+  dplyr::select(ADoutcome, ageDeath_num, sex, apoeGenotype, race, PMI) %>%
   tbl_summary(
     by = ADoutcome,
     statistic = list(
@@ -42,7 +42,7 @@ demographic <- clinical_dat %>%
     digits = all_continuous() ~ 1,
     label = list(
       sex ~ "Sex",
-      ageDeath_num ~ "Age at Death (top-coded 90)",
+      ageDeath_num ~ "Age at death (top-coded 90)",
       apoeGenotype ~ "APOE genotype",
       PMI ~ "Post mortem interval (hours)",
       race ~ "Race"
