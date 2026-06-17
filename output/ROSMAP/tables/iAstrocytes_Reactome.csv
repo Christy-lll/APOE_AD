@@ -1,0 +1,105 @@
+Pathway,Total,Expected,Hits,P.Value,FDR,Genes
+Metabolism of polyamines,9,0.0232,2,0.000223,0.196,MTAP; PAOX
+Disease,461,1.19,6,0.00075,0.196,HDAC1; APP; MAP2K1; HDAC6; APOC3; CALCA
+Amyloids,18,0.0464,2,0.000937,0.196,APP; CALCA
+Signal Transduction,520,1.34,6,0.00142,0.196,HDAC1; APP; MAP2K1; HDAC6; APOC3; CALCA
+Prefoldin mediated transfer of substrate  to CCT/TriC,24,0.0618,2,0.00167,0.196,PFDN1; PFDN6
+Cooperation of Prefoldin and TriC/CCT  in actin and tubulin folding,24,0.0618,2,0.00167,0.196,PFDN1; PFDN6
+NOTCH1 Intracellular Domain Regulates Transcription,25,0.0644,2,0.00182,0.196,HDAC1; HDAC6
+Metabolism,799,2.06,7,0.00255,0.196,MTAP; NMNAT1; ATP5F1E; SMPD1; APOC3; PAOX; PI4K2A
+"Polyamines are oxidized to amines, aldehydes and H2O2 by PAOs",1,0.00258,1,0.00258,0.196,PAOX
+Interconversion of polyamines,1,0.00258,1,0.00258,0.196,PAOX
+Calcitonin-like ligand receptors,1,0.00258,1,0.00258,0.196,CALCA
+Constitutive Signaling by NOTCH1 PEST Domain Mutants,30,0.0773,2,0.00261,0.196,HDAC1; HDAC6
+Constitutive Signaling by NOTCH1 HD+PEST Domain Mutants,30,0.0773,2,0.00261,0.196,HDAC1; HDAC6
+Signaling by NOTCH1 t(7;9)(NOTCH1:M1580_K2555) Translocation Mutant,33,0.085,2,0.00316,0.196,HDAC1; HDAC6
+Signaling by NOTCH1 in Cancer,33,0.085,2,0.00316,0.196,HDAC1; HDAC6
+Signaling by NOTCH1 PEST Domain Mutants in Cancer,33,0.085,2,0.00316,0.196,HDAC1; HDAC6
+FBXW7 Mutants and NOTCH1 in Cancer,33,0.085,2,0.00316,0.196,HDAC1; HDAC6
+Signaling by NOTCH1 HD Domain Mutants in Cancer,33,0.085,2,0.00316,0.196,HDAC1; HDAC6
+Signaling by NOTCH1 HD+PEST Domain Mutants in Cancer,33,0.085,2,0.00316,0.196,HDAC1; HDAC6
+Signaling by NOTCH1,33,0.085,2,0.00316,0.196,HDAC1; HDAC6
+GPCR ligand binding,35,0.0902,2,0.00355,0.203,APP; CALCA
+Chaperonin-mediated protein folding,36,0.0928,2,0.00375,0.203,PFDN1; PFDN6
+MAP kinase activation in TLR cascade,36,0.0928,2,0.00375,0.203,MAPK10; MAP2K1
+Protein folding,40,0.103,2,0.00462,0.221,PFDN1; PFDN6
+Signaling by GPCR,136,0.35,3,0.00476,0.221,APP; MAP2K1; CALCA
+TRAF6 Mediated Induction of proinflammatory cytokines,42,0.108,2,0.00508,0.221,MAPK10; MAP2K1
+ERK1 activation,2,0.00515,1,0.00515,0.221,MAP2K1
+Signaling by NOTCH,45,0.116,2,0.00582,0.221,HDAC1; HDAC6
+MyD88:Mal cascade initiated on plasma membrane,49,0.126,2,0.00687,0.221,MAPK10; MAP2K1
+Toll Like Receptor 10 (TLR10) Cascade,49,0.126,2,0.00687,0.221,MAPK10; MAP2K1
+Toll Like Receptor 5 (TLR5) Cascade,49,0.126,2,0.00687,0.221,MAPK10; MAP2K1
+Toll Like Receptor TLR1:TLR2 Cascade,49,0.126,2,0.00687,0.221,MAPK10; MAP2K1
+Toll Like Receptor TLR6:TLR2 Cascade,49,0.126,2,0.00687,0.221,MAPK10; MAP2K1
+Toll Like Receptor 2 (TLR2) Cascade,49,0.126,2,0.00687,0.221,MAPK10; MAP2K1
+MyD88 cascade initiated on plasma membrane,49,0.126,2,0.00687,0.221,MAPK10; MAP2K1
+TRAF6 mediated induction of NFkB and MAP kinases upon TLR7/8 or 9 activation,50,0.129,2,0.00714,0.221,MAPK10; MAP2K1
+Toll Like Receptor 7/8 (TLR7/8) Cascade,51,0.131,2,0.00742,0.221,MAPK10; MAP2K1
+MyD88 dependent cascade initiated on endosome,51,0.131,2,0.00742,0.221,MAPK10; MAP2K1
+Toll Like Receptor 9 (TLR9) Cascade,52,0.134,2,0.00771,0.221,MAPK10; MAP2K1
+TRIF-mediated TLR3/TLR4 signaling ,52,0.134,2,0.00771,0.221,MAPK10; MAP2K1
+Amine Oxidase reactions,3,0.00773,1,0.00771,0.221,PAOX
+p75NTR negatively regulates cell cycle via SC1,3,0.00773,1,0.00771,0.221,HDAC1
+Formyl peptide receptors bind formyl peptides and many other ligands,3,0.00773,1,0.00771,0.221,APP
+MyD88-independent cascade ,53,0.137,2,0.008,0.221,MAPK10; MAP2K1
+Toll Like Receptor 3 (TLR3) Cascade,53,0.137,2,0.008,0.221,MAPK10; MAP2K1
+Activated TLR4 signalling,57,0.147,2,0.00921,0.247,MAPK10; MAP2K1
+Toll Like Receptor 4 (TLR4) Cascade,58,0.149,2,0.00952,0.247,MAPK10; MAP2K1
+Gastrin-CREB signalling pathway via PKC and MAPK,58,0.149,2,0.00952,0.247,APP; MAP2K1
+ERK activation,4,0.0103,1,0.0103,0.261,MAP2K1
+Toll-Like Receptors Cascades,66,0.17,2,0.0122,0.29,MAPK10; MAP2K1
+ATM mediated phosphorylation of repair proteins,5,0.0129,1,0.0128,0.29,BRCA1
+ATM mediated response to DNA double-strand break,5,0.0129,1,0.0128,0.29,BRCA1
+HDL-mediated lipid transport,5,0.0129,1,0.0128,0.29,APOC3
+Nicotinate metabolism,5,0.0129,1,0.0128,0.29,NMNAT1
+Activation of the AP-1 family of transcription factors,5,0.0129,1,0.0128,0.29,MAPK10
+RAF phosphorylates MEK,6,0.0155,1,0.0154,0.324,MAP2K1
+MEK activation,6,0.0155,1,0.0154,0.324,MAP2K1
+Chylomicron-mediated lipid transport,6,0.0155,1,0.0154,0.324,APOC3
+Methionine salvage pathway,6,0.0155,1,0.0154,0.324,MTAP
+Innate Immune System,211,0.544,3,0.0159,0.329,MAPK10; APP; MAP2K1
+Stabilization of mRNA by HuR,7,0.018,1,0.0179,0.365,ELAVL1
+Recruitment of repair and signaling proteins to double-strand breaks,8,0.0206,1,0.0204,0.385,BRCA1
+RAF/MAP kinase cascade,8,0.0206,1,0.0204,0.385,MAP2K1
+Inflammasomes,8,0.0206,1,0.0204,0.385,APP
+The NLRP3 inflammasome,8,0.0206,1,0.0204,0.385,APP
+Fanconi Anemia pathway,8,0.0206,1,0.0204,0.385,BRCA1
+Lipoprotein metabolism,9,0.0232,1,0.023,0.42,APOC3
+Advanced glycosylation endproduct receptor signaling,9,0.0232,1,0.023,0.42,APP
+GPCR downstream signaling,94,0.242,2,0.0238,0.429,APP; CALCA
+Metabolism of lipids and lipoproteins,250,0.644,3,0.0248,0.44,SMPD1; APOC3; PI4K2A
+SHC-mediated signalling,10,0.0258,1,0.0255,0.44,MAP2K1
+Signalling to p38 via RIT and RIN,10,0.0258,1,0.0255,0.44,MAP2K1
+Synthesis of PIPs at the early endosome membrane,11,0.0283,1,0.028,0.446,PI4K2A
+GRB2 events in EGFR signaling,11,0.0283,1,0.028,0.446,MAP2K1
+ARMS-mediated activation,11,0.0283,1,0.028,0.446,MAP2K1
+SHC1 events in EGFR signaling,11,0.0283,1,0.028,0.446,MAP2K1
+Synthesis of PIPs at the Golgi membrane,12,0.0309,1,0.0305,0.446,PI4K2A
+Homologous recombination repair of replication-independent double-strand breaks,12,0.0309,1,0.0305,0.446,BRCA1
+Homologous Recombination Repair,12,0.0309,1,0.0305,0.446,BRCA1
+SHC-related events,12,0.0309,1,0.0305,0.446,MAP2K1
+SOS-mediated signalling,12,0.0309,1,0.0305,0.446,MAP2K1
+SHC1 events in ERBB4 signaling,12,0.0309,1,0.0305,0.446,MAP2K1
+FRS2-mediated cascade,12,0.0309,1,0.0305,0.446,MAP2K1
+G0 and Early G1,12,0.0309,1,0.0305,0.446,HDAC1
+SHC-related events triggered by IGF1R,12,0.0309,1,0.0305,0.446,MAP2K1
+Frs2-mediated activation,13,0.0335,1,0.033,0.465,MAP2K1
+Downregulation of SMAD2/3:SMAD4 transcriptional activity,13,0.0335,1,0.033,0.465,HDAC1
+JNK (c-Jun kinases) phosphorylation and  activation mediated by activated human TAK1,13,0.0335,1,0.033,0.465,MAPK10
+Metabolism of amino acids and derivatives,113,0.291,2,0.0335,0.465,MTAP; PAOX
+SHC1 events in ERBB2 signaling,14,0.0361,1,0.0355,0.465,MAP2K1
+Formation of ATP by chemiosmotic coupling,14,0.0361,1,0.0355,0.465,ATP5F1E
+Prolonged ERK activation events,14,0.0361,1,0.0355,0.465,MAP2K1
+Phase 1 - Functionalization of compounds,14,0.0361,1,0.0355,0.465,PAOX
+GRB2 events in ERBB2 signaling,14,0.0361,1,0.0355,0.465,MAP2K1
+Peptide ligand-binding receptors,14,0.0361,1,0.0355,0.465,APP
+"Lipid digestion, mobilization, and transport",15,0.0387,1,0.038,0.492,APOC3
+Immune System,526,1.36,4,0.0417,0.534,MAPK10; APP; MAP2K1; EIF4G3
+Signalling to RAS,17,0.0438,1,0.043,0.539,MAP2K1
+Class A/1 (Rhodopsin-like receptors),17,0.0438,1,0.043,0.539,APP
+Glycosphingolipid metabolism,18,0.0464,1,0.0454,0.548,SMPD1
+Double-Strand Break Repair,18,0.0464,1,0.0454,0.548,BRCA1
+Class B/2 (Secretin family receptors),18,0.0464,1,0.0454,0.548,CALCA
+MAPK targets/ Nuclear events mediated by MAP kinases,18,0.0464,1,0.0454,0.548,MAPK10
+Retinoid metabolism and transport,19,0.049,1,0.0479,0.573,APOC3

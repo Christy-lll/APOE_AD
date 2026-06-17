@@ -1,0 +1,13 @@
+Pathway,Total,Expected,Hits,P.Value,FDR,Genes
+Interphase,63,1.98,7,0.00257,1,HSP90AA1; PSMD1; DDX3X; PSMD12; DYNLL1; DCTN2; APP
+Interphase of mitotic cell cycle,63,1.98,7,0.00257,1,HSP90AA1; PSMD1; DDX3X; PSMD12; DYNLL1; DCTN2; APP
+Muscle cell differentiation,36,1.13,5,0.00431,1,PTBP1; BIN1; ACTC1; MTPN; APP
+Cell cycle phase,100,3.15,8,0.00984,1,ILF3; HSP90AA1; PSMD1; DDX3X; PSMD12; DYNLL1; DCTN2; APP
+Muscle organ development,20,0.63,3,0.0226,1,ACTC1; MTPN; APP
+Protein folding,75,2.36,6,0.0261,1,PTGES3; HSP90AA1; AIP; PDIA3; CCT5; CCT2
+Mitotic cell cycle,98,3.09,7,0.0286,1,HSP90AA1; PSMD1; DDX3X; PSMD12; DYNLL1; DCTN2; APP
+Striated muscle tissue development,22,0.693,3,0.0293,1,ACTC1; MTPN; APP
+Regulation of mitotic cell cycle,41,1.29,4,0.0365,1,PSMD1; DDX3X; PSMD12; APP
+G2/M transition of mitotic cell cycle,24,0.756,3,0.0368,1,HSP90AA1; DYNLL1; DCTN2
+Immune system process,178,5.61,10,0.041,1,PSMD1; DDX3X; PDIA3; PSMD12; GRB2; DYNLL1; DCTN2; PHPT1; APP; DCTN4
+Cell cycle process,130,4.1,8,0.043,1,ILF3; HSP90AA1; PSMD1; DDX3X; PSMD12; DYNLL1; DCTN2; APP

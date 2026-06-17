@@ -1,0 +1,50 @@
+Pathway,Total,Expected,Hits,P.Value,FDR,Genes
+Immune System,146,2.89,10,0.000181,0.103,HSP90AA1; PSMD1; PDIA3; PSMD12; GRB2; DYNLL1; DCTN2; ARPC4; APP; DCTN4
+Synthesis of Prostaglandins (PG) and Thromboxanes (TX),2,0.0396,2,0.000375,0.103,PTGES3; CBR1
+Arachidonic acid metabolism,2,0.0396,2,0.000375,0.103,PTGES3; CBR1
+Adaptive Immune System,97,1.92,7,0.00178,0.366,PSMD1; PDIA3; PSMD12; GRB2; DYNLL1; DCTN2; DCTN4
+Disease,133,2.63,8,0.00254,0.418,HSP90AA1; PSMD1; ATP6V0A1; RPL21; PSMD12; GRB2; RPL9; APP
+Loss of proteins required for interphase microtubule organizationÂ from the centrosome,17,0.337,3,0.00383,0.45,HSP90AA1; DYNLL1; DCTN2
+Loss of Nlp from mitotic centrosomes,17,0.337,3,0.00383,0.45,HSP90AA1; DYNLL1; DCTN2
+Regulation of actin dynamics for phagocytic cup formation,20,0.396,3,0.00618,0.485,HSP90AA1; GRB2; ARPC4
+"Cell Cycle, Mitotic",64,1.27,5,0.00666,0.485,HSP90AA1; PSMD1; PSMD12; DYNLL1; DCTN2
+Signaling by constitutively active EGFR,7,0.139,2,0.00741,0.485,HSP90AA1; GRB2
+Centrosome maturation,22,0.436,3,0.00814,0.485,HSP90AA1; DYNLL1; DCTN2
+Recruitment of mitotic centrosome proteins and complexes,22,0.436,3,0.00814,0.485,HSP90AA1; DYNLL1; DCTN2
+Fcgamma receptor (FCGR) dependent phagocytosis,22,0.436,3,0.00814,0.485,HSP90AA1; GRB2; ARPC4
+Association of TriC/CCT with target proteins during biosynthesis,8,0.158,2,0.00976,0.485,CCT5; CCT2
+Cell Cycle,71,1.41,5,0.0104,0.485,HSP90AA1; PSMD1; PSMD12; DYNLL1; DCTN2
+G2/M Transition,25,0.495,3,0.0117,0.485,HSP90AA1; DYNLL1; DCTN2
+Antigen processing-Cross presentation,25,0.495,3,0.0117,0.485,PSMD1; PDIA3; PSMD12
+ER-Phagosome pathway,25,0.495,3,0.0117,0.485,PSMD1; PDIA3; PSMD12
+Mitotic G2-G2/M phases,25,0.495,3,0.0117,0.485,HSP90AA1; DYNLL1; DCTN2
+Metabolism of proteins,135,2.67,7,0.0118,0.485,RPL21; PDIA3; RPL9; CCT5; CCT2; ARFGAP1; RPN2
+Folding of actin by CCT/TriC,9,0.178,2,0.0124,0.485,CCT5; CCT2
+Innate Immune System,50,0.99,4,0.0146,0.501,HSP90AA1; GRB2; ARPC4; APP
+Downstream Signaling Events Of B Cell Receptor (BCR),29,0.574,3,0.0176,0.501,PSMD1; PSMD12; GRB2
+Signaling by the B Cell Receptor (BCR),30,0.594,3,0.0194,0.501,PSMD1; PSMD12; GRB2
+Signal attenuation,1,0.0198,1,0.0198,0.501,GRB2
+Activation of BIM and translocation to mitochondria ,1,0.0198,1,0.0198,0.501,DYNLL1
+eNOS activation,1,0.0198,1,0.0198,0.501,HSP90AA1
+Regulation of KIT signaling,1,0.0198,1,0.0198,0.501,GRB2
+Interleukin receptor SHC signaling,1,0.0198,1,0.0198,0.501,GRB2
+Signal regulatory protein (SIRP) family interactions,1,0.0198,1,0.0198,0.501,GRB2
+Formyl peptide receptors bind formyl peptides and many other ligands,1,0.0198,1,0.0198,0.501,APP
+"Tetrahydrobiopterin (BH4) synthesis, recycling, salvage and regulation",1,0.0198,1,0.0198,0.501,HSP90AA1
+Signal Transduction,115,2.28,6,0.0201,0.501,HSP90AA1; PSMD1; ATP6V0A1; PSMD12; GRB2; APP
+Gastrin-CREB signalling pathway via PKC and MAPK,12,0.238,2,0.0219,0.514,GRB2; APP
+Asparagine N-linked glycosylation,12,0.238,2,0.0219,0.514,PDIA3; RPN2
+Post-translational protein modification,13,0.257,2,0.0256,0.544,PDIA3; RPN2
+MHC class II antigen presentation,35,0.693,3,0.0293,0.544,DYNLL1; DCTN2; DCTN4
+Signaling by ERBB2,15,0.297,2,0.0336,0.544,HSP90AA1; GRB2
+Formation of tubulin folding intermediates by CCT/TriC,15,0.297,2,0.0336,0.544,CCT5; CCT2
+Metabolism of nitric oxide,2,0.0396,1,0.0392,0.544,HSP90AA1
+eNOS activation and regulation,2,0.0396,1,0.0392,0.544,HSP90AA1
+Regulation of signaling by CBL,2,0.0396,1,0.0392,0.544,GRB2
+GRB2:SOS provides linkage to MAPK signaling for Intergrins ,2,0.0396,1,0.0392,0.544,GRB2
+Class A/1 (Rhodopsin-like receptors),2,0.0396,1,0.0392,0.544,APP
+Signaling by FGFR1 mutants,2,0.0396,1,0.0392,0.544,GRB2
+Signaling by FGFR1 fusion mutants,2,0.0396,1,0.0392,0.544,GRB2
+Peptide ligand-binding receptors,2,0.0396,1,0.0392,0.544,APP
+Antigen Activates B Cell Receptor Leading to Generation of Second Messengers,2,0.0396,1,0.0392,0.544,GRB2
+Prefoldin mediated transfer of substrate  to CCT/TriC,18,0.356,2,0.0473,0.544,CCT5; CCT2
