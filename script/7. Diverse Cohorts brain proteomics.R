@@ -46,7 +46,8 @@ dlpfc_spec <- specimen_meta %>%
 meta_dat <- meta_base %>%
   inner_join(dlpfc_spec, by = "individualID") %>%
   inner_join(assay_meta %>% select(specimenID, batch), by = "specimenID")
-# any(duplicated(meta_dat$individualID))
+
+any(duplicated(meta_dat$individualID))
 
 ## Proteomic data ----
 median_impute <- function(x) {
@@ -64,7 +65,7 @@ expr_mat <- dlpfc_prot_raw %>%
   log2() # log transformation
 
 ## Save data ----
-# saveRDS(list(expr = expr_mat, meta = meta_dat), here("raw", "DiverseCohorts", "DC-proteomics.rds"))
+saveRDS(list(expr = expr_mat, meta = meta_dat), here("raw", "DiverseCohorts", "DC-proteomics.rds"))
 
 rm(individual_meta, assay_meta, specimen_meta, meta_base, non_control, dlpfc_spec, dlpfc_prot_raw)
 
@@ -90,8 +91,6 @@ demographic <- meta_dat %>%
   ) %>%
   add_overall(last = TRUE) %>%
   bold_labels()
-
-# demographic %>% as_gt() %>% gt::gtsave(filename = file.path(table_output_dir, "brain proteomics demographic table.png"))
 
 
 # Variance Partition Analysis ----
@@ -132,8 +131,6 @@ res_limma <- topTable(fit, coef = "apoe4APOE ε4+", number = Inf) %>%
 sig_res_limma <- res_limma %>%
   filter(adj.P.Val < p_val_threshold) 
 
-# write.csv(sig_res_limma, file.path(table_output_dir, "dlpfc_proteomics_limma.csv"), row.names = FALSE)
-
 ## Volcano plot ----
 n_up <- sum(sig_res_limma$`Direction of change` == "Upregulated")
 n_down <- sum(sig_res_limma$`Direction of change` == "Downregulated")
@@ -157,7 +154,7 @@ p_limma_volcano <- ggplot(res_limma, aes(x = logFC, y = negLog10FDR)) +
   theme_classic() +
   theme(legend.position = "bottom")
 
-# ggsave(file.path(pic_output_dir, "dlpfc_proteomics_limma_volcano.tiff"), p_limma_volcano, width = 7, height = 6, dpi = 300, compression = "lzw")
+ggsave(file.path(pic_output_dir, "dlpfc_proteomics_limma_volcano.tiff"), p_limma_volcano, width = 7, height = 6, dpi = 300, compression = "lzw")
 
 
 # Mutual Information Analysis ----
@@ -190,5 +187,5 @@ p_mi_bar <- ggplot(mi_top30, aes(x = importance, y = fct_reorder(Protein, import
        x = "MI score", y = NULL) +
   theme_classic()
 
-# ggsave(file.path(pic_output_dir, "dlpfc_proteomics_MI_barplot.tiff"), p_mi_bar, width = 7, height = 6, dpi = 300, compression = "lzw")
+ggsave(file.path(pic_output_dir, "dlpfc_proteomics_MI_barplot.tiff"), p_mi_bar, width = 7, height = 6, dpi = 300, compression = "lzw")
 

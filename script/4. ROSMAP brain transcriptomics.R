@@ -101,8 +101,6 @@ demographic <- imap(meta_by_tissue, function(meta, tissue_name) {
 }) %>%
   tbl_merge(tab_spanner = FALSE)
 
-# demographic %>% as_gt() %>% gt::gtsave(filename = file.path(table_output_dir, "brain transcriptomics demographic table.png"))
-
 
 # Variance Partition Analysis ----
 tissue <- "dlPFC"
@@ -128,8 +126,6 @@ vp_medians <- as.data.frame(vp_fit) %>%
   pivot_longer(everything(), names_to = "Factor", values_to = "Median_VarExplained") %>%
   mutate(Factor = factor_labels[Factor]) %>%
   arrange(desc(Median_VarExplained))
-
-# write.csv(vp_medians, file.path(table_output_dir, "dlPFC_transcriptomics_varpart.csv"), row.names = FALSE)
 
 
 # DESeq2 ----
@@ -199,8 +195,6 @@ id_map <- tryCatch({
 res_by_tissue <- map(res_by_tissue, ~ left_join(.x, id_map, by = "ensembl_gene_id"))
 
 sig_res_by_tissue <- map(res_by_tissue, ~ filter(.x, padj < p_val_threshold))
-
-# iwalk(sig_res_by_tissue, ~ write.csv(.x, file.path(table_output_dir, paste0(tolower(.y), "_transcriptomics_deseq2.csv")), row.names = FALSE))
 
 ## Volcano plots ----
 make_volcano <- function(res, sig_res, tissue_name) {

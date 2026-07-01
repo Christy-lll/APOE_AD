@@ -105,7 +105,7 @@ meta_by_region <- setNames(
 rna_by_region <- map2(rna_by_region, meta_by_region, ~ .x[, .y$specimenID, drop = FALSE])
 
 ## Save cleaned data ----
-# saveRDS(list(count = rna_by_region, meta = meta_by_region), here("raw", "DiverseCohorts", "DC-transcriptomics.rds"))
+saveRDS(list(count = rna_by_region, meta = meta_by_region), here("raw", "DiverseCohorts", "DC-transcriptomics.rds"))
 
 rm(rna_count, rna_files, rna_merged, meta_base, individual_meta, specimen_meta, rna_specimen_meta)
 
@@ -135,8 +135,6 @@ demographic <- imap(meta_by_region, function(meta, region_name) {
     modify_spanning_header(everything() ~ paste0("**", region_name, "**"))
 }) %>%
   tbl_merge(tab_spanner = FALSE)
-
-# demographic %>% as_gt() %>% gt::gtsave(filename = file.path(table_output_dir, "brain transcriptomics demographic table.png"))
 
 
 # Variance Partition Analysis ----
@@ -172,8 +170,6 @@ vp_medians <- as.data.frame(vp_fit) %>%
   pivot_longer(everything(), names_to = "Factor", values_to = "Median_VarExplained") %>%
   mutate(Factor = factor_labels[Factor]) %>%
   arrange(desc(Median_VarExplained))
-
-# write.csv(vp_medians, file.path(table_output_dir, "dlPFC_transcriptomics_varpart.csv"), row.names = FALSE)
 
 
 # DESeq2 ----
@@ -250,7 +246,6 @@ res_by_region <- map(res_by_region, ~ left_join(.x, id_map, by = "ensembl_gene_i
 
 sig_res_by_region <- map(res_by_region, ~ filter(.x, padj < p_val_threshold))
 
-# iwalk(sig_res_by_region, ~ write.csv(.x, file.path(table_output_dir, paste0(tolower(.y), "_transcriptomics_deseq2.csv")), row.names = FALSE))
 
 ## Volcano plots ----
 make_volcano <- function(res, sig_res, tissue_name) {

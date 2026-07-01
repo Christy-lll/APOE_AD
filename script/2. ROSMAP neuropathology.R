@@ -45,7 +45,7 @@ clinical_dat <- clinical_dat %>%
   filter(!is.na(braaksc_grouped), !is.na(ceradsc), !is.na(cogdx), !is.na(msex), !is.na(age_death_num)) %>%
   dplyr::select(projid, apoe4, apoe_genotype, braaksc, braaksc_grouped, ceradsc, cogdx, msex, age_death_num, educ, pmi, race)
 
-# any(duplicated(clinical_dat$projid))
+any(duplicated(clinical_dat$projid))
 
 
 # Demographic ----
@@ -70,8 +70,6 @@ demographic <- clinical_dat %>%
   add_overall(last = TRUE) %>%
   bold_labels()
 
-# demographic %>% as_gt() %>% gt::gtsave(filename = file.path(table_output_dir, "clinical demographic table.png"))
-
 
 # Visualisations ----
 ## Braak stage ----
@@ -90,7 +88,7 @@ braak <- ggplot(braak_plot_dat, aes(x = apoe4, y = prop, fill = braaksc_grouped)
        x = NULL, y = "Proportion", fill = "Braak Stage") +
   theme_classic()
 
-# ggsave(file.path(pic_output_dir, "clinical_braakstage_barplot.tiff"), braak, width = 7, height = 6, dpi = 300, compression = "lzw")
+ggsave(file.path(pic_output_dir, "clinical_braakstage_barplot.tiff"), braak, width = 7, height = 6, dpi = 300, compression = "lzw")
 
 ## CERAD score ----
 cerad_plot_dat <- clinical_dat %>%
@@ -108,7 +106,7 @@ cerad <- ggplot(cerad_plot_dat, aes(x = apoe4, y = prop, fill = ceradsc)) +
        x = NULL, y = "Proportion", fill = "CERAD Score") +
   theme_classic()
 
-# ggsave(file.path(pic_output_dir, "clinical_ceradscore_barplot.tiff"), cerad, width = 7, height = 6, dpi = 300, compression = "lzw")
+ggsave(file.path(pic_output_dir, "clinical_ceradscore_barplot.tiff"), cerad, width = 7, height = 6, dpi = 300, compression = "lzw")
 
 
 # Regression Analysis ----

@@ -24,7 +24,7 @@ prot_meta <- dc_prot$meta %>% filter(individualID %in% ids_overlap) %>% arrange(
 rna_count <- dc_rna$count$dlPFC[, rna_meta$specimenID, drop = FALSE]
 prot_expr <- dc_prot$expr[, prot_meta$specimenID, drop = FALSE]
 
-# all(rna_meta$individualID == prot_meta$individualID)
+all(rna_meta$individualID == prot_meta$individualID)
 rm(dc_rna, dc_prot)
 
 

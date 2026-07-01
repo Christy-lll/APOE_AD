@@ -57,7 +57,7 @@ dat <- dat %>%
 
 # define protein columns
 protein_vars <- colnames(proteomic_dat)[colnames(proteomic_dat) != "projid_visit"]
-# final n = 793, proteins = 6402
+
 rm(protein_meta, sample_meta, proteomic_dat, protein_col_mask)
 
 
@@ -76,8 +76,6 @@ demographic <- dat %>%
   ) %>%
   add_overall(last = TRUE) %>%
   bold_labels()
-
-# demographic %>% as_gt() %>% gt::gtsave(filename = file.path(table_output_dir, "plasma proteomics demographic table.png"))
 
 
 # Limma ----
@@ -105,7 +103,7 @@ sig_res_limma <- res_limma %>%
   left_join(protein_meta_clean, by = c("UniprotID" = "UniProt")) %>%
   dplyr::select(UniprotID, EntrezGeneSymbol, TargetFullName, everything())
 
-# write.csv(sig_res_limma, file.path(table_output_dir, "plasma_limma.csv"), row.names = FALSE)
+write.csv(sig_res_limma, file.path(table_output_dir, "plasma_limma.csv"), row.names = FALSE)
 
 ## Volcano plot ----
 n_up <- sum(sig_res_limma$`Direction of change` == "Upregulated", na.rm = TRUE)
@@ -121,7 +119,7 @@ p_limma_volcano <- ggplot(res_limma, aes(x = logFC, y = negLog10FDR)) +
                                 "Not significant" = "grey")) +
   geom_vline(xintercept = 0, linetype = "dashed", color = "grey") +
   geom_hline(yintercept = -log10(p_val_threshold), linetype = "dashed", color = "grey") +
-  labs(title = sprintf("%d differentially abundant plasma proteins by APOE ε4 carraige",
+  labs(title = sprintf("%d differentially abundant plasma proteins by APOE ε4 carriage",
                        nrow(sig_res_limma)),
        subtitle = sprintf("Up: %d  Down: %d", n_up, n_down),
        x = "log2 fold change",
@@ -130,7 +128,7 @@ p_limma_volcano <- ggplot(res_limma, aes(x = logFC, y = negLog10FDR)) +
   theme_classic() +
   theme(legend.position = "bottom")
 
-# ggsave(file.path(pic_output_dir, "plasma_limma_all_volcano.tiff"), p_limma_volcano, width = 7, height = 6, dpi = 300, compression = "lzw")
+ggsave(file.path(pic_output_dir, "plasma_limma_all_volcano.tiff"), p_limma_volcano, width = 7, height = 6, dpi = 300, compression = "lzw")
 
 ## PCA ----
 # all proteins
@@ -140,12 +138,12 @@ pca_all_df <- as.data.frame(pca_all$x[, 1:2]) %>%
 
 p_pca_all <- ggplot(pca_all_df, aes(x = PC1, y = PC2, color = apoe4)) +
   geom_point() +
-  labs(title = sprintf("PCA of all %d plasma proteins by APOE ε4 carraige", length(protein_vars)),
+  labs(title = sprintf("PCA of all %d plasma proteins by APOE ε4 carriage", length(protein_vars)),
        color = "") +
   theme_classic() +
   theme(legend.position = "bottom")
 
-# ggsave(file.path(pic_output_dir, "plasma_all_proteins_pca.tiff"), p_pca_all, width = 7, height = 6, dpi = 300, compression = "lzw")
+ggsave(file.path(pic_output_dir, "plasma_all_proteins_pca.tiff"), p_pca_all, width = 7, height = 6, dpi = 300, compression = "lzw")
 
 # DAPs only
 limma_sig_proteins <- sig_res_limma$UniprotID
@@ -161,7 +159,7 @@ p_pca_limma <- ggplot(pca_limma_df, aes(x = PC1, y = PC2, color = apoe4)) +
   theme_classic() +
   theme(legend.position = "bottom")
 
-# ggsave(file.path(pic_output_dir, "plasma_limma_pca.tiff"), p_pca_limma, width = 7, height = 6, dpi = 300, compression = "lzw")
+ggsave(file.path(pic_output_dir, "plasma_limma_pca.tiff"), p_pca_limma, width = 7, height = 6, dpi = 300, compression = "lzw")
 
 
 # Machine Learning (random forest classifier) ----
@@ -183,11 +181,11 @@ mi_scores <- mi_scores_all %>%
 mi_sig_proteins <- mi_scores$attributes
 mi_sig_proteins_name <- mi_scores$EntrezGeneSymbol
 
-# write.csv(mi_scores, file.path(table_output_dir, "plasma_MI.csv"), row.names = FALSE)
+write.csv(mi_scores, file.path(table_output_dir, "plasma_MI.csv"), row.names = FALSE)
 
 ## Train on NCI ----
 train_dat <- mi_dat %>%
-  transmute(class = factor(ifelse(apoe4 == "APOE4+", "pos", "neg"), levels = c("pos", "neg")),
+  transmute(class = factor(ifelse(apoe4 == "APOE ε4+", "pos", "neg"), levels = c("pos", "neg")),
             across(all_of(mi_sig_proteins)))
 
 cv_ctrl <- trainControl(
@@ -207,7 +205,7 @@ model_fit <- train(class ~ ., data = train_dat, method = "rf",
 ## Test on MCI ----
 test_MCI <- dat %>%
   filter(Diagnosis == "MCI") %>%
-  transmute(class = factor(ifelse(apoe4 == "APOE4+", "pos", "neg"), levels = c("pos", "neg")),
+  transmute(class = factor(ifelse(apoe4 == "APOE ε4+", "pos", "neg"), levels = c("pos", "neg")),
             across(all_of(mi_sig_proteins)))
 
 mci_probs <- predict(model_fit, newdata = test_MCI, type = "prob")[, "pos"]
@@ -232,7 +230,7 @@ mci_metrics <- tibble(
 ## Test on AD ----
 test_AD <- dat %>%
   filter(Diagnosis == "AD") %>%
-  transmute(class = factor(ifelse(apoe4 == "APOE4+", "pos", "neg"), levels = c("pos", "neg")),
+  transmute(class = factor(ifelse(apoe4 == "APOE ε4+", "pos", "neg"), levels = c("pos", "neg")),
             across(all_of(mi_sig_proteins)))
 
 ad_probs <- predict(model_fit, newdata = test_AD, type = "prob")[, "pos"]
@@ -257,7 +255,7 @@ ad_metrics <- tibble(
 ## Train on female, test on male ----
 female_dat <- dat %>%
   filter(msex == "Female") %>%
-  transmute(class = factor(ifelse(apoe4 == "APOE4+", "pos", "neg"), levels = c("pos", "neg")),
+  transmute(class = factor(ifelse(apoe4 == "APOE ε4+", "pos", "neg"), levels = c("pos", "neg")),
             across(all_of(mi_sig_proteins)))
 
 set.seed(16)
@@ -266,7 +264,7 @@ sex_model_fit <- train(class ~ ., data = female_dat, method = "rf",
 
 male_dat <- dat %>%
   filter(msex == "Male") %>%
-  transmute(class = factor(ifelse(apoe4 == "APOE4+", "pos", "neg"), levels = c("pos", "neg")),
+  transmute(class = factor(ifelse(apoe4 == "APOE ε4+", "pos", "neg"), levels = c("pos", "neg")),
             across(all_of(mi_sig_proteins)))
 
 male_probs <- predict(sex_model_fit, newdata = male_dat, type = "prob")[, "pos"]
@@ -290,7 +288,7 @@ male_metrics <- tibble(
 
 ## Train on ROSMAP, test on ADNI (CSF) ----
 ROSMAP_dat <- dat %>%
-  transmute(class = factor(ifelse(apoe4 == "APOE4+", "pos", "neg"), levels = c("pos", "neg")),
+  transmute(class = factor(ifelse(apoe4 == "APOE ε4+", "pos", "neg"), levels = c("pos", "neg")),
             across(all_of(mi_sig_proteins))) %>%
   rename(any_of(setNames(mi_sig_proteins, mi_sig_proteins_name))) %>%
   dplyr::select(-ZW10) # ZW10 not available in ADNI
@@ -325,7 +323,6 @@ ADNI_metrics <- tibble(
 
 ## ML metrics summary ----
 all_metrics <- bind_rows(mci_metrics, ad_metrics, male_metrics, ADNI_metrics)
-# write.csv(all_metrics, file.path(table_output_dir, "plasma_ML_metrics.csv"), row.names = FALSE)
 
 auc_plot_dat <- all_metrics %>%
   dplyr::select(Model, Train_AUC, Test_AUC) %>%
@@ -346,7 +343,7 @@ p_auc <- ggplot(auc_plot_dat, aes(x = AUC, y = Model, color = Set, shape = Set))
   theme_classic() +
   theme(legend.position = "bottom")
 
-# ggsave(file.path(pic_output_dir, "plasma_ML_auc_dotplot.tiff"), p_auc, width = 7, height = 6, dpi = 300, compression = "lzw")
+ggsave(file.path(pic_output_dir, "plasma_ML_auc_dotplot.tiff"), p_auc, width = 7, height = 6, dpi = 300, compression = "lzw")
 
 
 # Mediation Analysis ----
@@ -402,7 +399,7 @@ p_limma_med <- ggplot(all_prot_med, aes(x = logFC, y = negLog10FDR)) +
   theme_classic() +
   theme(legend.position = "bottom")
 
-# ggsave(file.path(pic_output_dir, "plasma_limma_mediation_volcano.tiff"), p_limma_med, width = 7, height = 6, dpi = 300, compression = "lzw")
+ggsave(file.path(pic_output_dir, "plasma_limma_mediation_volcano.tiff"), p_limma_med, width = 7, height = 6, dpi = 300, compression = "lzw")
 
 ## Pathway 1 (upstream): APOE4 --> Protein --> AD ----
 run_mediation_P1 <- function(protein) {
@@ -442,7 +439,7 @@ res_P1_all <- future_map_dfr(candidate_prot$UniprotID, run_mediation_P1,
 
 plan(sequential)
 
-# write.csv(res_P1_all, file.path(table_output_dir, "plasma_mediation_prot_AD.csv"), row.names = FALSE)
+write.csv(res_P1_all, file.path(table_output_dir, "plasma_mediation_prot_AD.csv"), row.names = FALSE)
 
 ## Pathway 2 (downstream): APOE4 --> AD --> Protein ----
 run_mediation_P2 <- function(protein) {
@@ -482,7 +479,7 @@ res_P2_all <- future_map_dfr(candidate_prot$UniprotID, run_mediation_P2,
 
 plan(sequential)
 
-# write.csv(res_P2_all, file.path(table_output_dir, "plasma_mediation_AD_prot.csv"), row.names = FALSE)
+write.csv(res_P2_all, file.path(table_output_dir, "plasma_mediation_AD_prot.csv"), row.names = FALSE)
 
 ## Forest plot ----
 mediation_plot_dat <- bind_rows(
@@ -540,7 +537,7 @@ p_mediation <- ggplot(plot_grid, aes(x = ACME_est, y = protein_label)) +
         panel.spacing = unit(0.3, "lines"),
         legend.position = "bottom")
 
-# ggsave(file.path(pic_output_dir, "plasma_mediation_forestplot.tiff"), p_mediation, width = 7, height = 6, dpi = 300, compression = "lzw")
+ggsave(file.path(pic_output_dir, "plasma_mediation_forestplot.tiff"), p_mediation, width = 7, height = 6, dpi = 300, compression = "lzw")
 
 
 # Enrichment Analysis ----
@@ -548,8 +545,8 @@ p_mediation <- ggplot(plot_grid, aes(x = ACME_est, y = protein_label)) +
 background_universe <- all_prot_med %>% distinct(UniprotID) %>% pull(UniprotID)
 dep_gene_list <- candidate_prot %>% distinct(UniprotID) %>% pull(UniprotID)
 
-# writeLines(background_universe, file.path(table_output_dir, "plasma_networkanalyst_background.txt"))
-# writeLines(dep_gene_list, file.path(table_output_dir, "plasma_networkanalyst_dep.txt"))
+writeLines(background_universe, file.path(table_output_dir, "plasma_networkanalyst_background.txt"))
+writeLines(dep_gene_list, file.path(table_output_dir, "plasma_networkanalyst_dep.txt"))
 
 ## GO:BP results ----
 GO_res <- read.csv(file.path(table_output_dir, "plasma_GOBP.csv")) %>%
@@ -565,7 +562,7 @@ p_GO <- ggplot(GO_res, aes(x = negLog10FDR, y = Pathway)) +
        y = NULL) +
   theme_classic()
 
-# ggsave(file.path(pic_output_dir, "plasma_GO_barplot.tiff"), p_GO, width = 7, height = 6, dpi = 300, compression = "lzw")
+ggsave(file.path(pic_output_dir, "plasma_GO_barplot.tiff"), p_GO, width = 7, height = 6, dpi = 300, compression = "lzw")
 
 ## Reactome results ----
 reactome_res <- read.csv(file.path(table_output_dir, "plasma_Reactome.csv")) %>%
@@ -580,4 +577,4 @@ p_reactome <- ggplot(reactome_res, aes(x = negLog10FDR, y = Pathway)) +
        y = NULL) +
   theme_classic()
 
-# ggsave(file.path(pic_output_dir, "plasma_Reactome_barplot.tiff"), p_reactome, width = 7, height = 6, dpi = 300, compression = "lzw")
+ggsave(file.path(pic_output_dir, "plasma_Reactome_barplot.tiff"), p_reactome, width = 7, height = 6, dpi = 300, compression = "lzw")

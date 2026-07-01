@@ -36,7 +36,7 @@ meta_dat <- meta_dat %>%
   arrange(match(BRID, shared_BRID))
 
 rownames(meta_dat) <- meta_dat$BRID
-# all(colnames(proteomic_dat) == meta_dat$BRID)
+all(colnames(proteomic_dat) == meta_dat$BRID)
 
 ## Impute, log transform, and normalise proteomics data ----
 expr_mat <- as.matrix(proteomic_dat)
@@ -74,8 +74,6 @@ demographic <- meta_dat %>%
   add_overall(last = TRUE) %>%
   bold_labels()
 
-# demographic %>% as_gt() %>% gt::gtsave(filename = file.path(table_output_dir, "iNeurons demographic table.png"))
-
 
 # Variance Partition Analysis ----
 vp_form <- ~ (1 | apoe4) + (1 | pmAD) + (1 | sex)
@@ -91,8 +89,6 @@ vp_medians <- as.data.frame(vp_fit) %>%
   pivot_longer(everything(), names_to = "Factor", values_to = "Median_VarExplained") %>%
   mutate(Factor = factor_labels[Factor]) %>%
   arrange(desc(Median_VarExplained))
-
-# write.csv(vp_medians, file.path(table_output_dir, "iNeurons_varpart.csv"), row.names = FALSE)
 
 
 # Limma ----
@@ -164,8 +160,6 @@ mi_scores_all <- FSelectorRcpp::information_gain(apoe4 ~ ., data = mi_dat, type 
 mi_scores <- mi_scores_all %>%
   filter(importance > 0)
 
-# write.csv(mi_scores, file.path(table_output_dir, "iNeurons_MI.csv"), row.names = FALSE)
-
 ## Barplot ----
 p_mi_bar <- ggplot(mi_scores %>% mutate(selected = importance > 0.24),
                    aes(x = importance, y = forcats::fct_reorder(label, importance), fill = selected)) +
@@ -206,6 +200,5 @@ ggsave(file.path(pic_output_dir, "iNeurons_MI_pca.tiff"), p_pca_MI, width = 7, h
 background_universe <- mi_scores_all %>% distinct(attributes) %>% pull(attributes)
 dep_gene_list <- mi_scores %>% distinct(attributes) %>% pull(attributes)
 
-# writeLines(background_universe, file.path(table_output_dir, "iNeurons_networkanalyst_background.txt"))
-# writeLines(dep_gene_list, file.path(table_output_dir, "iNeurons_networkanalyst_dep.txt"))
-
+writeLines(background_universe, file.path(table_output_dir, "iNeurons_networkanalyst_background.txt"))
+writeLines(dep_gene_list, file.path(table_output_dir, "iNeurons_networkanalyst_dep.txt"))

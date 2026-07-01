@@ -43,10 +43,10 @@ median_impute <- function(x) {
 }
 
 expr_mat <- as.matrix(proteomic_dat)[, meta_dat$batchChannel] %>%
-  .[rowMeans(is.na(.)) < 0.3, ] %>%        # drop proteins with >30% NA
-  apply(1, median_impute) %>%               # median imputation
+  .[rowMeans(is.na(.)) < 0.3, ] %>% # drop proteins with >30% NA
+  apply(1, median_impute) %>% # median imputation
   t() %>%
-  log2()                                    # log transformation
+  log2() # log transformation
 
 rm(proteomic_dat, protein_meta, sample_meta)
 
@@ -73,8 +73,6 @@ demographic <- meta_dat %>%
   ) %>%
   add_overall(last = TRUE) %>%
   bold_labels()
-
-# demographic %>% as_gt() %>% gt::gtsave(filename = file.path(table_output_dir, "dlpfc proteomics demographic table.png"))
 
 
 # Variance Partition Analysis ----
@@ -115,8 +113,6 @@ res_limma <- topTable(fit, coef = "apoe4APOE ε4+", number = Inf) %>%
 sig_res_limma <- res_limma %>%
   filter(adj.P.Val < p_val_threshold)
 
-# write.csv(sig_res_limma, file.path(table_output_dir, "dlpfc_proteomics_limma.csv"), row.names = FALSE)
-
 ## Volcano plot ----
 n_up <- sum(sig_res_limma$`Direction of change` == "Upregulated")
 n_down <- sum(sig_res_limma$`Direction of change` == "Downregulated")
@@ -140,7 +136,7 @@ p_limma_volcano <- ggplot(res_limma, aes(x = logFC, y = negLog10FDR)) +
   theme_classic() +
   theme(legend.position = "bottom")
 
-# ggsave(file.path(pic_output_dir, "dlpfc_proteomics_limma_volcano.tiff"), p_limma_volcano, width = 7, height = 6, dpi = 300, compression = "lzw")
+ggsave(file.path(pic_output_dir, "dlpfc_proteomics_limma_volcano.tiff"), p_limma_volcano, width = 7, height = 6, dpi = 300, compression = "lzw")
 
 
 # Mutual Information Analysis ----
@@ -171,4 +167,4 @@ p_mi_bar <- ggplot(mi_top30, aes(x = importance, y = fct_reorder(UniprotID, impo
        x = "MI score", y = NULL) +
   theme_classic()
 
-# ggsave(file.path(pic_output_dir, "dlpfc_proteomics_MI_barplot.tiff"), p_mi_bar, width = 7, height = 6, dpi = 300, compression = "lzw")
+ggsave(file.path(pic_output_dir, "dlpfc_proteomics_MI_barplot.tiff"), p_mi_bar, width = 7, height = 6, dpi = 300, compression = "lzw")

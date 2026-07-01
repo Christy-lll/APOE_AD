@@ -32,6 +32,7 @@ expr_mat <- as.matrix(proteomic_dat[, -1])
 colnames(expr_mat) <- meta_dat$SampleID
 rownames(meta_dat) <- meta_dat$SampleID
 
+all(colnames(expr_mat) == meta_dat$SampleID)
 # no missing values; data already log-transformed and centred
 
 
@@ -54,8 +55,6 @@ demographic <- meta_dat %>%
   ) %>%
   add_overall(last = TRUE) %>%
   bold_labels()
-
-# demographic %>% as_gt() %>% gt::gtsave(filename = file.path(table_output_dir, "iAstrocytes demographic table.png"))
 
 
 # Variance Partition Analysis ----
@@ -116,7 +115,7 @@ p_limma_volcano <- ggplot(res_limma, aes(x = logFC, y = negLog10FDR)) +
   theme_classic() +
   theme(legend.position = "bottom")
 
-# ggsave(file.path(pic_output_dir, "iAstrocytes_limma_volcano.tiff"), p_limma_volcano, width = 7, height = 6, dpi = 300, compression = "lzw")
+ggsave(file.path(pic_output_dir, "iAstrocytes_limma_volcano.tiff"), p_limma_volcano, width = 7, height = 6, dpi = 300, compression = "lzw")
 
 
 # Mutual Information Analysis ----
@@ -136,8 +135,6 @@ mi_scores_all <- FSelectorRcpp::information_gain(apoe4 ~ ., data = mi_dat, type 
 mi_scores <- mi_scores_all %>%
   filter(importance > 0)
 
-# write.csv(mi_scores, file.path(table_output_dir, "iAstrocytes_MI.csv"), row.names = FALSE)
-
 ## Barplot ----
 p_mi_bar <- ggplot(mi_scores %>% mutate(selected = importance > 0.15),
                    aes(x = importance, y = forcats::fct_reorder(GeneSymbol, importance), fill = selected)) +
@@ -152,7 +149,7 @@ p_mi_bar <- ggplot(mi_scores %>% mutate(selected = importance > 0.15),
   theme_classic() +
   theme(legend.position = "bottom")
 
-# ggsave(file.path(pic_output_dir, "iAstrocytes_MI_barplot.tiff"), p_mi_bar, width = 7, height = 6, dpi = 300, compression = "lzw")
+ggsave(file.path(pic_output_dir, "iAstrocytes_MI_barplot.tiff"), p_mi_bar, width = 7, height = 6, dpi = 300, compression = "lzw")
 
 ## PCA ----
 top_proteins <- mi_scores_all %>%
@@ -171,7 +168,7 @@ p_pca_MI <- ggplot(pca_MI_df, aes(x = PC1, y = PC2, color = apoe4)) +
   theme_classic() +
   theme(legend.position = "bottom")
   
-# ggsave(file.path(pic_output_dir, "iAstrocytes_MI_pca.tiff"), p_pca_MI, width = 7, height = 6, dpi = 300, compression = "lzw")
+ggsave(file.path(pic_output_dir, "iAstrocytes_MI_pca.tiff"), p_pca_MI, width = 7, height = 6, dpi = 300, compression = "lzw")
 
 
 # Enrichment Analysis ----
@@ -179,5 +176,5 @@ p_pca_MI <- ggplot(pca_MI_df, aes(x = PC1, y = PC2, color = apoe4)) +
 background_universe <- mi_scores_all %>% distinct(UniprotID) %>% pull(UniprotID)
 dep_gene_list <- mi_scores %>% distinct(UniprotID) %>% pull(UniprotID)
 
-# writeLines(background_universe, file.path(table_output_dir, "iAstrocytes_networkanalyst_background.txt"))
-# writeLines(dep_gene_list, file.path(table_output_dir, "iAstrocytes_networkanalyst_dep.txt"))
+writeLines(background_universe, file.path(table_output_dir, "iAstrocytes_networkanalyst_background.txt"))
+writeLines(dep_gene_list, file.path(table_output_dir, "iAstrocytes_networkanalyst_dep.txt"))
