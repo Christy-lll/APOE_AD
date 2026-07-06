@@ -542,14 +542,14 @@ ggsave(file.path(pic_output_dir, "plasma_mediation_forestplot.tiff"), p_mediatio
 
 # Enrichment Analysis ----
 ## Export gene lists for NetworkAnalyst ----
-background_universe <- all_prot_med %>% distinct(UniprotID) %>% pull(UniprotID)
-dep_gene_list <- candidate_prot %>% distinct(UniprotID) %>% pull(UniprotID)
+background_universe <- res_limma %>% distinct(UniprotID) %>% pull(UniprotID)
+dap_gene_list <- sig_res_limma %>% distinct(UniprotID) %>% pull(UniprotID)
 
 writeLines(background_universe, file.path(table_output_dir, "plasma_networkanalyst_background.txt"))
-writeLines(dep_gene_list, file.path(table_output_dir, "plasma_networkanalyst_dep.txt"))
+writeLines(dap_gene_list, file.path(table_output_dir, "plasma_networkanalyst_dap.txt"))
 
 ## GO:BP results ----
-GO_res <- read.csv(file.path(table_output_dir, "plasma_GOBP.csv")) %>%
+GO_res <- read.csv(file.path(table_output_dir, "plasma_GOBP_53.csv")) %>%
   filter(FDR < 0.05) %>%
   distinct(Pathway, .keep_all = TRUE) %>%
   mutate(negLog10FDR = -log10(FDR),
@@ -565,7 +565,7 @@ p_GO <- ggplot(GO_res, aes(x = negLog10FDR, y = Pathway)) +
 ggsave(file.path(pic_output_dir, "plasma_GO_barplot.tiff"), p_GO, width = 7, height = 6, dpi = 300, compression = "lzw")
 
 ## Reactome results ----
-reactome_res <- read.csv(file.path(table_output_dir, "plasma_Reactome.csv")) %>%
+reactome_res <- read.csv(file.path(table_output_dir, "plasma_Reactome_53.csv")) %>%
   filter(FDR < 0.05) %>%
   mutate(negLog10FDR = -log10(FDR),
          Pathway = forcats::fct_reorder(Pathway, negLog10FDR))
