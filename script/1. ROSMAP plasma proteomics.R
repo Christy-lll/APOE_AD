@@ -297,8 +297,8 @@ set.seed(16)
 ROSMAP_model_fit <- train(class ~ ., data = ROSMAP_dat, method = "rf",
                           metric = "ROC", trControl = cv_ctrl, tuneLength = 10, importance = TRUE)
 
-# log10-transformed, normalised ADNI CSF proteomic data
-ADNI_dat <- read.csv(here("raw", "ADNI_log_norm_dat.csv"), header = T) %>%
+# import log10-transformed, normalised ADNI CSF proteomic data
+ADNI_dat <- read.csv(here("raw", "ADNI", "log_norm_dat.csv"), header = T) %>%
   transmute(class = factor(ifelse(apoe == "APOE4+", "pos", "neg"), levels = c("pos", "neg")),
             across(any_of(mi_sig_proteins_name)))
 
