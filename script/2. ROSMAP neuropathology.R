@@ -84,11 +84,14 @@ braak <- ggplot(braak_plot_dat, aes(x = apoe4, y = prop, fill = braaksc_grouped)
   facet_wrap(~ cogdx) +
   scale_y_continuous(labels = scales::percent) +
   scale_fill_brewer(palette = 1) +
-  labs(title = "Braak stage distribution in ROSMAP cohort",
+  labs(title = "Braak stage distribution in ROSMAP",
        x = NULL, y = "Proportion", fill = "Braak Stage") +
-  theme_classic()
+  theme_classic(base_size = 7) + 
+  theme(axis.text.x = element_text(angle = 45, hjust = 1),
+        legend.key.size = unit(3, "mm"))
 
-ggsave(file.path(pic_output_dir, "clinical_braakstage_barplot.tiff"), braak, width = 7, height = 6, dpi = 300, compression = "lzw")
+ggsave(file.path(pic_output_dir, "clinical_braakstage_barplot.svg"), braak, 
+       unit = "mm", width = 85, height = 70, device = "svg")
 
 ## CERAD score ----
 cerad_plot_dat <- clinical_dat %>%
@@ -102,11 +105,14 @@ cerad <- ggplot(cerad_plot_dat, aes(x = apoe4, y = prop, fill = ceradsc)) +
   facet_wrap(~ cogdx) +
   scale_y_continuous(labels = scales::percent) +
   scale_fill_brewer(palette = 5) +
-  labs(title = "CERAD score distribution in ROSMAP cohort",
+  labs(title = "CERAD score distribution in ROSMAP",
        x = NULL, y = "Proportion", fill = "CERAD Score") +
-  theme_classic()
+  theme_classic(base_size = 7) + 
+  theme(axis.text.x = element_text(angle = 45, hjust = 1),
+        legend.key.size = unit(3, "mm"))
 
-ggsave(file.path(pic_output_dir, "clinical_ceradscore_barplot.tiff"), cerad, width = 7, height = 6, dpi = 300, compression = "lzw")
+ggsave(file.path(pic_output_dir, "clinical_ceradscore_barplot.svg"), cerad, 
+       unit = "mm", width = 85, height = 70, device = "svg")
 
 
 # Regression Analysis ----

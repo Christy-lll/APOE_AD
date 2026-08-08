@@ -110,25 +110,26 @@ n_up <- sum(sig_res_limma$`Direction of change` == "Upregulated", na.rm = TRUE)
 n_down <- sum(sig_res_limma$`Direction of change` == "Downregulated", na.rm = TRUE)
 
 p_limma_volcano <- ggplot(res_limma, aes(x = logFC, y = negLog10FDR)) +
-  geom_point(aes(color = `Direction of change`), size = 1.2) +
+  geom_point(aes(color = `Direction of change`), size = 0.8) +
   ggrepel::geom_text_repel(data = sig_res_limma,
                            aes(label = EntrezGeneSymbol),
-                           size = 3, color = "black") +
+                           size = 2, color = "black") +
   scale_color_manual(values = c("Upregulated" = "indianred",
                                 "Downregulated" = "steelblue",
                                 "Not significant" = "grey")) +
   geom_vline(xintercept = 0, linetype = "dashed", color = "grey") +
   geom_hline(yintercept = -log10(p_val_threshold), linetype = "dashed", color = "grey") +
-  labs(title = sprintf("%d differentially abundant plasma proteins by APOE ε4 carriage",
-                       nrow(sig_res_limma)),
+  labs(title = "53 plasma DAPs in APOE ε4 carriers",
        subtitle = sprintf("Up: %d  Down: %d", n_up, n_down),
        x = "log2 fold change",
        y = "-log10 FDR",
        color = NULL) +
-  theme_classic() +
-  theme(legend.position = "bottom")
+  theme_classic(base_size = 7) +
+  theme(legend.position = "right",
+        legend.key.size = unit(3, "mm"))
 
-ggsave(file.path(pic_output_dir, "plasma_limma_all_volcano.tiff"), p_limma_volcano, width = 7, height = 6, dpi = 300, compression = "lzw")
+ggsave(file.path(pic_output_dir, "plasma_limma_all_volcano.svg"), p_limma_volcano, 
+       unit = "mm", width = 100, height = 80, device = "svg")
 
 ## PCA ----
 # all proteins
@@ -137,13 +138,15 @@ pca_all_df <- as.data.frame(pca_all$x[, 1:2]) %>%
   bind_cols(dat %>% dplyr::select(apoe4, apoe_genotype))
 
 p_pca_all <- ggplot(pca_all_df, aes(x = PC1, y = PC2, color = apoe4)) +
-  geom_point() +
-  labs(title = sprintf("PCA of all %d plasma proteins by APOE ε4 carriage", length(protein_vars)),
+  geom_point(size = 0.3) +
+  labs(title = sprintf("PCA of all %d plasma proteins", length(protein_vars)),
        color = "") +
-  theme_classic() +
-  theme(legend.position = "bottom")
+  theme_classic(base_size = 7) +
+  theme(legend.position = "right",
+        legend.key.size = unit(3, "mm"))
 
-ggsave(file.path(pic_output_dir, "plasma_all_proteins_pca.tiff"), p_pca_all, width = 7, height = 6, dpi = 300, compression = "lzw")
+ggsave(file.path(pic_output_dir, "plasma_all_proteins_pca.svg"), p_pca_all, 
+       unit = "mm", width = 70, height = 40, device = "svg")
 
 # DAPs only
 limma_sig_proteins <- sig_res_limma$UniprotID
@@ -152,15 +155,16 @@ pca_limma_df <- as.data.frame(pca_limma$x[, 1:2]) %>%
   bind_cols(dat %>% dplyr::select(apoe4, apoe_genotype))
 
 p_pca_limma <- ggplot(pca_limma_df, aes(x = PC1, y = PC2, color = apoe4)) +
-  geom_point() +
-  labs(title = sprintf("PCA of %d APOE ε4-associated plasma DAPs by APOE ε4 carriage",
+  geom_point(size = 0.3) +
+  labs(title = sprintf("PCA of %d APOE ε4-associated plasma DAPs",
                        length(limma_sig_proteins)),
        color = "") +
-  theme_classic() +
-  theme(legend.position = "bottom")
+  theme_classic(base_size = 7) +
+  theme(legend.position = "right",
+        legend.key.size = unit(3, "mm"))
 
-ggsave(file.path(pic_output_dir, "plasma_limma_pca.tiff"), p_pca_limma, width = 7, height = 6, dpi = 300, compression = "lzw")
-
+ggsave(file.path(pic_output_dir, "plasma_limma_pca.svg"), p_pca_limma, 
+       unit = "mm", width = 70, height = 40, device = "svg")
 
 # Machine Learning (random forest classifier) ----
 ## MI-based feature selection (on NCI) ----
@@ -332,18 +336,20 @@ auc_plot_dat <- all_metrics %>%
          Model = factor(Model, levels = rev(unique(all_metrics$Model))))
 
 p_auc <- ggplot(auc_plot_dat, aes(x = AUC, y = Model, color = Set, shape = Set)) +
-  geom_point(size = 3.5) +
-  scale_x_continuous(limits = c(0.8, 1.01), breaks = seq(0.8, 1.0, by = 0.05)) +
+  geom_point(size = 2) +
+  scale_x_continuous(limits = c(0.85, 1.01), breaks = seq(0.85, 1.0, by = 0.05)) +
   scale_color_manual(values = c("Train" = "steelblue", "Test" = "indianred")) +
   labs(title = "Random forest classifier performance",
        x = "AUC",
        y = NULL,
        color = NULL,
        shape = NULL) +
-  theme_classic() +
-  theme(legend.position = "bottom")
+  theme_classic(base_size = 7) +
+  theme(legend.position = "right",
+        legend.key.size = unit(3, "mm"))
 
-ggsave(file.path(pic_output_dir, "plasma_ML_auc_dotplot.tiff"), p_auc, width = 7, height = 6, dpi = 300, compression = "lzw")
+ggsave(file.path(pic_output_dir, "plasma_ML_auc_dotplot.svg"), p_auc, 
+       unit = "mm", width = 100, height = 65, device = "svg")
 
 
 # Mediation Analysis ----
@@ -381,25 +387,27 @@ n_up <- sum(candidate_prot$`Direction of change` == "Upregulated", na.rm = TRUE)
 n_down <- sum(candidate_prot$`Direction of change` == "Downregulated", na.rm = TRUE)
 
 p_limma_med <- ggplot(all_prot_med, aes(x = logFC, y = negLog10FDR)) +
-  geom_point(aes(color = `Direction of change`), size = 1.5) +
+  geom_point(aes(color = `Direction of change`), size = 0.8) +
   ggrepel::geom_text_repel(data = candidate_prot,
                            aes(label = EntrezGeneSymbol),
-                           size = 3, color = "black") +
+                           size = 2, color = "black") +
   scale_color_manual(values = c("Upregulated" = "indianred",
                                 "Downregulated" = "steelblue",
                                 "Not significant" = "grey")) +
   geom_vline(xintercept = 0, linetype = "dashed", color = "grey") +
   geom_hline(yintercept = -log10(p_val_threshold), linetype = "dashed", color = "grey") +
-  labs(title = sprintf("%d differentially abundant plasma proteins by APOE ε4 carriage",
+  labs(title = sprintf("%d APOE ε4-associated plasma proteins",
                        nrow(candidate_prot)),
        subtitle = sprintf("Up: %d  Down: %d", n_up, n_down),
        x = "log2 fold change",
        y = "-log10 FDR",
        color = NULL) +
-  theme_classic() +
-  theme(legend.position = "bottom")
+  theme_classic(base_size = 7) +
+  theme(legend.position = "right",
+        legend.key.size = unit(3, "mm"))
 
-ggsave(file.path(pic_output_dir, "plasma_limma_mediation_volcano.tiff"), p_limma_med, width = 7, height = 6, dpi = 300, compression = "lzw")
+ggsave(file.path(pic_output_dir, "plasma_limma_mediation_volcano.svg"), p_limma_med, 
+       unit = "mm", width = 90, height = 70, device = "svg")
 
 ## Pathway 1 (upstream): APOE4 --> Protein --> AD ----
 run_mediation_P1 <- function(protein) {
@@ -508,8 +516,7 @@ classification <- mediation_plot_dat %>%
   mutate(group = case_when(
     n_pathways == 2 & signs == "-1,1" ~ "Both (competitive)",
     n_pathways == 2 & signs %in% c("1", "-1") ~ "Both (complementary)",
-    n_pathways == 1 & UniprotID %in%
-      (res_P1_all %>% filter(ACME_fdr < 0.05) %>% pull(UniprotID)) ~ "Upstream only",
+    n_pathways == 1 & UniprotID %in% (res_P1_all %>% filter(ACME_fdr < 0.05) %>% pull(UniprotID)) ~ "Upstream only",
     n_pathways == 1 ~ "Downstream only"
   ))
 
@@ -522,22 +529,24 @@ plot_grid <- plot_grid %>%
 p_mediation <- ggplot(plot_grid, aes(x = ACME_est, y = protein_label)) +
   geom_vline(xintercept = 0, linetype = "dashed", color = "grey") +
   geom_errorbarh(aes(xmin = ACME_ci_low, xmax = ACME_ci_up, color = direction),
-                 height = 0.25, na.rm = TRUE) +
-  geom_point(aes(color = direction), size = 2.5, na.rm = TRUE) +
+                 height = 0.3, na.rm = TRUE) +
+  geom_point(aes(color = direction), size = 1.5, na.rm = TRUE) +
   scale_color_manual(values = c("Positive" = "indianred", "Negative" = "steelblue"),
                      na.translate = FALSE, name = "ACME direction") +
   facet_grid(group ~ pathway, scales = "free_y", space = "free_y", switch = "y") +
   labs(title = "Mediation analysis",
        x = "Average Causal Mediation Effect (ACME)",
        y = NULL) +
-  theme_classic() +
+  theme_classic(base_size = 7) +
   theme(strip.placement = "outside",
         strip.background = element_rect(fill = "grey90", color = NA),
         strip.text.y.left = element_text(angle = 0, hjust = 1),
         panel.spacing = unit(0.3, "lines"),
-        legend.position = "bottom")
+        legend.position = "right",
+        legend.key.size = unit(3, "mm"))
 
-ggsave(file.path(pic_output_dir, "plasma_mediation_forestplot.tiff"), p_mediation, width = 7, height = 6, dpi = 300, compression = "lzw")
+ggsave(file.path(pic_output_dir, "plasma_mediation_forestplot.svg"), p_mediation, 
+       unit = "mm", width = 175, height = 70, device = "svg")
 
 
 # Enrichment Analysis ----
@@ -557,12 +566,13 @@ GO_res <- read.csv(file.path(table_output_dir, "plasma_GOBP_53.csv")) %>%
 
 p_GO <- ggplot(GO_res, aes(x = negLog10FDR, y = Pathway)) +
   geom_col(fill = "indianred") +
-  labs(title = "GO: biological processes",
+  labs(title = "GO BP",
        x = "-log10 FDR",
        y = NULL) +
-  theme_classic()
+  theme_classic(base_size = 7) 
 
-ggsave(file.path(pic_output_dir, "plasma_GO_barplot.tiff"), p_GO, width = 7, height = 6, dpi = 300, compression = "lzw")
+ggsave(file.path(pic_output_dir, "plasma_GO_barplot.svg"), p_GO, 
+       unit = "mm", width = 100, height = 65, device = "svg")
 
 ## Reactome results ----
 reactome_res <- read.csv(file.path(table_output_dir, "plasma_Reactome_53.csv")) %>%
@@ -575,6 +585,7 @@ p_reactome <- ggplot(reactome_res, aes(x = negLog10FDR, y = Pathway)) +
   labs(title = "Reactome",
        x = "-log10 FDR",
        y = NULL) +
-  theme_classic()
+  theme_classic(base_size = 7)
 
-ggsave(file.path(pic_output_dir, "plasma_Reactome_barplot.tiff"), p_reactome, width = 7, height = 6, dpi = 300, compression = "lzw")
+ggsave(file.path(pic_output_dir, "plasma_Reactome_barplot.svg"), p_reactome, 
+       unit = "mm", width = 75, height = 65, device = "svg")

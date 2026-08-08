@@ -97,26 +97,26 @@ n_up <- sum(sig_res_limma$`Direction of change` == "Upregulated")
 n_down <- sum(sig_res_limma$`Direction of change` == "Downregulated")
 
 p_limma_volcano <- ggplot(res_limma, aes(x = logFC, y = negLog10FDR)) +
-  geom_point(aes(color = `Direction of change`), size = 1.2) +
+  geom_point(aes(color = `Direction of change`), size = 0.7) +
   ggrepel::geom_text_repel(data = sig_res_limma,
                            aes(label = GeneSymbol),
-                           size = 3, color = "black") +
+                           size = 2, color = "black") +
   scale_color_manual(values = c("Upregulated" = "indianred",
                                 "Downregulated" = "steelblue",
                                 "Not significant" = "grey")) +
   geom_vline(xintercept = 0, linetype = "dashed", color = "grey") +
   geom_hline(yintercept = -log10(p_val_threshold), linetype = "dashed", color = "grey") +
-  labs(title = sprintf("%d differentially abundant iAstrocytes proteins by APOE ε4 carriage",
+  labs(title = sprintf("%d differentially abundant iAstrocyte proteins",
                        nrow(sig_res_limma)),
        subtitle = sprintf("Up: %d  Down: %d", n_up, n_down),
        x = "log2 fold change",
        y = "-log10 FDR",
        color = NULL) +
-  theme_classic() +
+  theme_classic(base_size = 7) +
   theme(legend.position = "bottom")
 
-ggsave(file.path(pic_output_dir, "iAstrocytes_limma_volcano.tiff"), p_limma_volcano, width = 7, height = 6, dpi = 300, compression = "lzw")
-
+ggsave(file.path(pic_output_dir, "iAstrocytes_limma_volcano.svg"), p_limma_volcano, 
+       unit = "mm", width = 85, height = 75, device = "svg")
 
 # Mutual Information Analysis ----
 ## Batch correction ----
@@ -139,17 +139,19 @@ mi_scores <- mi_scores_all %>%
 p_mi_bar <- ggplot(mi_scores %>% mutate(selected = importance > 0.15),
                    aes(x = importance, y = forcats::fct_reorder(GeneSymbol, importance), fill = selected)) +
   geom_col(alpha = 0.9) +
-  geom_vline(xintercept = 0.15, linetype = "dashed", color = "black", linewidth = 0.6) +
+  geom_vline(xintercept = 0.15, linetype = "dashed", color = "black", linewidth = 0.3) +
   scale_fill_manual(values = c("TRUE" = "steelblue", "FALSE" = "grey"),
                     name = "Selected for PCA") +
-  labs(title = sprintf("%d iAstrocytes proteins with non-zero mutual information with APOE ε4", nrow(mi_scores)),
+  labs(title = sprintf("%d iAstrocyte proteins with non-zero MI", nrow(mi_scores)),
        x = "MI score",
        y = NULL) +
-  scale_x_continuous(breaks = seq(0, 0.3, by = 0.05)) +
-  theme_classic() +
-  theme(legend.position = "bottom")
+  scale_x_continuous(limits = c(0, 0.251), breaks = seq(0, 0.25, 0.05)) +
+  theme_classic(base_size = 7) +
+  theme(legend.position = "right",
+        legend.key.size = unit(3, "mm"))
 
-ggsave(file.path(pic_output_dir, "iAstrocytes_MI_barplot.tiff"), p_mi_bar, width = 7, height = 6, dpi = 300, compression = "lzw")
+ggsave(file.path(pic_output_dir, "iAstrocytes_MI_barplot.svg"), p_mi_bar, 
+       unit = "mm", width = 85, height = 90, device = "svg")
 
 ## PCA ----
 top_proteins <- mi_scores_all %>%
@@ -161,15 +163,16 @@ pca_MI_df <- as.data.frame(pca_MI$x[, 1:2]) %>%
   bind_cols(meta_dat %>% dplyr::select(apoe_genotype, apoe4))
 
 p_pca_MI <- ggplot(pca_MI_df, aes(x = PC1, y = PC2, color = apoe4)) +
-  geom_point() +
-  labs(title = sprintf("PCA of %d MI-selected iAstrocytes proteins by APOE ε4 carriage",
+  geom_point(size = 0.7) +
+  labs(title = sprintf("PCA of %d MI-selected iAstrocyte proteins",
                        length(top_proteins)),
        color = "") +
-  theme_classic() +
-  theme(legend.position = "bottom")
-  
-ggsave(file.path(pic_output_dir, "iAstrocytes_MI_pca.tiff"), p_pca_MI, width = 7, height = 6, dpi = 300, compression = "lzw")
+  theme_classic(base_size = 7) +
+  theme(legend.position = "right",
+        legend.key.size = unit(3, "mm"))
 
+ggsave(file.path(pic_output_dir, "iAstrocytes_MI_pca.svg"), p_pca_MI, 
+       unit = "mm", width = 85, height = 45, device = "svg")
 
 # Enrichment Analysis ----
 ## Export gene lists for NetworkAnalyst ----

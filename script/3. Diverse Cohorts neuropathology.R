@@ -23,7 +23,8 @@ clinical_dat <- clinical_dat %>%
          Braak = factor(Braak,
                         levels = c("None", "Stage I", "Stage II", "Stage III", "Stage IV", "Stage V", "Stage VI")),
          amyCerad = factor(amyCerad,
-                           levels = c("None/No AD/C0", "Sparse/Possible/C1", "Moderate/Probable/C2", "Frequent/Definite/C3"))) %>%
+                           levels = c("None/No AD/C0", "Sparse/Possible/C1", "Moderate/Probable/C2", "Frequent/Definite/C3"),
+                           labels = c("None/No AD", "Sparse/Possible", "Moderate/Probable", "Frequent/Definite"))) %>%
   filter(!is.na(Braak), !is.na(amyCerad), !is.na(ageDeath_num), !is.na(sex)) %>%
   dplyr::select(individualID, apoe4, apoeGenotype, ADoutcome, sex, ageDeath_num, Braak, amyCerad, PMI, race)
 
@@ -66,11 +67,14 @@ braak <- ggplot(braak_plot_dat, aes(x = apoe4, y = prop, fill = Braak)) +
   facet_wrap(~ ADoutcome) +
   scale_y_continuous(labels = scales::percent) +
   scale_fill_brewer(palette = 1) +
-  labs(title = "Braak stage distribution in AMP-AD Diverse Cohorts Study",
+  labs(title = "Braak stage distribution in AMP-AD Diverse Cohorts",
        x = NULL, y = "Proportion", fill = "Braak Stage") +
-  theme_classic()
+  theme_classic(base_size = 7) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1),
+        legend.key.size = unit(3, "mm"))
 
-ggsave(file.path(pic_output_dir, "clinical_braakstage_barplot.tiff"), braak, width = 7, height = 6, dpi = 300, compression = "lzw")
+ggsave(file.path(pic_output_dir, "clinical_braakstage_barplot.svg"), braak, 
+       unit = "mm", width = 85, height = 70, device = "svg")
 
 ## CERAD score ----
 cerad_plot_dat <- clinical_dat %>%
@@ -84,11 +88,14 @@ cerad <- ggplot(cerad_plot_dat, aes(x = apoe4, y = prop, fill = amyCerad)) +
   facet_wrap(~ ADoutcome) +
   scale_y_continuous(labels = scales::percent) +
   scale_fill_brewer(palette = 5) +
-  labs(title = "CERAD score distribution in AMP-AD Diverse Cohorts Study",
+  labs(title = "CERAD score distribution in AMP-AD Diverse Cohorts",
        x = NULL, y = "Proportion", fill = "CERAD Score") +
-  theme_classic()
+  theme_classic(base_size = 7) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1),
+        legend.key.size = unit(3, "mm"))
 
-ggsave(file.path(pic_output_dir, "clinical_ceradscore_barplot.tiff"), cerad, width = 7, height = 6, dpi = 300, compression = "lzw")
+ggsave(file.path(pic_output_dir, "clinical_ceradscore_barplot.svg"), cerad, 
+       unit = "mm", width = 85, height = 70, device = "svg")
 
 
 # Regression Analysis ----

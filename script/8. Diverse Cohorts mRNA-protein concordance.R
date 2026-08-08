@@ -136,23 +136,21 @@ joined_apoe4 <- inner_join(rna_clean_apoe4, prot_clean_apoe4, by = "hgnc_symbol"
 test_apoe4 <- cor.test(joined_apoe4$rna_lfc, joined_apoe4$prot_lfc, method = "spearman")
 stats_label_apoe4 <- paste0("Spearman r = ", round(test_apoe4$estimate, 3),
                             ", p = ", format.pval(test_apoe4$p.value, digits = 3),
-                            "\nn = ", nrow(joined_apoe4), " genes")
+                            "\nn = ", nrow(joined_apoe4), " pairs")
 
 p_scatter_apoe4 <- ggplot(joined_apoe4, aes(x = rna_lfc, y = prot_lfc)) +
-  geom_vline(xintercept = 0, linetype = "dashed", color = "darkgrey", linewidth = 0.4) +
-  geom_hline(yintercept = 0, linetype = "dashed", color = "darkgrey", linewidth = 0.4) +
-  geom_point(size = 0.8, color = "grey", alpha = 0.8) +
-  geom_smooth(method = "lm", color = "steelblue", linewidth = 0.6, se = TRUE) +
+  geom_vline(xintercept = 0, linetype = "dashed", color = "darkgrey") +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "darkgrey") +
+  geom_point(size = 0.3, color = "grey") +
+  geom_smooth(method = "lm", color = "steelblue", linewidth = 0.5, se = TRUE) +
   annotate("text", x = Inf, y = -Inf, hjust = 1.05, vjust = -0.5,
-           label = stats_label_apoe4, size = 3.2, fontface = "italic") +
-  labs(title = "dlPFC RNA vs Protein log2FC (APOE ε4+ vs APOE ε4-)",
-       x = "RNA log2 fold change", y = "Protein log2 fold change", color = NULL) +
-  theme_classic() +
-  theme(legend.position = "bottom")
+           label = stats_label_apoe4, size = 2, fontface = "italic") +
+  labs(title = "APOE ε4-associated mRNA vs. protein changes",
+       x = "mRNA log2 fold change", y = "Protein log2 fold change", color = NULL) +
+  theme_classic(base_size = 7)
 
-ggsave(file.path(pic_output_dir, "apoe4_dlpfc_logFC_scatter.tiff"),
-       p_scatter_apoe4, width = 7, height = 6, dpi = 300, compression = "lzw")
-
+ggsave(file.path(pic_output_dir, "apoe4_dlpfc_logFC_scatter.svg"), p_scatter_apoe4, 
+       unit = "mm", width = 85, height = 70, device = "svg")
 
 # Concordance of AD-Associated RNA and Protein Change ----
 ## DEGs via DESeq2 ----
@@ -204,19 +202,18 @@ joined_ad <- inner_join(rna_clean_ad, prot_clean_ad, by = "hgnc_symbol") %>%
 test_ad <- cor.test(joined_ad$rna_lfc, joined_ad$prot_lfc, method = "spearman")
 stats_label_ad <- paste0("Spearman r = ", round(test_ad$estimate, 3),
                          ", p = ", format.pval(test_ad$p.value, digits = 3),
-                         "\nn = ", nrow(joined_ad), " genes")
+                         "\nn = ", nrow(joined_ad), " pairs")
 
 p_scatter_ad <- ggplot(joined_ad, aes(x = rna_lfc, y = prot_lfc)) +
-  geom_vline(xintercept = 0, linetype = "dashed", color = "darkgrey", linewidth = 0.4) +
-  geom_hline(yintercept = 0, linetype = "dashed", color = "darkgrey", linewidth = 0.4) +
-  geom_point(color = "grey", size = 0.8) +
-  geom_smooth(method = "lm", color = "indianred", linewidth = 0.6, se = TRUE) +
+  geom_vline(xintercept = 0, linetype = "dashed", color = "darkgrey") +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "darkgrey") +
+  geom_point(size = 0.3, color = "grey") +
+  geom_smooth(method = "lm", color = "indianred", linewidth = 0.5, se = TRUE) +
   annotate("text", x = Inf, y = -Inf, hjust = 1.05, vjust = -0.5,
-           label = stats_label_ad, size = 3.2, fontface = "italic") +
-  labs(title = "dlPFC RNA vs Protein log2FC (AD vs Control)",
-       x = "RNA log2 fold change", y = "Protein log2 fold change", color = NULL) +
-  theme_classic() +
-  theme(legend.position = "bottom")
+           label = stats_label_ad, size = 2, fontface = "italic") +
+  labs(title = "AD-associated mRNA vs. protein changes",
+       x = "mRNA log2 fold change", y = "Protein log2 fold change", color = NULL) +
+  theme_classic(base_size = 7)
 
-ggsave(file.path(pic_output_dir, "ad_dlpfc_logFC_scatter.tiff"),
-       p_scatter_ad, width = 7, height = 6, dpi = 300, compression = "lzw")
+ggsave(file.path(pic_output_dir, "ad_dlpfc_logFC_scatter.svg"), p_scatter_ad, 
+       unit = "mm", width = 85, height = 70, device = "svg")

@@ -118,10 +118,10 @@ n_up <- sum(sig_res_limma$`Direction of change` == "Upregulated")
 n_down <- sum(sig_res_limma$`Direction of change` == "Downregulated")
 
 p_limma_volcano <- ggplot(res_limma, aes(x = logFC, y = negLog10FDR)) +
-  geom_point(aes(color = `Direction of change`), size = 1.2) +
+  geom_point(aes(color = `Direction of change`), size = 0.7) +
   ggrepel::geom_text_repel(data = sig_res_limma,
                            aes(label = Protein),
-                           size = 3, color = "black") +
+                           size = 2, color = "black") +
   scale_color_manual(values = c("Upregulated" = "indianred",
                                 "Downregulated" = "steelblue",
                                 "Not significant" = "grey")) +
@@ -133,10 +133,12 @@ p_limma_volcano <- ggplot(res_limma, aes(x = logFC, y = negLog10FDR)) +
        x = "log2 fold change",
        y = "-log10 FDR",
        color = NULL) +
-  theme_classic() +
-  theme(legend.position = "bottom")
+  theme_classic(base_size = 7) +
+  theme(legend.position = "right",
+        legend.key.size = unit(3, "mm"))
 
-ggsave(file.path(pic_output_dir, "dlpfc_proteomics_limma_volcano.tiff"), p_limma_volcano, width = 7, height = 6, dpi = 300, compression = "lzw")
+ggsave(file.path(pic_output_dir, "dlpfc_proteomics_limma_volcano.svg"), p_limma_volcano, 
+       unit = "mm", width = 85, height = 52, device = "svg")
 
 
 # Mutual Information Analysis ----
@@ -162,9 +164,11 @@ mi_top30 <- mi_scores_all %>% slice_max(importance, n = 30)
 
 p_mi_bar <- ggplot(mi_top30, aes(x = importance, y = fct_reorder(UniprotID, importance))) +
   geom_col(fill = "steelblue", alpha = 0.9) +
-  geom_vline(xintercept = 0.1, linetype = "dashed", color = "black", linewidth = 0.6) +
-  labs(title = "ROSMAP dlPFC top 30 MI-selected proteins",
+  geom_vline(xintercept = 0.1, linetype = "dashed", color = "black", linewidth = 0.3) +
+  labs(title = "ROSMAP dlPFC MI-selected proteins",
        x = "MI score", y = NULL) +
-  theme_classic()
+  theme_classic(base_size = 7)
 
-ggsave(file.path(pic_output_dir, "dlpfc_proteomics_MI_barplot.tiff"), p_mi_bar, width = 7, height = 6, dpi = 300, compression = "lzw")
+ggsave(file.path(pic_output_dir, "dlpfc_proteomics_MI_barplot.svg"), p_mi_bar, 
+       unit = "mm", width = 85, height = 70, device = "svg")
+

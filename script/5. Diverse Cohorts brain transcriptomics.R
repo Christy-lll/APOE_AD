@@ -253,27 +253,28 @@ make_volcano <- function(res, sig_res, tissue_name) {
   n_down <- sum(sig_res$direction == "Downregulated", na.rm = TRUE)
   
   ggplot(res, aes(x = log2FoldChange, y = negLog10FDR)) +
-    geom_point(aes(color = direction), size = 1.2) +
+    geom_point(aes(color = direction), size = 0.7) +
     ggrepel::geom_text_repel(data = sig_res, aes(label = hgnc_symbol),
-                             size = 3, color = "black") +
+                             size = 2, color = "black") +
     scale_color_manual(values = c("Upregulated" = "indianred",
                                   "Downregulated" = "steelblue",
                                   "Not significant" = "grey")) +
     geom_vline(xintercept = 0, linetype = "dashed", color = "grey") +
     geom_hline(yintercept = -log10(p_val_threshold), linetype = "dashed", color = "grey") +
-    labs(title = sprintf("%d %s DEGs in AMP-AD Diverse Cohorts Study", nrow(sig_res), tissue_name),
+    labs(title = sprintf("%d %s DEGs in AMP-AD Diverse Cohorts", nrow(sig_res), tissue_name),
          subtitle = sprintf("Up: %d  Down: %d", n_up, n_down),
          x = "log2 fold change",
          y = "-log10 FDR",
          color = NULL) +
-    theme_classic() +
-    theme(legend.position = "bottom")
+    theme_classic(base_size = 7) +
+    theme(legend.position = "right",
+          legend.key.size = unit(3, "mm"))
 }
 
 iwalk(res_by_region, ~ {
   p <- make_volcano(.x, sig_res_by_region[[.y]], .y)
-  ggsave(file.path(pic_output_dir, sprintf("%s_transcriptomics_volcano.tiff", tolower(.y))),
-         p, width = 7, height = 6, dpi = 300, compression = "lzw")
+  ggsave(file.path(pic_output_dir, sprintf("%s_transcriptomics_volcano.svg", tolower(.y))),
+         p, unit = "mm", width = 85, height = 52, device = "svg")
 })
 
 
@@ -339,11 +340,11 @@ iwalk(mi_results, function(res, tissue_name) {
   
   p <- ggplot(mi_top30, aes(x = importance, y = fct_reorder(hgnc_symbol, importance))) +
     geom_col(fill = "steelblue", alpha = 0.9) +
-    geom_vline(xintercept = 0.1, linetype = "dashed", color = "black", linewidth = 0.6) +
-    labs(title = sprintf("AMP-AD Diverse Cohorts Study %s top 30 MI-selected genes", tissue_name),
+    geom_vline(xintercept = 0.1, linetype = "dashed", color = "black", linewidth = 0.3) +
+    labs(title = sprintf("Diverse Cohorts %s MI-selected genes", tissue_name),
          x = "MI score", y = NULL) +
-    theme_classic()
+    theme_classic(base_size = 7)
   
-  ggsave(file.path(pic_output_dir, sprintf("%s_transcriptomics_MI_barplot.tiff", tolower(tissue_name))),
-         p, width = 7, height = 6, dpi = 300, compression = "lzw")
+  ggsave(file.path(pic_output_dir, sprintf("%s_transcriptomics_MI_barplot.svg", tolower(tissue_name))), p, 
+         unit = "mm", width = 85, height = 70, device = "svg")
 })
