@@ -1,0 +1,635 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='246.61pt' height='170.08pt' viewBox='0 0 246.61 170.08'>
+<g class='svglite'>
+<defs>
+  <style type='text/css'><![CDATA[
+    .svglite line, .svglite polyline, .svglite polygon, .svglite path, .svglite rect, .svglite circle {
+      fill: none;
+      stroke: #000000;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-miterlimit: 10.00;
+    }
+    .svglite text {
+      white-space: pre;
+    }
+    .svglite g.glyphgroup path {
+      fill: inherit;
+      stroke: none;
+    }
+  ]]></style>
+</defs>
+<rect width='100%' height='100%' style='stroke: none; fill: #FFFFFF;'/>
+<defs>
+  <clipPath id='cpMC4wMHwyNDYuNjF8MC4wMHwxNzAuMDg='>
+    <rect x='0.00' y='0.00' width='246.61' height='170.08' />
+  </clipPath>
+</defs>
+<g clip-path='url(#cpMC4wMHwyNDYuNjF8MC4wMHwxNzAuMDg=)'>
+<rect x='0.00' y='0.000000000000028' width='246.61' height='170.08' style='stroke-width: 0.68; stroke: #FFFFFF; fill: #FFFFFF;' />
+<rect x='24.47' y='14.74' width='218.65' height='135.31' style='stroke-width: 0.68; stroke: none; fill: #FFFFFF;' />
+<line x1='24.47' y1='81.29' x2='243.13' y2='81.29' style='stroke-width: 0.68; stroke: #BEBEBE; stroke-dasharray: 4.00,4.00; stroke-linecap: butt;' />
+<line x1='140.92' y1='150.05' x2='140.92' y2='14.74' style='stroke-width: 0.68; stroke: #7F7F7F; stroke-dasharray: 1.00,3.00; stroke-linecap: butt;' />
+<line x1='197.39' y1='150.05' x2='197.39' y2='14.74' style='stroke-width: 0.68; stroke: #7F7F7F; stroke-dasharray: 1.00,3.00; stroke-linecap: butt;' />
+<text x='139.05' y='20.86' text-anchor='end' style='font-size: 5.69px;fill: #7F7F7F; font-family: "Arial";' textLength='37.25px' lengthAdjust='spacingAndGlyphs'>16th percentile</text>
+<text x='199.26' y='20.86' style='font-size: 5.69px;fill: #7F7F7F; font-family: "Arial";' textLength='37.25px' lengthAdjust='spacingAndGlyphs'>84th percentile</text>
+<polygon points='34.41,20.89 48.61,26.79 62.81,33.59 77.01,39.85 91.21,45.12 105.40,49.77 119.60,55.46 133.80,60.76 148.00,66.71 162.20,72.20 176.40,77.68 190.59,82.75 204.79,86.60 218.99,89.54 233.19,90.17 233.19,143.90 218.99,133.33 204.79,121.09 190.59,107.77 176.40,95.94 162.20,86.92 148.00,81.60 133.80,78.89 119.60,77.81 105.40,77.73 91.21,78.69 77.01,79.42 62.81,80.26 48.61,81.10 34.41,82.39 ' style='stroke-width: 0.00; stroke: none; stroke-linecap: butt; fill: #4682B4; fill-opacity: 0.20;' />
+<polyline points='34.41,20.89 48.61,26.79 62.81,33.59 77.01,39.85 91.21,45.12 105.40,49.77 119.60,55.46 133.80,60.76 148.00,66.71 162.20,72.20 176.40,77.68 190.59,82.75 204.79,86.60 218.99,89.54 233.19,90.17 ' style='stroke-width: 0.68; stroke: none; stroke-linecap: butt;' />
+<polyline points='233.19,143.90 218.99,133.33 204.79,121.09 190.59,107.77 176.40,95.94 162.20,86.92 148.00,81.60 133.80,78.89 119.60,77.81 105.40,77.73 91.21,78.69 77.01,79.42 62.81,80.26 48.61,81.10 34.41,82.39 ' style='stroke-width: 0.68; stroke: none; stroke-linecap: butt;' />
+<polyline points='34.41,63.23 48.61,63.91 62.81,64.57 77.01,65.27 91.21,66.08 105.40,67.13 119.60,68.65 133.80,70.97 148.00,74.56 162.20,79.82 176.40,86.82 190.59,94.94 204.79,102.96 218.99,109.64 233.19,114.31 ' style='stroke-width: 0.68; stroke: #4682B4; stroke-linecap: butt;' />
+<line x1='169.48' y1='150.05' x2='169.48' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='178.85' y1='150.05' x2='178.85' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='175.08' y1='150.05' x2='175.08' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='162.26' y1='150.05' x2='162.26' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='197.03' y1='150.05' x2='197.03' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='173.84' y1='150.05' x2='173.84' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='169.22' y1='150.05' x2='169.22' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='139.39' y1='150.05' x2='139.39' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='186.85' y1='150.05' x2='186.85' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='195.25' y1='150.05' x2='195.25' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='90.75' y1='150.05' x2='90.75' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='141.14' y1='150.05' x2='141.14' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='207.85' y1='150.05' x2='207.85' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='144.61' y1='150.05' x2='144.61' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='101.73' y1='150.05' x2='101.73' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='121.38' y1='150.05' x2='121.38' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='117.02' y1='150.05' x2='117.02' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='167.13' y1='150.05' x2='167.13' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='198.75' y1='150.05' x2='198.75' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='194.62' y1='150.05' x2='194.62' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='127.43' y1='150.05' x2='127.43' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='161.76' y1='150.05' x2='161.76' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='199.65' y1='150.05' x2='199.65' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='150.30' y1='150.05' x2='150.30' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='144.42' y1='150.05' x2='144.42' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='149.33' y1='150.05' x2='149.33' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='184.36' y1='150.05' x2='184.36' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='166.42' y1='150.05' x2='166.42' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='173.04' y1='150.05' x2='173.04' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='183.85' y1='150.05' x2='183.85' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='156.31' y1='150.05' x2='156.31' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='183.25' y1='150.05' x2='183.25' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='185.71' y1='150.05' x2='185.71' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='174.37' y1='150.05' x2='174.37' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='192.21' y1='150.05' x2='192.21' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='181.65' y1='150.05' x2='181.65' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='175.60' y1='150.05' x2='175.60' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='140.92' y1='150.05' x2='140.92' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='232.54' y1='150.05' x2='232.54' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='171.25' y1='150.05' x2='171.25' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='183.59' y1='150.05' x2='183.59' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='184.47' y1='150.05' x2='184.47' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='188.95' y1='150.05' x2='188.95' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='185.88' y1='150.05' x2='185.88' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='186.89' y1='150.05' x2='186.89' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='145.89' y1='150.05' x2='145.89' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='158.11' y1='150.05' x2='158.11' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='34.41' y1='150.05' x2='34.41' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='160.20' y1='150.05' x2='160.20' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='168.20' y1='150.05' x2='168.20' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='174.97' y1='150.05' x2='174.97' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='127.86' y1='150.05' x2='127.86' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='162.54' y1='150.05' x2='162.54' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='162.56' y1='150.05' x2='162.56' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='153.37' y1='150.05' x2='153.37' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='167.00' y1='150.05' x2='167.00' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='123.34' y1='150.05' x2='123.34' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='191.08' y1='150.05' x2='191.08' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='211.04' y1='150.05' x2='211.04' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='150.98' y1='150.05' x2='150.98' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='188.45' y1='150.05' x2='188.45' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='169.02' y1='150.05' x2='169.02' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='177.76' y1='150.05' x2='177.76' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='178.00' y1='150.05' x2='178.00' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='190.61' y1='150.05' x2='190.61' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='153.36' y1='150.05' x2='153.36' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='177.10' y1='150.05' x2='177.10' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='110.82' y1='150.05' x2='110.82' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='204.22' y1='150.05' x2='204.22' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='171.97' y1='150.05' x2='171.97' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='165.55' y1='150.05' x2='165.55' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='181.58' y1='150.05' x2='181.58' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='156.15' y1='150.05' x2='156.15' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='171.15' y1='150.05' x2='171.15' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='112.32' y1='150.05' x2='112.32' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='146.16' y1='150.05' x2='146.16' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='198.73' y1='150.05' x2='198.73' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='164.29' y1='150.05' x2='164.29' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='169.67' y1='150.05' x2='169.67' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='162.31' y1='150.05' x2='162.31' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='181.62' y1='150.05' x2='181.62' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='195.25' y1='150.05' x2='195.25' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='230.85' y1='150.05' x2='230.85' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='144.38' y1='150.05' x2='144.38' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='172.49' y1='150.05' x2='172.49' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='190.71' y1='150.05' x2='190.71' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='169.66' y1='150.05' x2='169.66' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='184.74' y1='150.05' x2='184.74' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='178.76' y1='150.05' x2='178.76' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='191.18' y1='150.05' x2='191.18' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='181.72' y1='150.05' x2='181.72' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='157.01' y1='150.05' x2='157.01' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='128.94' y1='150.05' x2='128.94' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='227.07' y1='150.05' x2='227.07' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='110.14' y1='150.05' x2='110.14' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='136.17' y1='150.05' x2='136.17' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='106.09' y1='150.05' x2='106.09' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='197.86' y1='150.05' x2='197.86' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='111.08' y1='150.05' x2='111.08' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='197.52' y1='150.05' x2='197.52' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='201.58' y1='150.05' x2='201.58' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='125.04' y1='150.05' x2='125.04' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='163.69' y1='150.05' x2='163.69' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='168.42' y1='150.05' x2='168.42' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='214.31' y1='150.05' x2='214.31' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='172.26' y1='150.05' x2='172.26' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='148.62' y1='150.05' x2='148.62' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='173.80' y1='150.05' x2='173.80' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='170.95' y1='150.05' x2='170.95' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='179.95' y1='150.05' x2='179.95' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='188.01' y1='150.05' x2='188.01' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='132.34' y1='150.05' x2='132.34' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='169.73' y1='150.05' x2='169.73' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='151.03' y1='150.05' x2='151.03' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='132.01' y1='150.05' x2='132.01' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='141.92' y1='150.05' x2='141.92' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='154.43' y1='150.05' x2='154.43' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='190.57' y1='150.05' x2='190.57' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='181.61' y1='150.05' x2='181.61' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='159.80' y1='150.05' x2='159.80' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='188.35' y1='150.05' x2='188.35' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='199.80' y1='150.05' x2='199.80' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='94.07' y1='150.05' x2='94.07' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='178.54' y1='150.05' x2='178.54' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='150.83' y1='150.05' x2='150.83' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='189.27' y1='150.05' x2='189.27' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='174.09' y1='150.05' x2='174.09' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='135.27' y1='150.05' x2='135.27' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='200.82' y1='150.05' x2='200.82' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='135.85' y1='150.05' x2='135.85' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='181.84' y1='150.05' x2='181.84' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='174.73' y1='150.05' x2='174.73' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='161.22' y1='150.05' x2='161.22' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='187.50' y1='150.05' x2='187.50' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='185.81' y1='150.05' x2='185.81' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='176.20' y1='150.05' x2='176.20' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='166.13' y1='150.05' x2='166.13' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='189.20' y1='150.05' x2='189.20' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='210.40' y1='150.05' x2='210.40' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='123.68' y1='150.05' x2='123.68' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='157.04' y1='150.05' x2='157.04' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='178.90' y1='150.05' x2='178.90' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='149.78' y1='150.05' x2='149.78' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='197.65' y1='150.05' x2='197.65' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='212.72' y1='150.05' x2='212.72' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='204.26' y1='150.05' x2='204.26' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='171.19' y1='150.05' x2='171.19' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='183.23' y1='150.05' x2='183.23' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='155.45' y1='150.05' x2='155.45' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='149.50' y1='150.05' x2='149.50' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='174.69' y1='150.05' x2='174.69' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='177.90' y1='150.05' x2='177.90' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='187.68' y1='150.05' x2='187.68' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='143.40' y1='150.05' x2='143.40' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='172.79' y1='150.05' x2='172.79' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='179.86' y1='150.05' x2='179.86' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='143.16' y1='150.05' x2='143.16' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='174.80' y1='150.05' x2='174.80' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='147.66' y1='150.05' x2='147.66' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='198.27' y1='150.05' x2='198.27' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='187.08' y1='150.05' x2='187.08' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='162.89' y1='150.05' x2='162.89' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='95.64' y1='150.05' x2='95.64' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='214.00' y1='150.05' x2='214.00' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='164.94' y1='150.05' x2='164.94' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='191.62' y1='150.05' x2='191.62' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='182.49' y1='150.05' x2='182.49' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='201.31' y1='150.05' x2='201.31' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='197.57' y1='150.05' x2='197.57' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='136.10' y1='150.05' x2='136.10' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='175.93' y1='150.05' x2='175.93' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='115.78' y1='150.05' x2='115.78' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='140.19' y1='150.05' x2='140.19' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='202.94' y1='150.05' x2='202.94' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='147.67' y1='150.05' x2='147.67' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='166.13' y1='150.05' x2='166.13' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='149.06' y1='150.05' x2='149.06' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='192.63' y1='150.05' x2='192.63' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='166.49' y1='150.05' x2='166.49' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='147.13' y1='150.05' x2='147.13' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='152.69' y1='150.05' x2='152.69' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='141.82' y1='150.05' x2='141.82' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='192.91' y1='150.05' x2='192.91' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='165.83' y1='150.05' x2='165.83' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='163.37' y1='150.05' x2='163.37' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='136.25' y1='150.05' x2='136.25' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='158.82' y1='150.05' x2='158.82' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='229.28' y1='150.05' x2='229.28' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='189.93' y1='150.05' x2='189.93' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='195.62' y1='150.05' x2='195.62' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='229.35' y1='150.05' x2='229.35' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='145.22' y1='150.05' x2='145.22' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='179.55' y1='150.05' x2='179.55' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='188.42' y1='150.05' x2='188.42' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='217.85' y1='150.05' x2='217.85' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='171.78' y1='150.05' x2='171.78' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='171.14' y1='150.05' x2='171.14' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='131.77' y1='150.05' x2='131.77' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='194.72' y1='150.05' x2='194.72' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='182.38' y1='150.05' x2='182.38' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='152.95' y1='150.05' x2='152.95' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='195.24' y1='150.05' x2='195.24' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='106.32' y1='150.05' x2='106.32' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='198.57' y1='150.05' x2='198.57' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='156.62' y1='150.05' x2='156.62' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='162.22' y1='150.05' x2='162.22' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='157.82' y1='150.05' x2='157.82' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='176.60' y1='150.05' x2='176.60' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='194.24' y1='150.05' x2='194.24' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='179.22' y1='150.05' x2='179.22' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='202.87' y1='150.05' x2='202.87' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='161.78' y1='150.05' x2='161.78' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='204.67' y1='150.05' x2='204.67' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='178.12' y1='150.05' x2='178.12' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='184.77' y1='150.05' x2='184.77' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='195.76' y1='150.05' x2='195.76' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='115.94' y1='150.05' x2='115.94' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='131.37' y1='150.05' x2='131.37' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='213.69' y1='150.05' x2='213.69' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='140.78' y1='150.05' x2='140.78' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='176.14' y1='150.05' x2='176.14' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='180.96' y1='150.05' x2='180.96' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='195.01' y1='150.05' x2='195.01' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='119.19' y1='150.05' x2='119.19' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='190.68' y1='150.05' x2='190.68' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='96.32' y1='150.05' x2='96.32' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='145.66' y1='150.05' x2='145.66' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='198.21' y1='150.05' x2='198.21' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='199.19' y1='150.05' x2='199.19' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='175.70' y1='150.05' x2='175.70' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='175.43' y1='150.05' x2='175.43' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='168.49' y1='150.05' x2='168.49' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='166.82' y1='150.05' x2='166.82' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='142.84' y1='150.05' x2='142.84' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='159.26' y1='150.05' x2='159.26' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='150.11' y1='150.05' x2='150.11' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='149.06' y1='150.05' x2='149.06' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='194.84' y1='150.05' x2='194.84' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='132.93' y1='150.05' x2='132.93' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='215.69' y1='150.05' x2='215.69' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='169.26' y1='150.05' x2='169.26' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='188.20' y1='150.05' x2='188.20' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='175.78' y1='150.05' x2='175.78' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='155.38' y1='150.05' x2='155.38' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='144.68' y1='150.05' x2='144.68' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='187.73' y1='150.05' x2='187.73' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='162.61' y1='150.05' x2='162.61' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='208.06' y1='150.05' x2='208.06' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='187.87' y1='150.05' x2='187.87' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='200.78' y1='150.05' x2='200.78' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='189.23' y1='150.05' x2='189.23' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='190.98' y1='150.05' x2='190.98' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='136.77' y1='150.05' x2='136.77' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='138.36' y1='150.05' x2='138.36' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='179.28' y1='150.05' x2='179.28' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='155.08' y1='150.05' x2='155.08' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='150.70' y1='150.05' x2='150.70' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='183.88' y1='150.05' x2='183.88' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='202.71' y1='150.05' x2='202.71' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='203.85' y1='150.05' x2='203.85' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='173.39' y1='150.05' x2='173.39' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='226.07' y1='150.05' x2='226.07' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='183.51' y1='150.05' x2='183.51' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='146.06' y1='150.05' x2='146.06' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='174.08' y1='150.05' x2='174.08' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='171.60' y1='150.05' x2='171.60' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='181.75' y1='150.05' x2='181.75' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='171.91' y1='150.05' x2='171.91' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='179.27' y1='150.05' x2='179.27' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='154.41' y1='150.05' x2='154.41' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='177.30' y1='150.05' x2='177.30' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='128.85' y1='150.05' x2='128.85' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='147.71' y1='150.05' x2='147.71' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='132.77' y1='150.05' x2='132.77' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='232.33' y1='150.05' x2='232.33' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='182.39' y1='150.05' x2='182.39' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='177.72' y1='150.05' x2='177.72' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='162.08' y1='150.05' x2='162.08' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='170.64' y1='150.05' x2='170.64' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='213.54' y1='150.05' x2='213.54' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='140.14' y1='150.05' x2='140.14' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='149.82' y1='150.05' x2='149.82' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='190.25' y1='150.05' x2='190.25' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='217.54' y1='150.05' x2='217.54' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='173.91' y1='150.05' x2='173.91' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='118.22' y1='150.05' x2='118.22' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='161.35' y1='150.05' x2='161.35' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='167.53' y1='150.05' x2='167.53' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='158.39' y1='150.05' x2='158.39' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='170.56' y1='150.05' x2='170.56' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='134.67' y1='150.05' x2='134.67' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='155.43' y1='150.05' x2='155.43' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='192.12' y1='150.05' x2='192.12' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='208.17' y1='150.05' x2='208.17' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='233.19' y1='150.05' x2='233.19' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='166.22' y1='150.05' x2='166.22' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='144.36' y1='150.05' x2='144.36' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='180.04' y1='150.05' x2='180.04' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='149.23' y1='150.05' x2='149.23' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='154.38' y1='150.05' x2='154.38' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='156.94' y1='150.05' x2='156.94' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='173.57' y1='150.05' x2='173.57' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='152.21' y1='150.05' x2='152.21' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='185.06' y1='150.05' x2='185.06' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='190.74' y1='150.05' x2='190.74' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='175.24' y1='150.05' x2='175.24' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='189.80' y1='150.05' x2='189.80' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='173.56' y1='150.05' x2='173.56' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='146.44' y1='150.05' x2='146.44' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='132.09' y1='150.05' x2='132.09' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='157.96' y1='150.05' x2='157.96' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='109.85' y1='150.05' x2='109.85' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='181.80' y1='150.05' x2='181.80' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='147.79' y1='150.05' x2='147.79' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='186.50' y1='150.05' x2='186.50' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='194.26' y1='150.05' x2='194.26' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='141.75' y1='150.05' x2='141.75' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='209.40' y1='150.05' x2='209.40' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='228.43' y1='150.05' x2='228.43' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='170.85' y1='150.05' x2='170.85' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='152.02' y1='150.05' x2='152.02' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='196.57' y1='150.05' x2='196.57' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='179.01' y1='150.05' x2='179.01' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='180.38' y1='150.05' x2='180.38' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='202.99' y1='150.05' x2='202.99' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='179.08' y1='150.05' x2='179.08' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='215.78' y1='150.05' x2='215.78' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='118.88' y1='150.05' x2='118.88' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='176.30' y1='150.05' x2='176.30' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='197.19' y1='150.05' x2='197.19' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='199.71' y1='150.05' x2='199.71' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='170.95' y1='150.05' x2='170.95' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='142.71' y1='150.05' x2='142.71' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='202.65' y1='150.05' x2='202.65' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='183.51' y1='150.05' x2='183.51' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='205.94' y1='150.05' x2='205.94' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='160.94' y1='150.05' x2='160.94' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='172.43' y1='150.05' x2='172.43' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='185.09' y1='150.05' x2='185.09' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='139.18' y1='150.05' x2='139.18' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='197.34' y1='150.05' x2='197.34' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='187.30' y1='150.05' x2='187.30' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='158.87' y1='150.05' x2='158.87' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='182.08' y1='150.05' x2='182.08' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='185.67' y1='150.05' x2='185.67' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='193.37' y1='150.05' x2='193.37' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='149.60' y1='150.05' x2='149.60' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='154.15' y1='150.05' x2='154.15' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='145.11' y1='150.05' x2='145.11' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='170.49' y1='150.05' x2='170.49' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='125.82' y1='150.05' x2='125.82' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='122.01' y1='150.05' x2='122.01' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='140.78' y1='150.05' x2='140.78' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='189.79' y1='150.05' x2='189.79' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='187.87' y1='150.05' x2='187.87' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='164.38' y1='150.05' x2='164.38' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='157.30' y1='150.05' x2='157.30' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='143.53' y1='150.05' x2='143.53' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='206.87' y1='150.05' x2='206.87' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='217.93' y1='150.05' x2='217.93' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='181.28' y1='150.05' x2='181.28' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='147.81' y1='150.05' x2='147.81' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='164.89' y1='150.05' x2='164.89' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='125.48' y1='150.05' x2='125.48' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='214.86' y1='150.05' x2='214.86' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='150.01' y1='150.05' x2='150.01' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='182.35' y1='150.05' x2='182.35' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='151.16' y1='150.05' x2='151.16' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='150.07' y1='150.05' x2='150.07' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='157.50' y1='150.05' x2='157.50' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='217.13' y1='150.05' x2='217.13' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='172.92' y1='150.05' x2='172.92' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='173.03' y1='150.05' x2='173.03' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='142.89' y1='150.05' x2='142.89' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='123.75' y1='150.05' x2='123.75' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='145.41' y1='150.05' x2='145.41' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='167.84' y1='150.05' x2='167.84' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='87.87' y1='150.05' x2='87.87' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='217.44' y1='150.05' x2='217.44' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='223.44' y1='150.05' x2='223.44' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='187.00' y1='150.05' x2='187.00' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='94.02' y1='150.05' x2='94.02' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='131.69' y1='150.05' x2='131.69' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='228.43' y1='150.05' x2='228.43' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='183.16' y1='150.05' x2='183.16' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='118.15' y1='150.05' x2='118.15' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='185.11' y1='150.05' x2='185.11' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='168.06' y1='150.05' x2='168.06' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='135.79' y1='150.05' x2='135.79' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='185.12' y1='150.05' x2='185.12' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='142.74' y1='150.05' x2='142.74' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='104.14' y1='150.05' x2='104.14' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='192.92' y1='150.05' x2='192.92' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='147.81' y1='150.05' x2='147.81' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='191.02' y1='150.05' x2='191.02' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='208.18' y1='150.05' x2='208.18' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='207.02' y1='150.05' x2='207.02' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='188.13' y1='150.05' x2='188.13' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='212.03' y1='150.05' x2='212.03' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='152.41' y1='150.05' x2='152.41' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='173.34' y1='150.05' x2='173.34' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='213.55' y1='150.05' x2='213.55' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='201.55' y1='150.05' x2='201.55' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='196.95' y1='150.05' x2='196.95' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='220.80' y1='150.05' x2='220.80' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='191.82' y1='150.05' x2='191.82' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='203.51' y1='150.05' x2='203.51' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='130.04' y1='150.05' x2='130.04' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='139.44' y1='150.05' x2='139.44' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='168.24' y1='150.05' x2='168.24' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='203.85' y1='150.05' x2='203.85' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='167.36' y1='150.05' x2='167.36' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='133.88' y1='150.05' x2='133.88' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='135.16' y1='150.05' x2='135.16' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='159.11' y1='150.05' x2='159.11' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='84.93' y1='150.05' x2='84.93' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='148.33' y1='150.05' x2='148.33' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='189.46' y1='150.05' x2='189.46' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='128.24' y1='150.05' x2='128.24' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='183.51' y1='150.05' x2='183.51' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='218.58' y1='150.05' x2='218.58' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='148.64' y1='150.05' x2='148.64' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='189.16' y1='150.05' x2='189.16' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='214.90' y1='150.05' x2='214.90' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='186.73' y1='150.05' x2='186.73' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='183.33' y1='150.05' x2='183.33' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='186.22' y1='150.05' x2='186.22' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='150.12' y1='150.05' x2='150.12' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='174.16' y1='150.05' x2='174.16' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='218.92' y1='150.05' x2='218.92' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='182.90' y1='150.05' x2='182.90' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='129.63' y1='150.05' x2='129.63' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='141.48' y1='150.05' x2='141.48' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='165.63' y1='150.05' x2='165.63' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='152.68' y1='150.05' x2='152.68' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='161.87' y1='150.05' x2='161.87' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='179.35' y1='150.05' x2='179.35' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='124.34' y1='150.05' x2='124.34' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='166.12' y1='150.05' x2='166.12' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='148.71' y1='150.05' x2='148.71' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='147.57' y1='150.05' x2='147.57' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='180.45' y1='150.05' x2='180.45' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='138.91' y1='150.05' x2='138.91' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='229.94' y1='150.05' x2='229.94' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='163.34' y1='150.05' x2='163.34' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='203.84' y1='150.05' x2='203.84' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='167.82' y1='150.05' x2='167.82' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='156.77' y1='150.05' x2='156.77' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='184.08' y1='150.05' x2='184.08' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='185.05' y1='150.05' x2='185.05' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='187.39' y1='150.05' x2='187.39' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='162.59' y1='150.05' x2='162.59' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='194.94' y1='150.05' x2='194.94' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='170.64' y1='150.05' x2='170.64' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='210.55' y1='150.05' x2='210.55' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='193.29' y1='150.05' x2='193.29' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='189.04' y1='150.05' x2='189.04' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='159.47' y1='150.05' x2='159.47' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='156.26' y1='150.05' x2='156.26' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='118.47' y1='150.05' x2='118.47' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='104.34' y1='150.05' x2='104.34' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='139.83' y1='150.05' x2='139.83' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='136.83' y1='150.05' x2='136.83' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='158.42' y1='150.05' x2='158.42' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='133.08' y1='150.05' x2='133.08' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='170.71' y1='150.05' x2='170.71' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='103.06' y1='150.05' x2='103.06' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='159.93' y1='150.05' x2='159.93' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='185.55' y1='150.05' x2='185.55' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='216.48' y1='150.05' x2='216.48' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='226.55' y1='150.05' x2='226.55' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='158.92' y1='150.05' x2='158.92' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='104.02' y1='150.05' x2='104.02' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='177.03' y1='150.05' x2='177.03' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='187.82' y1='150.05' x2='187.82' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='142.44' y1='150.05' x2='142.44' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='159.52' y1='150.05' x2='159.52' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='202.14' y1='150.05' x2='202.14' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='217.25' y1='150.05' x2='217.25' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='149.98' y1='150.05' x2='149.98' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='184.24' y1='150.05' x2='184.24' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='143.30' y1='150.05' x2='143.30' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='92.98' y1='150.05' x2='92.98' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='175.83' y1='150.05' x2='175.83' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='185.51' y1='150.05' x2='185.51' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='151.06' y1='150.05' x2='151.06' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='150.26' y1='150.05' x2='150.26' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='169.30' y1='150.05' x2='169.30' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='121.50' y1='150.05' x2='121.50' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='135.69' y1='150.05' x2='135.69' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='182.44' y1='150.05' x2='182.44' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='156.73' y1='150.05' x2='156.73' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='160.89' y1='150.05' x2='160.89' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='158.61' y1='150.05' x2='158.61' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='162.42' y1='150.05' x2='162.42' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='203.15' y1='150.05' x2='203.15' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='182.34' y1='150.05' x2='182.34' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='132.02' y1='150.05' x2='132.02' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='187.80' y1='150.05' x2='187.80' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='205.10' y1='150.05' x2='205.10' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='195.21' y1='150.05' x2='195.21' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='167.42' y1='150.05' x2='167.42' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='165.11' y1='150.05' x2='165.11' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='175.06' y1='150.05' x2='175.06' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='217.02' y1='150.05' x2='217.02' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='223.59' y1='150.05' x2='223.59' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='209.45' y1='150.05' x2='209.45' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='176.70' y1='150.05' x2='176.70' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='174.80' y1='150.05' x2='174.80' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='166.79' y1='150.05' x2='166.79' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='178.85' y1='150.05' x2='178.85' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='231.42' y1='150.05' x2='231.42' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='159.61' y1='150.05' x2='159.61' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='206.28' y1='150.05' x2='206.28' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='153.55' y1='150.05' x2='153.55' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='131.27' y1='150.05' x2='131.27' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='140.87' y1='150.05' x2='140.87' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='140.91' y1='150.05' x2='140.91' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='176.75' y1='150.05' x2='176.75' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='203.54' y1='150.05' x2='203.54' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='159.72' y1='150.05' x2='159.72' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='162.08' y1='150.05' x2='162.08' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='105.64' y1='150.05' x2='105.64' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='212.62' y1='150.05' x2='212.62' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='178.76' y1='150.05' x2='178.76' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='162.31' y1='150.05' x2='162.31' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='188.93' y1='150.05' x2='188.93' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='121.75' y1='150.05' x2='121.75' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='191.81' y1='150.05' x2='191.81' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='160.45' y1='150.05' x2='160.45' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='144.47' y1='150.05' x2='144.47' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='199.36' y1='150.05' x2='199.36' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='208.45' y1='150.05' x2='208.45' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='97.96' y1='150.05' x2='97.96' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='165.34' y1='150.05' x2='165.34' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='169.75' y1='150.05' x2='169.75' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='140.88' y1='150.05' x2='140.88' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='179.09' y1='150.05' x2='179.09' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='141.42' y1='150.05' x2='141.42' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='115.80' y1='150.05' x2='115.80' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='146.25' y1='150.05' x2='146.25' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='137.90' y1='150.05' x2='137.90' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='115.64' y1='150.05' x2='115.64' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='187.20' y1='150.05' x2='187.20' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='156.69' y1='150.05' x2='156.69' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='195.17' y1='150.05' x2='195.17' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='169.75' y1='150.05' x2='169.75' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='146.30' y1='150.05' x2='146.30' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='176.39' y1='150.05' x2='176.39' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='198.56' y1='150.05' x2='198.56' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='183.12' y1='150.05' x2='183.12' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='154.27' y1='150.05' x2='154.27' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='163.37' y1='150.05' x2='163.37' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='207.81' y1='150.05' x2='207.81' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='166.74' y1='150.05' x2='166.74' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='219.93' y1='150.05' x2='219.93' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='171.27' y1='150.05' x2='171.27' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='197.18' y1='150.05' x2='197.18' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='169.78' y1='150.05' x2='169.78' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='147.95' y1='150.05' x2='147.95' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='154.56' y1='150.05' x2='154.56' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='134.68' y1='150.05' x2='134.68' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='119.62' y1='150.05' x2='119.62' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='176.84' y1='150.05' x2='176.84' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='195.03' y1='150.05' x2='195.03' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='116.86' y1='150.05' x2='116.86' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='189.42' y1='150.05' x2='189.42' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<line x1='223.04' y1='150.05' x2='223.04' y2='145.99' style='stroke-width: 0.68; stroke: #000000; stroke-opacity: 0.20; stroke-linecap: butt;' />
+<polyline points='24.47,150.05 24.47,14.74 ' style='stroke-width: 0.68; stroke-linecap: square;' />
+<text x='21.34' y='133.30' text-anchor='end' style='font-size: 5.60px; font-family: "Arial";' textLength='9.62px' lengthAdjust='spacingAndGlyphs'>-0.2</text>
+<text x='21.34' y='108.30' text-anchor='end' style='font-size: 5.60px; font-family: "Arial";' textLength='9.62px' lengthAdjust='spacingAndGlyphs'>-0.1</text>
+<text x='21.34' y='83.30' text-anchor='end' style='font-size: 5.60px; font-family: "Arial";' textLength='7.77px' lengthAdjust='spacingAndGlyphs'>0.0</text>
+<text x='21.34' y='58.29' text-anchor='end' style='font-size: 5.60px; font-family: "Arial";' textLength='7.77px' lengthAdjust='spacingAndGlyphs'>0.1</text>
+<text x='21.34' y='33.29' text-anchor='end' style='font-size: 5.60px; font-family: "Arial";' textLength='7.77px' lengthAdjust='spacingAndGlyphs'>0.2</text>
+<polyline points='22.73,131.30 24.47,131.30 ' style='stroke-width: 0.68; stroke-linecap: butt;' />
+<polyline points='22.73,106.30 24.47,106.30 ' style='stroke-width: 0.68; stroke-linecap: butt;' />
+<polyline points='22.73,81.29 24.47,81.29 ' style='stroke-width: 0.68; stroke-linecap: butt;' />
+<polyline points='22.73,56.29 24.47,56.29 ' style='stroke-width: 0.68; stroke-linecap: butt;' />
+<polyline points='22.73,31.29 24.47,31.29 ' style='stroke-width: 0.68; stroke-linecap: butt;' />
+<polyline points='24.47,150.05 243.13,150.05 ' style='stroke-width: 0.68; stroke-linecap: square;' />
+<polyline points='52.44,151.80 52.44,150.05 ' style='stroke-width: 0.68; stroke-linecap: butt;' />
+<polyline points='99.13,151.80 99.13,150.05 ' style='stroke-width: 0.68; stroke-linecap: butt;' />
+<polyline points='145.82,151.80 145.82,150.05 ' style='stroke-width: 0.68; stroke-linecap: butt;' />
+<polyline points='192.51,151.80 192.51,150.05 ' style='stroke-width: 0.68; stroke-linecap: butt;' />
+<polyline points='239.20,151.80 239.20,150.05 ' style='stroke-width: 0.68; stroke-linecap: butt;' />
+<text x='52.44' y='157.19' text-anchor='middle' style='font-size: 5.60px; font-family: "Arial";' textLength='6.22px' lengthAdjust='spacingAndGlyphs'>60</text>
+<text x='99.13' y='157.19' text-anchor='middle' style='font-size: 5.60px; font-family: "Arial";' textLength='6.22px' lengthAdjust='spacingAndGlyphs'>70</text>
+<text x='145.82' y='157.19' text-anchor='middle' style='font-size: 5.60px; font-family: "Arial";' textLength='6.22px' lengthAdjust='spacingAndGlyphs'>80</text>
+<text x='192.51' y='157.19' text-anchor='middle' style='font-size: 5.60px; font-family: "Arial";' textLength='6.22px' lengthAdjust='spacingAndGlyphs'>90</text>
+<text x='239.20' y='157.19' text-anchor='middle' style='font-size: 5.60px; font-family: "Arial";' textLength='9.33px' lengthAdjust='spacingAndGlyphs'>100</text>
+<text x='133.80' y='165.12' text-anchor='middle' style='font-size: 7.00px; font-family: "Arial";' textLength='57.92px' lengthAdjust='spacingAndGlyphs'>Age at visit (years)</text>
+<text transform='translate(8.50,82.40) rotate(-90)' text-anchor='middle' style='font-size: 7.00px; font-family: "Arial";' textLength='128.47px' lengthAdjust='spacingAndGlyphs'>Average Causal Mediation Effect (ACME)</text>
+<text x='24.47' y='9.49' style='font-size: 8.40px; font-family: "Arial";' textLength='131.52px' lengthAdjust='spacingAndGlyphs'>OTULIN: APOE ε4 -&gt; Protein -&gt; AD</text>
+</g>
+</g>
+</svg>
