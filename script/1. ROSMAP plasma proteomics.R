@@ -167,7 +167,7 @@ ggsave(file.path(pic_output_dir, "plasma_limma_pca.svg"), p_pca_limma,
        unit = "mm", width = 70, height = 40, device = "svg")
 
 # Machine Learning (random forest classifier) ----
-## MI-based feature selection (on NCI) ----
+## Compute Mutual information ----
 mi_dat <- dat %>%
   filter(Diagnosis == "NCI") %>%
   dplyr::select(apoe4, all_of(protein_vars))
@@ -175,23 +175,22 @@ mi_dat <- dat %>%
 mi_scores_all <- FSelectorRcpp::information_gain(apoe4 ~ ., data = mi_dat, type = "infogain") %>%
   arrange(desc(importance)) %>%
   filter(importance > 0) %>%
-  left_join(protein_meta_clean, by = c("attributes" = "UniProt")) %>%
-  mutate(selected = importance > 0.1)
+  left_join(protein_meta_clean, by = c("attributes" = "UniProt"))
 
-mi_scores <- mi_scores_all %>%
-  filter(importance > 0.1) %>%
-  dplyr::select(attributes, EntrezGeneSymbol, TargetFullName, importance)
+## Sensitivity analysis ----
+# Set up
+prep <- function(d, feats) {
+  transmute(d, class = factor(ifelse(apoe4 == "APOE ε4+", "pos", "neg"), levels = c("pos", "neg")),
+            across(all_of(feats)))
+}
 
-mi_sig_proteins <- mi_scores$attributes
-mi_sig_proteins_name <- mi_scores$EntrezGeneSymbol
+auc_on <- function(fit, d, feats) {  
+  h <- prep(d, feats)
+  p <- predict(fit, h, type = "prob")[, "pos"]
+  as.numeric(roc(h$class, p, levels = c("neg", "pos"), quiet = TRUE)$auc)
+}
 
-write.csv(mi_scores, file.path(table_output_dir, "plasma_MI.csv"), row.names = FALSE)
-
-## Train on NCI ----
-train_dat <- mi_dat %>%
-  transmute(class = factor(ifelse(apoe4 == "APOE ε4+", "pos", "neg"), levels = c("pos", "neg")),
-            across(all_of(mi_sig_proteins)))
-
+# Random forest performance with top-n proteins
 cv_ctrl <- trainControl(
   method = "repeatedcv",
   number = 5,
@@ -202,15 +201,97 @@ cv_ctrl <- trainControl(
   savePredictions = "final"
 )
 
+set.seed(100)
+cv_sweep <- cv_ctrl
+cv_sweep$index <- createMultiFolds(mi_dat$apoe4, k = 5, times = 5)
+cv_sweep$seeds <- lapply(1:26, function(i) sample.int(1e6, 1))
+
+sens <- map_dfr(1:30, function(k) {
+  feats <- mi_scores_all$attributes[1:k]
+  fit <- train(class ~ ., data = prep(mi_dat, feats), method = "rf", metric = "ROC",
+               trControl = cv_sweep, tuneLength = 1)
+  tibble(k = k, min_MI = mi_scores_all$importance[k],
+         CV_AUC = fit$results$ROC,                       
+         SE = fit$results$ROCSD / sqrt(25),
+         MCI_AUC = auc_on(fit, filter(dat, Diagnosis == "MCI"), feats),
+         AD_AUC = auc_on(fit, filter(dat, Diagnosis == "AD"),  feats))
+})
+
+write.csv(sens, file.path(table_output_dir, "plasma_MI_sensitivity.csv"), row.names = FALSE)
+
+# Visualization
+best <- sens[which.max(sens$CV_AUC), ] # best AUC
+elbow_k <- min(sens$k[sens$CV_AUC >= best$CV_AUC - best$SE]) # 1-SE AUC
+
+mi_labels <- function(x) sprintf("%d\n(MI %.2f)", x, sens$min_MI[x])
+key_k <- sort(unique(c(1, 5, 10, 15, 20, 25, 30, elbow_k, best$k)))
+
+p_elbow <- sens %>%
+  pivot_longer(c(CV_AUC, MCI_AUC, AD_AUC), names_to = "Set", values_to = "AUC") %>%
+  mutate(Set = factor(Set, levels = c("CV_AUC", "MCI_AUC", "AD_AUC"),
+                      labels = c("NCI (cross-validated)", "MCI (held-out)", "AD (held-out)"))) %>%
+  ggplot(aes(k, AUC, color = Set)) +
+  geom_line(linewidth = 0.4) + geom_point(size = 0.8) +
+  geom_vline(xintercept = 10, linetype = "dashed", linewidth = 0.3) +  # chosen threshold
+  geom_vline(xintercept = elbow_k, linetype = "dotted", linewidth = 0.3) + # 1-SE AUC
+  geom_vline(xintercept = best$k, linetype = "solid", linewidth = 0.3) + # best AUC
+  scale_color_manual(values = c("grey40", "steelblue", "indianred")) +
+  scale_x_continuous(breaks = key_k, labels = mi_labels) + 
+  labs(title = "MI threshold vs Random forest AUC",
+       subtitle = sprintf("Solid: best AUC (k = %d) | Dotted: 1-SE rule AUC (k = %d) | Dashed: chosen threshold (k = 10 with MI > 0.1)",
+                          best$k, elbow_k),
+       x = "Top-k proteins ranked by MI",
+       y = "AUC", color = NULL) +
+  theme_classic(base_size = 7) +
+  theme(legend.position = "right", legend.key.size = unit(3, "mm"))
+
+ggsave(file.path(pic_output_dir, "plasma_sensitivity.tiff"), p_elbow,
+       unit = "mm", width = 175, height = 100, device = "tiff",
+       dpi = 600, compression = "lzw")
+
+
+## MI-based feature selection (on NCI) ----
+mi_scores <- mi_scores_all %>%
+  filter(importance > 0.1) %>%
+  dplyr::select(attributes, EntrezGeneSymbol, TargetFullName, importance)
+
+mi_sig_proteins <- mi_scores$attributes
+mi_sig_proteins_name <- mi_scores$EntrezGeneSymbol
+
+write.csv(mi_scores, file.path(table_output_dir, "plasma_MI.csv"), row.names = FALSE)
+
+mi_scores <- mi_scores %>%
+  mutate(csf_status = ifelse(EntrezGeneSymbol == "ZW10",
+                             "Not available in CSF",
+                             "Available in CSF"))
+
+p_mi_bar <- ggplot(mi_scores, 
+                   aes(x = importance, y = forcats::fct_reorder(EntrezGeneSymbol, importance),
+                       fill = csf_status)) +
+  geom_col(alpha = 0.9) +
+  geom_vline(xintercept = 0.1, linetype = "dashed", color = "black", linewidth = 0.3) +
+  scale_fill_manual(values = c("Available in CSF" = "steelblue",
+                               "Not available in CSF" = "grey")) +
+  labs(title = sprintf("%d plasma proteins with MI>0.1", nrow(mi_scores)),
+       x = "MI score",
+       y = NULL,
+       fill = NULL) +
+  scale_x_continuous(limits = c(0, 0.4), breaks = seq(0, 0.4, 0.1)) +
+  theme_classic(base_size = 7) +
+  theme(legend.position = "right",
+        legend.key.size = unit(3, "mm"))
+
+ggsave(file.path(pic_output_dir, "plasma_MI_barplot.svg"), p_mi_bar, 
+       unit = "mm", width = 70, height = 80, device = "svg")
+
+## Train on NCI ----
+train_dat <- prep(mi_dat, mi_sig_proteins)
 set.seed(16)
 model_fit <- train(class ~ ., data = train_dat, method = "rf",
                    metric = "ROC", trControl = cv_ctrl, tuneLength = 10, importance = TRUE)
 
 ## Test on MCI ----
-test_MCI <- dat %>%
-  filter(Diagnosis == "MCI") %>%
-  transmute(class = factor(ifelse(apoe4 == "APOE ε4+", "pos", "neg"), levels = c("pos", "neg")),
-            across(all_of(mi_sig_proteins)))
+test_MCI   <- prep(filter(dat, Diagnosis == "MCI"), mi_sig_proteins)
 
 mci_probs <- predict(model_fit, newdata = test_MCI, type = "prob")[, "pos"]
 mci_class <- predict(model_fit, newdata = test_MCI)
@@ -232,10 +313,7 @@ mci_metrics <- tibble(
 )
 
 ## Test on AD ----
-test_AD <- dat %>%
-  filter(Diagnosis == "AD") %>%
-  transmute(class = factor(ifelse(apoe4 == "APOE ε4+", "pos", "neg"), levels = c("pos", "neg")),
-            across(all_of(mi_sig_proteins)))
+test_AD    <- prep(filter(dat, Diagnosis == "AD"),  mi_sig_proteins)
 
 ad_probs <- predict(model_fit, newdata = test_AD, type = "prob")[, "pos"]
 ad_class <- predict(model_fit, newdata = test_AD)
@@ -257,19 +335,12 @@ ad_metrics <- tibble(
 )
 
 ## Train on female, test on male ----
-female_dat <- dat %>%
-  filter(msex == "Female") %>%
-  transmute(class = factor(ifelse(apoe4 == "APOE ε4+", "pos", "neg"), levels = c("pos", "neg")),
-            across(all_of(mi_sig_proteins)))
+female_dat <- prep(filter(dat, msex == "Female"), mi_sig_proteins)
+male_dat   <- prep(filter(dat, msex == "Male"),   mi_sig_proteins)
 
 set.seed(16)
 sex_model_fit <- train(class ~ ., data = female_dat, method = "rf",
                        metric = "ROC", trControl = cv_ctrl, tuneLength = 10, importance = TRUE)
-
-male_dat <- dat %>%
-  filter(msex == "Male") %>%
-  transmute(class = factor(ifelse(apoe4 == "APOE ε4+", "pos", "neg"), levels = c("pos", "neg")),
-            across(all_of(mi_sig_proteins)))
 
 male_probs <- predict(sex_model_fit, newdata = male_dat, type = "prob")[, "pos"]
 male_class <- predict(sex_model_fit, newdata = male_dat)
@@ -291,9 +362,7 @@ male_metrics <- tibble(
 )
 
 ## Train on ROSMAP, test on ADNI (CSF) ----
-ROSMAP_dat <- dat %>%
-  transmute(class = factor(ifelse(apoe4 == "APOE ε4+", "pos", "neg"), levels = c("pos", "neg")),
-            across(all_of(mi_sig_proteins))) %>%
+ROSMAP_dat <- prep(dat, mi_sig_proteins) %>%
   rename(any_of(setNames(mi_sig_proteins, mi_sig_proteins_name))) %>%
   dplyr::select(-ZW10) # ZW10 not available in ADNI
 
@@ -301,7 +370,6 @@ set.seed(16)
 ROSMAP_model_fit <- train(class ~ ., data = ROSMAP_dat, method = "rf",
                           metric = "ROC", trControl = cv_ctrl, tuneLength = 10, importance = TRUE)
 
-# import log10-transformed, normalised ADNI CSF proteomic data
 ADNI_dat <- read.csv(here("raw", "ADNI", "log_norm_dat.csv"), header = T) %>%
   transmute(class = factor(ifelse(apoe == "APOE4+", "pos", "neg"), levels = c("pos", "neg")),
             across(any_of(mi_sig_proteins_name)))
@@ -350,7 +418,6 @@ p_auc <- ggplot(auc_plot_dat, aes(x = AUC, y = Model, color = Set, shape = Set))
 
 ggsave(file.path(pic_output_dir, "plasma_ML_auc_dotplot.svg"), p_auc, 
        unit = "mm", width = 100, height = 65, device = "svg")
-
 
 # Mediation Analysis ----
 ## Filter to NCI and AD only ----
@@ -409,7 +476,10 @@ p_limma_med <- ggplot(all_prot_med, aes(x = logFC, y = negLog10FDR)) +
 ggsave(file.path(pic_output_dir, "plasma_limma_mediation_volcano.svg"), p_limma_med, 
        unit = "mm", width = 90, height = 70, device = "svg")
 
-## Pathway 1 (upstream): APOE4 --> Protein --> AD ----
+## Main analyses ----
+### Pathway 1 (upstream): APOE4 --> Protein --> AD ----
+treat_levels <- levels(NoMCI_dat$apoe4)
+
 run_mediation_P1 <- function(protein) {
   df <- NoMCI_dat %>%
     dplyr::select(diagnosis_bin, apoe4, mediator = all_of(protein), age_at_visit, msex)
@@ -419,7 +489,7 @@ run_mediation_P1 <- function(protein) {
                  data = df, family = binomial(link = "logit"))
   
   med.out <- mediate(med.fit, out.fit, treat = "apoe4", mediator = "mediator",
-                     control.value = "APOE4-", treat.value = "APOE4+",
+                     control.value = treat_levels[1], treat.value = treat_levels[2],
                      boot = TRUE, sims = 1000)
   
   tibble(UniprotID = protein,
@@ -449,7 +519,7 @@ plan(sequential)
 
 write.csv(res_P1_all, file.path(table_output_dir, "plasma_mediation_prot_AD.csv"), row.names = FALSE)
 
-## Pathway 2 (downstream): APOE4 --> AD --> Protein ----
+### Pathway 2 (downstream): APOE4 --> AD --> Protein ----
 run_mediation_P2 <- function(protein) {
   df <- NoMCI_dat %>%
     dplyr::select(diagnosis_bin, apoe4, outcome_prot = all_of(protein), age_at_visit, msex)
@@ -459,7 +529,7 @@ run_mediation_P2 <- function(protein) {
   out.fit <- lm(outcome_prot ~ diagnosis_bin + apoe4 + age_at_visit + msex, data = df)
   
   med.out <- mediate(med.fit, out.fit, treat = "apoe4", mediator = "diagnosis_bin",
-                     control.value = "APOE4-", treat.value = "APOE4+",
+                     control.value = treat_levels[1], treat.value = treat_levels[2],
                      boot = TRUE, sims = 1000)
   
   tibble(UniprotID = protein,
@@ -489,7 +559,7 @@ plan(sequential)
 
 write.csv(res_P2_all, file.path(table_output_dir, "plasma_mediation_AD_prot.csv"), row.names = FALSE)
 
-## Forest plot ----
+# Forest plot
 mediation_plot_dat <- bind_rows(
   res_P1_all %>% mutate(pathway = "P1: APOE ε4 -> Protein -> AD"),
   res_P2_all %>% mutate(pathway = "P2: APOE ε4 -> AD -> Protein")
@@ -548,6 +618,195 @@ p_mediation <- ggplot(plot_grid, aes(x = ACME_est, y = protein_label)) +
 ggsave(file.path(pic_output_dir, "plasma_mediation_forestplot.svg"), p_mediation, 
        unit = "mm", width = 175, height = 70, device = "svg")
 
+## Moderated analysis ----
+### Set up ----
+mod_sims <- 1000
+
+# Sex moderator levels: Male (level 1) vs Female (level 2)
+sex_lvl1 <- list(msex = factor("Male", levels = levels(NoMCI_dat$msex)))
+sex_lvl2 <- list(msex = factor("Female", levels = levels(NoMCI_dat$msex)))
+
+# Age moderator levels: 84th percentile (level 1) vs 16th percentile (level 2)
+age_hi <- unname(quantile(NoMCI_dat$age_at_visit, 0.84, na.rm = TRUE))
+age_lo <- unname(quantile(NoMCI_dat$age_at_visit, 0.16, na.rm = TRUE))
+age_lvl1 <- list(age_at_visit = age_hi)
+age_lvl2 <- list(age_at_visit = age_lo)
+
+# Helper function to estimate ACME at a specific moderator value
+mediate_at <- function(med.fit, out.fit, mediator_name, cov_list) {
+  set.seed(16)
+  mediate(med.fit, out.fit, treat = "apoe4", mediator = mediator_name,
+          control.value = treat_levels[1], treat.value = treat_levels[2],
+          covariates = cov_list, sims = mod_sims)
+}
+
+# Helper function to test the difference in ACME between two moderator values (level 1 minus level 2)
+modmed_test <- function(protein, med.fit, out.fit, mediator_name, lvl1, lvl2) {
+  med_1 <- mediate_at(med.fit, out.fit, mediator_name, lvl1)
+  med_2 <- mediate_at(med.fit, out.fit, mediator_name, lvl2)
+ 
+  med_init <- mediate(med.fit, out.fit, treat = "apoe4", mediator = mediator_name,
+                      control.value = treat_levels[1], treat.value = treat_levels[2], sims = 2) # Template object
+  set.seed(16)
+  tm <- test.modmed(med_init, covariates.1 = lvl1, covariates.2 = lvl2, sims = mod_sims)
+  acme <- tm[[1]]
+  
+  tibble(UniprotID = protein,
+         ACME_lvl1 = med_1$d.avg,
+         ACME_lvl1_ci_low = med_1$d.avg.ci[1],
+         ACME_lvl1_ci_up = med_1$d.avg.ci[2],
+         ACME_lvl2 = med_2$d.avg,
+         ACME_lvl2_ci_low = med_2$d.avg.ci[1],
+         ACME_lvl2_ci_up = med_2$d.avg.ci[2],
+         ACME_diff = unname(acme$statistic),
+         ACME_diff_ci_low = as.numeric(acme$conf.int[1]),
+         ACME_diff_ci_up = as.numeric(acme$conf.int[2]),
+         ACME_diff_p = max(acme$p.value, 1 / mod_sims)) 
+}
+
+# Helper function to run one analysis across all candidate proteins in parallel
+fopts <- furrr_options(seed = 16, packages = c("mediation", "dplyr", "tibble"))
+
+run_modmed_analysis <- function(run_fun) {
+  plan(multisession, workers = parallel::detectCores() - 1)
+  on.exit(plan(sequential))
+  
+  future_map_dfr(candidate_prot$UniprotID, run_fun, .options = fopts, .progress = TRUE) %>%
+    mutate(ACME_diff_fdr = p.adjust(ACME_diff_p, method = "BH")) %>%
+    left_join(protein_meta_clean, by = c("UniprotID" = "UniProt")) %>%
+    arrange(ACME_diff_p) %>%
+    dplyr::select(UniprotID, EntrezGeneSymbol, TargetFullName, ACME_diff_fdr, everything())
+}
+
+### Pathway 1 (upstream): APOE ε4 --> Protein --> AD ----
+#### APOE ε4 x sex ----
+run_modmed_P1_sex <- function(protein) {
+  df <- NoMCI_dat %>%
+    dplyr::select(diagnosis_bin, apoe4, prot = all_of(protein), age_at_visit, msex)
+  
+  med.fit <- lm(prot ~ apoe4 * msex + age_at_visit, data = df)
+  out.fit <- glm(diagnosis_bin ~ prot * msex + apoe4 * msex + age_at_visit,
+                 data = df, family = binomial(link = "logit"))
+  
+  modmed_test(protein, med.fit, out.fit, "prot", sex_lvl1, sex_lvl2)
+}
+
+res_P1_sex <- run_modmed_analysis(run_modmed_P1_sex)
+
+#### APOE ε4 x age ----
+run_modmed_P1_age <- function(protein) {
+  df <- NoMCI_dat %>%
+    dplyr::select(diagnosis_bin, apoe4, prot = all_of(protein), age_at_visit, msex)
+  
+  med.fit <- lm(prot ~ apoe4 * age_at_visit + msex, data = df)
+  out.fit <- glm(diagnosis_bin ~ prot * age_at_visit + apoe4 * age_at_visit + msex,
+                 data = df, family = binomial(link = "logit"))
+  
+  modmed_test(protein, med.fit, out.fit, "prot", age_lvl1, age_lvl2)
+}
+
+res_P1_age <- run_modmed_analysis(run_modmed_P1_age)
+
+### Pathway 2 (downstream): APOE ε4 --> AD --> Protein ----
+#### APOE ε4 x sex ----
+run_modmed_P2_sex <- function(protein) {
+  df <- NoMCI_dat %>%
+    dplyr::select(diagnosis_bin, apoe4, prot = all_of(protein), age_at_visit, msex)
+  
+  med.fit <- glm(diagnosis_bin ~ apoe4 * msex + age_at_visit,
+                 data = df, family = binomial(link = "logit"))
+  out.fit <- lm(prot ~ diagnosis_bin * msex + apoe4 * msex + age_at_visit, data = df)
+  
+  modmed_test(protein, med.fit, out.fit, "diagnosis_bin", sex_lvl1, sex_lvl2)
+}
+
+res_P2_sex <- run_modmed_analysis(run_modmed_P2_sex)
+
+#### APOE ε4 x age ----
+run_modmed_P2_age <- function(protein) {
+  df <- NoMCI_dat %>%
+    dplyr::select(diagnosis_bin, apoe4, prot = all_of(protein), age_at_visit, msex)
+  
+  med.fit <- glm(diagnosis_bin ~ apoe4 * age_at_visit + msex,
+                 data = df, family = binomial(link = "logit"))
+  out.fit <- lm(prot ~ diagnosis_bin * age_at_visit + apoe4 * age_at_visit + msex, data = df)
+  
+  modmed_test(protein, med.fit, out.fit, "diagnosis_bin", age_lvl1, age_lvl2)
+}
+
+res_P2_age <- run_modmed_analysis(run_modmed_P2_age)
+
+### Combined table ----
+res_modmed_all <- bind_rows(
+  res_P1_sex %>% mutate(Pathway = "APOE ε4 -> Protein -> AD", Moderator = "Sex"),
+  res_P1_age %>% mutate(Pathway = "APOE ε4 -> Protein -> AD", Moderator = "Age"),
+  res_P2_sex %>% mutate(Pathway = "APOE ε4 -> AD -> Protein", Moderator = "Sex"),
+  res_P2_age %>% mutate(Pathway = "APOE ε4 -> AD -> Protein", Moderator = "Age")
+) %>%
+  dplyr::select(Pathway, Moderator, UniprotID, EntrezGeneSymbol, ACME_diff_fdr, everything()) %>%
+  arrange(ACME_diff_p)
+
+write.csv(res_modmed_all, file.path(table_output_dir, "plasma_moderated_mediation.csv"), row.names = FALSE)
+
+### OTULIN follow up: APOE ε4 x age ----
+otulin_id <- "Q96BN8"
+otulin_label <- "OTULIN"
+
+otulin_dat <- NoMCI_dat %>%
+  dplyr::select(diagnosis_bin, apoe4, prot = all_of(otulin_id), age_at_visit, msex)
+
+# Pathway 1: APOE ε4 -> Protein -> AD
+med_fit_P1 <- lm(prot ~ apoe4 * age_at_visit + msex, data = otulin_dat)
+out_fit_P1 <- glm(diagnosis_bin ~ prot * age_at_visit + apoe4 * age_at_visit + msex,
+                  data = otulin_dat, family = binomial(link = "logit"))
+
+# Pathway 2: APOE ε4 -> AD -> Protein
+med_fit_P2 <- glm(diagnosis_bin ~ apoe4 * age_at_visit + msex,
+                  data = otulin_dat, family = binomial(link = "logit"))
+out_fit_P2 <- lm(prot ~ diagnosis_bin * age_at_visit + apoe4 * age_at_visit + msex, data = otulin_dat)
+
+# ACME across age
+obs_age <- model.frame(med_fit_P1)$age_at_visit
+age_grid <- seq(min(obs_age), max(obs_age), length.out = 15) # piecewise linear interpolation across 15 evenly spaced ages
+
+acme_curve <- function(med.fit, out.fit, mediator_name) {
+  map_dfr(age_grid, function(a) {
+    m <- mediate_at(med.fit, out.fit, mediator_name, list(age_at_visit = a))
+    tibble(age = a, ACME = m$d.avg, ci_low = m$d.avg.ci[1], ci_up = m$d.avg.ci[2])
+  })
+}
+
+acme_curve_P1 <- acme_curve(med_fit_P1, out_fit_P1, "prot")
+acme_curve_P2 <- acme_curve(med_fit_P2, out_fit_P2, "diagnosis_bin")
+
+plot_acme_curve <- function(curve_dat, title_text) {
+  ggplot(curve_dat, aes(x = age, y = ACME)) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "grey") +
+    geom_vline(xintercept = c(age_lo, age_hi), linetype = "dotted", color = "grey50") +
+    annotate("text", x = age_lo, y = Inf, label = "16th percentile",
+             hjust = 1.05, vjust = 1.5, size = 2, color = "grey50") +
+    annotate("text", x = age_hi, y = Inf, label = "84th percentile",
+             hjust = -0.05, vjust = 1.5, size = 2, color = "grey50") +
+    geom_ribbon(aes(ymin = ci_low, ymax = ci_up), fill = "steelblue", alpha = 0.2) +
+    geom_line(color = "steelblue") +
+    geom_rug(data = otulin_dat, aes(x = age_at_visit), inherit.aes = FALSE,
+             sides = "b", alpha = 0.2) +
+    labs(title = title_text, x = "Age at visit (years)", y = "Average Causal Mediation Effect (ACME)") +
+    theme_classic(base_size = 7) +
+    coord_cartesian(clip = "off")
+}
+
+p_acme_age_P1 <- plot_acme_curve(
+  acme_curve_P1, sprintf("%s: APOE ε4 -> Protein -> AD", otulin_label))
+
+p_acme_age_P2 <- plot_acme_curve(
+  acme_curve_P2, sprintf("%s: APOE ε4 -> AD -> Protein", otulin_label))
+
+ggsave(file.path(pic_output_dir, "plasma_OTULIN_1.svg"), p_acme_age_P1, 
+       unit = "mm", width = 87, height = 60, device = "svg")
+
+ggsave(file.path(pic_output_dir, "plasma_OTULIN_2.svg"), p_acme_age_P2, 
+       unit = "mm", width = 87, height = 60, device = "svg")
 
 # Enrichment Analysis ----
 ## Export gene lists for NetworkAnalyst ----
